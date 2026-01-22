@@ -6,14 +6,13 @@ theme: "PaperMod"
 params:
   profileMode:
     enabled: true
-    title: "Zoey Yang"
-    subtitle: "Research notes • Blog • Projects"
+    title: "Ziyang Yang"
+    subtitle: "Data Scientist | PhD on Statistics | Interested in changepoint, time series forecasting, ML and DL."
     buttons:
       - name: Blog
         url: posts/
       - name: About
         url: about/
-
 menu:
   main:
     - name: Blog
