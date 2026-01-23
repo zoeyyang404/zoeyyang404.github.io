@@ -1,6 +1,6 @@
 baseURL: "http://localhost:1313/"
 languageCode: "en-gb"
-title: "Zoey Yang"
+title: "Ziyang Yang"
 theme: "PaperMod"
 
 params:
@@ -13,6 +13,13 @@ params:
         url: posts/
       - name: About
         url: about/
+  socialIcons:
+    - name: github
+      url: "https://github.com/zoeyyang404"
+    - name: linkedin
+      url: "https://www.linkedin.com/in/statistics-ziyang-yang"
+    - name: email
+      url: "zoey.ziyang.yang at outlook.com"
 menu:
   main:
     - name: Blog
