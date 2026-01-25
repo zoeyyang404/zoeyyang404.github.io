@@ -25,11 +25,10 @@ My PhD focused on developing real-time anomaly detection (aka changepoint detect
 My interests include:
 - Time series forecasting  
 - Changepoint detection  
-- Diffusion models  
 - And, of course, new AI methods in general. (My partner works on computer vision, which I jokingly see as “fine-tuning black boxes”, but even as a statistics PhD, I have to admit that modern models do have some very elegant ideas, especially around embedding and loss design.
 
 Some highlights of my PhD:
-- My favourite paper is currently under submission, but you can already read it in [my thesis](https://research.lancaster-university.uk/en/publications/anomaly-detection-in-the-internet-of-things/):  
+- My favourite paper is not published yet, but you can already read it in [my thesis](https://research.lancaster-university.uk/en/publications/anomaly-detection-in-the-internet-of-things/):  
   *“Bagel: A Fast Bayesian Changepoint Detection Algorithm for Detecting Mean and Slope Changes with Seasonality.”*  
 - Two other published papers focus on practical methods for efficient real-time monitoring of multivariate data streams: *[mixFOCuS: A Communication-Efficient Online Changepoint Detection Method in Distributed System for Mixed-Type Data](https://doi.org/10.1111/jtsa.12834)*, and *[A communication-efficient, online changepoint detection method for monitoring distributed sensor networks](https://doi.org/10.1007/s11222-024-10428-2)*.
 - Our work was awarded runner-up in the TakeAim 2024 competition.
