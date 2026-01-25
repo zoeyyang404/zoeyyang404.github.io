@@ -29,9 +29,9 @@ My interests include:
 - And, of course, new AI methods in general. (My partner works on computer vision, which I jokingly see as “fine-tuning black boxes” — but even as a statistics PhD, I have to admit that modern models do have some very elegant ideas, especially around embedding and loss design.
 
 Some highlights of my PhD:
-- My favourite paper is currently under submission, but you can already read it in my thesis:  
+- My favourite paper is currently under submission, but you can already read it in my thesis (https://research.lancaster-university.uk/en/publications/anomaly-detection-in-the-internet-of-things/):  
   *“Bagel: A Fast Bayesian Changepoint Detection Algorithm for Detecting Mean and Slope Changes with Seasonality.”*  
-- Two other published papers focus on practical methods for efficient real-time monitoring of multivariate data streams.  
+- Two other published papers focus on practical methods for efficient real-time monitoring of multivariate data streams.(https://onlinelibrary.wiley.com/doi/full/10.1111/jtsa.12834, and A communication-efficient, online changepoint detection method for monitoring distributed sensor networks)  
 - Our work was awarded runner-up in the TakeAim 2024 competition.
 
 ### In case you are curious about my experience
