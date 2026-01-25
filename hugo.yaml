@@ -6,9 +6,6 @@ theme: "PaperMod"
 params:
   profileMode:
     enabled: true
-    imageUrl: "/images/avatar.jpeg"
-    imageWidth: 180
-    imageHeight: 180
     title: "Ziyang Yang"
     subtitle: "Data Scientist | PhD in Statistics | Interested in changepoint, time series forecasting, ML and DL."
     buttons:
