@@ -12,7 +12,7 @@ params:
       - name: Blog
         url: posts/
       - name: About Me
-        url: /content/about_me.md
+        url: /about-me/
   socialIcons:
     - name: github
       url: "https://github.com/zoeyyang404"
@@ -28,6 +28,6 @@ menu:
       url: /posts/
       weight: 10
     - name: About Me
-      url: /content/about_me.md
+      url: /about-me/
       weight: 20
 
