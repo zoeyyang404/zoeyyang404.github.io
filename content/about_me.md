@@ -1,6 +1,5 @@
 ---
 title: "About Me"
-date: 2026-01-25
 slug: "about-me"
 draft: false
 ---
