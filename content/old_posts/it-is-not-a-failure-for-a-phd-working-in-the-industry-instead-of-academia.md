@@ -12,7 +12,7 @@ aliases: ["https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/2021/04/
 <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:33.33%">
 
 <figure class="wp-block-image size-large">
-<img src="/wp-content/uploads/sites/18/2021/04/fdsfsfdsf.jpg" class="wp-image-302" decoding="async" srcset="/wp-content/uploads/sites/18/2021/04/fdsfsfdsf.jpg 715w, https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/wp-content/uploads/sites/18/2021/04/fdsfsfdsf-300x168.jpg 300w" sizes="(max-width: 715px) 100vw, 715px" width="715" height="400" />
+<img src="/wp-content/uploads/sites/18/2021/04/fdsfsfdsf.jpg" class="wp-image-302" decoding="async" srcset="/wp-content/uploads/sites/18/2021/04/fdsfsfdsf.jpg 715w, /old_posts_image/wp-content/uploads/sites/18/2021/04/fdsfsfdsf-300x168.jpg 300w" sizes="(max-width: 715px) 100vw, 715px" width="715" height="400" />
 </figure>
 
 </div>
@@ -51,10 +51,11 @@ Originally I thought the industry project might be applicable and no theoretical
 <div id="block-b5569ddc-b00f-40bc-8300-3a15764e5dcc" class="wp-block-image">
 
 <figure class="aligncenter is-resized">
-<img src="https://s30876.pcdn.co/wp-content/uploads/PhD3-1170x630.jpg" loading="lazy" decoding="async" width="487" height="261" alt="Post PhD, Where Do I Go From Here? - career-advice.jobs.ac.uk" />
+<img src="/old_posts_image/wp-content/uploads/PhD3-1170x630.jpg" loading="lazy" decoding="async" width="487" height="261" alt="Post PhD, Where Do I Go From Here? - career-advice.jobs.ac.uk" />
 </figure>
 
 </div>
 
 As a result, working in the industry doesnâ€™t mean the end of academia. And it allows you to see the direct impact. Now I am much clear about my path and hope this blog could help you if you have similar questions.
+
 

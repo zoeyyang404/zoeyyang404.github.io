@@ -29,7 +29,7 @@ You could use linear regression. Linear regression often expressed as the Equati
 <div class="wp-block-image">
 
 <figure class="aligncenter is-resized">
-<img src="https://i2.wp.com/contentsimplicity.com/wp-content/uploads/2019/05/18d7e-1eieyrsqib85cpa32zapqwq.png?w=1080&amp;ssl=1" loading="lazy" decoding="async" width="576" height="242" alt="Simple linear regression in four lines of code | Content Simplicity" />
+<img src="/old_posts_image/wp-content/uploads/2019/05/18d7e-1eieyrsqib85cpa32zapqwq.png?w=1080&amp;ssl=1" loading="lazy" decoding="async" width="576" height="242" alt="Simple linear regression in four lines of code | Content Simplicity" />
 </figure>
 
 </div>
@@ -74,3 +74,4 @@ How to build models in SPSS: <https://www.r-bloggers.com/2020/05/step-by-step-gu
 For more readings about the linear regression:
 
 <https://www.youtube.com/watch?v=ZkjP5RJLQF4>
+

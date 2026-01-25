@@ -39,7 +39,7 @@ Most drivers are deviating from the route plan since they have their own driving
 <div class="wp-block-image">
 
 <figure class="aligncenter is-resized">
-<img src="https://www.scotsman.com/images-i.jpimedia.uk/imagefetch/https://jpgreatcontent.co.uk/wp-content/uploads/2020/12/SKODAMarketplace002.jpg?width=2048&amp;enable=upscale" loading="lazy" decoding="async" width="458" height="293" alt="Skoda trials in-car alerts for discounts on fuel, food and more | The Scotsman" />
+<img src="/old_posts_image/wp-content/uploads/2020/12/SKODAMarketplace002.jpg?width=2048&amp;enable=upscale" loading="lazy" decoding="async" width="458" height="293" alt="Skoda trials in-car alerts for discounts on fuel, food and more | The Scotsman" />
 </figure>
 
 </div>
@@ -85,3 +85,4 @@ Unable to execute JavaScript.
 </div>
 </div>
 </figure>
+

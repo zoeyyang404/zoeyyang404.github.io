@@ -49,7 +49,7 @@ The first step of measuring the correlation is drawing the plot:
 <div class="wp-block-image">
 
 <figure class="aligncenter size-large is-resized">
-<img src="/wp-content/uploads/sites/18/2021/02/Untitled.png" class="wp-image-198" loading="lazy" decoding="async" srcset="/wp-content/uploads/sites/18/2021/02/Untitled.png 787w, https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/wp-content/uploads/sites/18/2021/02/Untitled-300x205.png 300w, https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/wp-content/uploads/sites/18/2021/02/Untitled-768x526.png 768w" sizes="auto, (max-width: 584px) 100vw, 584px" width="584" height="400" />
+<img src="/wp-content/uploads/sites/18/2021/02/Untitled.png" class="wp-image-198" loading="lazy" decoding="async" srcset="/wp-content/uploads/sites/18/2021/02/Untitled.png 787w, /old_posts_image/wp-content/uploads/sites/18/2021/02/Untitled-300x205.png 300w, /old_posts_image/wp-content/uploads/sites/18/2021/02/Untitled-768x526.png 768w" sizes="auto, (max-width: 584px) 100vw, 584px" width="584" height="400" />
 </figure>
 
 </div>
@@ -127,7 +127,7 @@ Besides, we could only say there is a correlation between variables and we could
 <div class="wp-block-image">
 
 <figure class="aligncenter size-large is-resized">
-<img src="/wp-content/uploads/sites/18/2021/04/image-18.png" class="wp-image-292" loading="lazy" decoding="async" srcset="/wp-content/uploads/sites/18/2021/04/image-18.png 502w, https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/wp-content/uploads/sites/18/2021/04/image-18-300x211.png 300w" sizes="auto, (max-width: 366px) 100vw, 366px" width="366" height="257" />
+<img src="/wp-content/uploads/sites/18/2021/04/image-18.png" class="wp-image-292" loading="lazy" decoding="async" srcset="/wp-content/uploads/sites/18/2021/04/image-18.png 502w, /old_posts_image/wp-content/uploads/sites/18/2021/04/image-18-300x211.png 300w" sizes="auto, (max-width: 366px) 100vw, 366px" width="366" height="257" />
 </figure>
 
 </div>
@@ -137,4 +137,5 @@ For more readings:
 <http://www.sthda.com/english/wiki/correlation-test-between-two-variables-in-r> This blog specifically listed how to conduct other correlation test between two variables in R
 
 <https://www.statisticshowto.com/probability-and-statistics/correlation-coefficient-formula/> This is a really good blog about the definition and it also contains a good video!
+
 
