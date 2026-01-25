@@ -4,6 +4,7 @@ title: "Ziyang Yang"
 theme: "PaperMod"
 
 params:
+  math: true
   profileMode:
     enabled: true
     title: "Ziyang Yang"
