@@ -15,7 +15,7 @@ During last semester, we are given a list of topics to discuss as a team. The fo
 <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:33.33%">
 
 <figure class="wp-block-image size-large is-resized">
-<img src="/old_posts_pics/18/2021/04/1_pcEsW85jbSIzsEONxn1XRQ.jpeg" class="wp-image-286" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/1_pcEsW85jbSIzsEONxn1XRQ.jpeg 345w, /old_posts_pics/18/2021/04/1_pcEsW85jbSIzsEONxn1XRQ-259x300.jpeg 259w" sizes="auto, (max-width: 251px) 100vw, 251px" width="251" height="291" />
+<img src="/old_posts_image/18/2021/04/1_pcEsW85jbSIzsEONxn1XRQ.jpeg" class="wp-image-286" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/1_pcEsW85jbSIzsEONxn1XRQ.jpeg 345w, /old_posts_image/18/2021/04/1_pcEsW85jbSIzsEONxn1XRQ-259x300.jpeg 259w" sizes="auto, (max-width: 251px) 100vw, 251px" width="251" height="291" />
 </figure>
 
 </div>
@@ -39,7 +39,7 @@ This is the bandit problem which is clearly about how to make a good decision. I
 <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
 
 <figure class="wp-block-image size-large">
-<img src="/old_posts_pics/18/2021/02/recommendation-1-1024x350.png" class="wp-image-180" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/02/recommendation-1-1024x350.png 1024w, /old_posts_pics/18/2021/02/recommendation-1-300x103.png 300w, /old_posts_pics/18/2021/02/recommendation-1-768x263.png 768w, /old_posts_pics/18/2021/02/recommendation-1-1536x525.png 1536w, /old_posts_pics/18/2021/02/recommendation-1.png 1558w" sizes="auto, (max-width: 1024px) 100vw, 1024px" width="1024" height="350" />
+<img src="/old_posts_image/18/2021/02/recommendation-1-1024x350.png" class="wp-image-180" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/02/recommendation-1-1024x350.png 1024w, /old_posts_image/18/2021/02/recommendation-1-300x103.png 300w, /old_posts_image/18/2021/02/recommendation-1-768x263.png 768w, /old_posts_image/18/2021/02/recommendation-1-1536x525.png 1536w, /old_posts_image/18/2021/02/recommendation-1.png 1558w" sizes="auto, (max-width: 1024px) 100vw, 1024px" width="1024" height="350" />
 </figure>
 
 </div>
@@ -88,7 +88,7 @@ Okay dokey. Now we have lots of information about our viewers. Whatâ€™s the
 Similarity, we have a list of advertisement from a list of companies. Which advertisement we choose to show for viewers with certain type?
 
 <figure class="wp-block-image size-large">
-<img src="/old_posts_pics/18/2021/02/contextualbanditdiag-1024x170.png" class="wp-image-181" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/02/contextualbanditdiag-1024x170.png 1024w, /old_posts_pics/18/2021/02/contextualbanditdiag-300x50.png 300w, /old_posts_pics/18/2021/02/contextualbanditdiag-768x127.png 768w, /old_posts_pics/18/2021/02/contextualbanditdiag-1536x255.png 1536w, /old_posts_pics/18/2021/02/contextualbanditdiag-1600x265.png 1600w, /old_posts_pics/18/2021/02/contextualbanditdiag.png 1762w" sizes="auto, (max-width: 1024px) 100vw, 1024px" width="1024" height="170" />
+<img src="/old_posts_image/18/2021/02/contextualbanditdiag-1024x170.png" class="wp-image-181" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/02/contextualbanditdiag-1024x170.png 1024w, /old_posts_image/18/2021/02/contextualbanditdiag-300x50.png 300w, /old_posts_image/18/2021/02/contextualbanditdiag-768x127.png 768w, /old_posts_image/18/2021/02/contextualbanditdiag-1536x255.png 1536w, /old_posts_image/18/2021/02/contextualbanditdiag-1600x265.png 1600w, /old_posts_image/18/2021/02/contextualbanditdiag.png 1762w" sizes="auto, (max-width: 1024px) 100vw, 1024px" width="1024" height="170" />
 </figure>
 
 Similarly, each time, our system will give them a type of advertisement (that is choose an action), and watch their reaction. If guess correctly, the machine will gain â€˜rewardsâ€™ (that is you click the products), and such rewards will transfer to experience about this type of viewers. If guess incorrectly, the machine is â€˜regretâ€™ that do not guess viewers preference and try to guess again and again. After a long time, our machine could guess the preference of viewers correctly!
@@ -177,5 +177,6 @@ Unable to execute JavaScript.
 </div>
 </div>
 </figure>
+
 
 

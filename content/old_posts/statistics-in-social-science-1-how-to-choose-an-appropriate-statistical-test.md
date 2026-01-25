@@ -48,7 +48,7 @@ The first step of measuring the correlation is drawing the plot:
 <div class="wp-block-image">
 
 <figure class="aligncenter size-large is-resized">
-<img src="/old_posts_pics/18/2021/02/Untitled.png" class="wp-image-198" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/02/Untitled.png 787w, /old_posts_pics/18/2021/02/Untitled-300x205.png 300w, /old_posts_pics/18/2021/02/Untitled-768x526.png 768w" sizes="auto, (max-width: 584px) 100vw, 584px" width="584" height="400" />
+<img src="/old_posts_image/18/2021/02/Untitled.png" class="wp-image-198" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/02/Untitled.png 787w, /old_posts_image/18/2021/02/Untitled-300x205.png 300w, /old_posts_image/18/2021/02/Untitled-768x526.png 768w" sizes="auto, (max-width: 584px) 100vw, 584px" width="584" height="400" />
 </figure>
 
 </div>
@@ -115,7 +115,7 @@ It is worth noting that the statistical test is only an assisted tool for the re
 <div class="wp-block-image">
 
 <figure class="aligncenter size-large is-resized">
-<img src="/old_posts_pics/18/2021/02/Untitled-1.png" class="wp-image-197" loading="lazy" decoding="async" width="397" height="260" />
+<img src="/old_posts_image/18/2021/02/Untitled-1.png" class="wp-image-197" loading="lazy" decoding="async" width="397" height="260" />
 <figcaption>Cited from <a href="https://support.minitab.com/en-us/minitab-express/1/help-and-how-to/modeling-statistics/regression/supporting-topics/basics/a-comparison-of-the-pearson-and-spearman-correlation-methods/">https://support.minitab.com/en-us/minitab-express/1/help-and-how-to/modeling-statistics/regression/supporting-topics/basics/a-comparison-of-the-pearson-and-spearman-correlation-methods/</a></figcaption>
 </figure>
 
@@ -126,7 +126,7 @@ Besides, we could only say there is a correlation between variables and we could
 <div class="wp-block-image">
 
 <figure class="aligncenter size-large is-resized">
-<img src="/old_posts_pics/18/2021/04/image-18.png" class="wp-image-292" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-18.png 502w, /old_posts_pics/18/2021/04/image-18-300x211.png 300w" sizes="auto, (max-width: 366px) 100vw, 366px" width="366" height="257" />
+<img src="/old_posts_image/18/2021/04/image-18.png" class="wp-image-292" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-18.png 502w, /old_posts_image/18/2021/04/image-18-300x211.png 300w" sizes="auto, (max-width: 366px) 100vw, 366px" width="366" height="257" />
 </figure>
 
 </div>
@@ -136,5 +136,6 @@ For more readings:
 <http://www.sthda.com/english/wiki/correlation-test-between-two-variables-in-r> This blog specifically listed how to conduct other correlation test between two variables in R
 
 <https://www.statisticshowto.com/probability-and-statistics/correlation-coefficient-formula/> This is a really good blog about the definition and it also contains a good video!
+
 
 

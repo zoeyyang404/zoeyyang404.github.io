@@ -71,12 +71,13 @@ I will explain the Figure here, and you will understand how FPOP prune candidate
 <div class="wp-block-image">
 
 <figure class="aligncenter size-full is-resized">
-<img src="/old_posts_pics/18/2021/12/Untitled.png" class="wp-image-409" fetchpriority="high" decoding="async" srcset="/old_posts_pics/18/2021/12/Untitled.png 879w, /old_posts_pics/18/2021/12/Untitled-300x141.png 300w, /old_posts_pics/18/2021/12/Untitled-768x362.png 768w" sizes="(max-width: 575px) 100vw, 575px" width="575" height="271" />
+<img src="/old_posts_image/18/2021/12/Untitled.png" class="wp-image-409" fetchpriority="high" decoding="async" srcset="/old_posts_image/18/2021/12/Untitled.png 879w, /old_posts_image/18/2021/12/Untitled-300x141.png 300w, /old_posts_image/18/2021/12/Untitled-768x362.png 768w" sizes="(max-width: 575px) 100vw, 575px" width="575" height="271" />
 <figcaption>This is a direct screenshot from Paper (On Optimal Multiple Changepoint Algorithms for Large Data, arxiv: 1409.1942</figcaption>
 </figure>
 
 </div>
 
 At time \\ t=78 \\ , we stored \\ 7 \\ intervals with associated \\ \mu \\ . Since we assume \\ \gamma \\ function is a negative loglikelihood for normally distributed data, it shows a quadratic shape in the Figure. At time \\ t=79 \\ , we observed new data, so we recompute the cost function and get the result as the middle Figure shows. In the middle Figure, notice that the purple line is not optimal anymore (it is above all the curves), and the purple line corresponds to the cost when the changepoint is located in 78. Thus, we could prune this candidate that we will not consider \\ y\_{78} \\ to be the possible changepoint anymore (as shown in Figure (c)).
+
 
 

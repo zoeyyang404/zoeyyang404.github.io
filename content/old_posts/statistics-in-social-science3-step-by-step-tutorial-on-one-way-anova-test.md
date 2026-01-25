@@ -34,7 +34,7 @@ Firstly, lets draw a boxplot to see the data graphically.
 <div class="wp-block-image">
 
 <figure class="aligncenter size-large is-resized">
-<img src="/old_posts_pics/18/2021/04/image-2-1024x541.png" class="wp-image-252" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-2-1024x541.png 1024w, /old_posts_pics/18/2021/04/image-2-300x158.png 300w, /old_posts_pics/18/2021/04/image-2-768x406.png 768w, /old_posts_pics/18/2021/04/image-2.png 1043w" sizes="auto, (max-width: 566px) 100vw, 566px" width="566" height="298" />
+<img src="/old_posts_image/18/2021/04/image-2-1024x541.png" class="wp-image-252" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-2-1024x541.png 1024w, /old_posts_image/18/2021/04/image-2-300x158.png 300w, /old_posts_image/18/2021/04/image-2-768x406.png 768w, /old_posts_image/18/2021/04/image-2.png 1043w" sizes="auto, (max-width: 566px) 100vw, 566px" width="566" height="298" />
 </figure>
 
 </div>
@@ -83,7 +83,7 @@ Now lets check the assumptions:
 <div class="wp-block-image">
 
 <figure class="aligncenter size-large is-resized">
-<img src="/old_posts_pics/18/2021/04/image-3-1024x541.png" class="wp-image-253" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-3-1024x541.png 1024w, /old_posts_pics/18/2021/04/image-3-300x158.png 300w, /old_posts_pics/18/2021/04/image-3-768x406.png 768w, /old_posts_pics/18/2021/04/image-3.png 1043w" sizes="auto, (max-width: 623px) 100vw, 623px" width="623" height="328" />
+<img src="/old_posts_image/18/2021/04/image-3-1024x541.png" class="wp-image-253" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-3-1024x541.png 1024w, /old_posts_image/18/2021/04/image-3-300x158.png 300w, /old_posts_image/18/2021/04/image-3-768x406.png 768w, /old_posts_image/18/2021/04/image-3.png 1043w" sizes="auto, (max-width: 623px) 100vw, 623px" width="623" height="328" />
 </figure>
 
 </div>
@@ -102,7 +102,7 @@ W = 0.96607, p-value = 0.4379
 <div class="wp-block-image">
 
 <figure class="aligncenter size-large is-resized">
-<img src="/old_posts_pics/18/2021/04/image-4-1024x541.png" class="wp-image-254" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-4-1024x541.png 1024w, /old_posts_pics/18/2021/04/image-4-300x158.png 300w, /old_posts_pics/18/2021/04/image-4-768x406.png 768w, /old_posts_pics/18/2021/04/image-4.png 1043w" sizes="auto, (max-width: 599px) 100vw, 599px" width="599" height="316" />
+<img src="/old_posts_image/18/2021/04/image-4-1024x541.png" class="wp-image-254" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-4-1024x541.png 1024w, /old_posts_image/18/2021/04/image-4-300x158.png 300w, /old_posts_image/18/2021/04/image-4-768x406.png 768w, /old_posts_image/18/2021/04/image-4.png 1043w" sizes="auto, (max-width: 599px) 100vw, 599px" width="599" height="316" />
 </figure>
 
 </div>
@@ -126,5 +126,6 @@ Besides, I also found useful blogs which using SPSS to do one-way ANOVA test:
 <https://statistics.laerd.com/statistical-guides/one-way-anova-statistical-guide-3.php>
 
 <https://statistics.laerd.com/spss-tutorials/one-way-anova-using-spss-statistics.php>
+
 
 
