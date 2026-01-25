@@ -7,9 +7,9 @@ draft: false
 Hi, I’m Ziyang Yang. I’m currently a data scientist working at an IoT company, focusing on time series forecasting and anomaly detection. In 2025, I obtained my PhD from Lancaster University, supervised by Prof. Idris Eckley and Prof. Paul Fearnhead, and sponsored by BT. My research focused on developing novel anomaly detection algorithms for monitoring large-scale IoT networks efficiently and accurately in real time.
 
 ### Why I built this site
-In the era of large language models, writing blogs and scientific notes can feel a bit pointless — but paradoxically, LLMs have made *precision, understanding, and original thinking* even more important. Being able to clearly explain ideas, evaluate claims, and connect concepts matters more than ever.
+In the era of large language models, writing blogs and scientific notes can feel a bit silly. But to me, LLMs have made precision, understanding, and original thinking even more important. Being able to clearly explain ideas, evaluate claims, and connect concepts matters more than ever.
 
-I’ve benefited a lot from reading thoughtful technical blogs (for example, Gregory Gundersen’s site), and I genuinely enjoy writing for a broad audience. I’ve written before during my PhD (see my old site), and I want to continue doing that here — learning new things and explaining them from the perspective of a statistician working in industry.
+I’ve benefited a lot from reading thoughtful technical blogs (for example, Gregory Gundersen’s site https://gregorygundersen.com/), and I genuinely enjoy writing for a broad audience. I’ve written before during my PhD (see my old site https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/), and I want to continue doing that here — learning new things and explaining them from the perspective of a statistician working in industry.
 
 On this site, I share:
 - Research notes and paper summaries (especially on classic and foundational work — yes, even the “old but solid” stuff like *Attention Is All You Need*)  
@@ -20,15 +20,13 @@ On this site, I share:
 This is not meant to be a polished portfolio, but a living notebook.
 
 ### In case you are curious about my PhD research
-My PhD focused on developing real-time anomaly detection (also known as changepoint detection) algorithms for monitoring large-scale IoT sensor data and multivariate time series. I also collaborated with startups on computer vision projects, using black-box deep learning models for image classification and segmentation.
+My PhD focused on developing real-time anomaly detection (aka changepoint detection) algorithms for monitoring large-scale IoT sensor data, or multivariate time series in general. I also collaborated with startups on projects, using black-box deep learning models for image classification and segmentation.
 
 My interests include:
 - Time series forecasting  
 - Changepoint detection  
 - Diffusion models  
-- And, of course, new AI methods in general  
-
-My partner works on computer vision, which I jokingly see as “fine-tuning black boxes” — but even as a statistics PhD, I have to admit that modern models do have some very elegant ideas, especially around representation learning and transformers.
+- And, of course, new AI methods in general. (My partner works on computer vision, which I jokingly see as “fine-tuning black boxes” — but even as a statistics PhD, I have to admit that modern models do have some very elegant ideas, especially around embedding and loss design.
 
 Some highlights of my PhD:
 - My favourite paper is currently under submission, but you can already read it in my thesis:  
