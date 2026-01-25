@@ -6,8 +6,7 @@ theme: "PaperMod"
 params:
   profileMode:
     enabled: true
-    imageUrl: "/images/avatar.jepg"
-    imageTitle: "Ziyang Yang"
+    imageUrl: "/images/avatar.jpeg"
     imageWidth: 180
     imageHeight: 180
     title: "Ziyang Yang"
