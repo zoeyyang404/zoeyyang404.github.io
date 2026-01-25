@@ -9,7 +9,7 @@ Hi, I’m Ziyang Yang. I’m currently a data scientist working at an IoT compan
 ### Why I built this site
 In the era of large language models, writing blogs and scientific notes can feel a bit silly. But to me, LLMs have made precision, understanding, and original thinking even more important. Being able to clearly explain ideas, evaluate claims, and connect concepts matters more than ever.
 
-I’ve benefited a lot from reading thoughtful technical blogs (for example, Gregory Gundersen’s site https://gregorygundersen.com/), and I genuinely enjoy writing for a broad audience. I’ve written before during my PhD (see my old site https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/), and I want to continue doing that here — learning new things and explaining them from the perspective of a statistician working in industry.
+I’ve benefited a lot from reading thoughtful technical blogs (for example, [Gregory Gundersen’s site] https://gregorygundersen.com/), and I genuinely enjoy writing for a broad audience. I’ve written before during my PhD (see [my old site] https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/), and I want to continue doing that here — learning new things and explaining them from the perspective of a statistician working in industry.
 
 On this site, I share:
 - Research notes and paper summaries (especially on classic and foundational work — yes, even the “old but solid” stuff like *Attention Is All You Need*)  
@@ -29,9 +29,9 @@ My interests include:
 - And, of course, new AI methods in general. (My partner works on computer vision, which I jokingly see as “fine-tuning black boxes” — but even as a statistics PhD, I have to admit that modern models do have some very elegant ideas, especially around embedding and loss design.
 
 Some highlights of my PhD:
-- My favourite paper is currently under submission, but you can already read it in my thesis (https://research.lancaster-university.uk/en/publications/anomaly-detection-in-the-internet-of-things/):  
+- My favourite paper is currently under submission, but you can already read it in my thesis ([https://research.lancaster-university.uk/en/publications/anomaly-detection-in-the-internet-of-things/]):  
   *“Bagel: A Fast Bayesian Changepoint Detection Algorithm for Detecting Mean and Slope Changes with Seasonality.”*  
-- Two other published papers focus on practical methods for efficient real-time monitoring of multivariate data streams.(https://onlinelibrary.wiley.com/doi/full/10.1111/jtsa.12834, and A communication-efficient, online changepoint detection method for monitoring distributed sensor networks)  
+- Two other published papers focus on practical methods for efficient real-time monitoring of multivariate data streams: [mixFOCuS: A Communication-Efficient Online Changepoint Detection Method in Distributed System for Mixed-Type Data](https://doi.org/10.1111/jtsa.12834), and [A communication-efficient, online changepoint detection method for monitoring distributed sensor networks](https://doi.org/10.1007/s11222-024-10428-2).
 - Our work was awarded runner-up in the TakeAim 2024 competition.
 
 ### In case you are curious about my experience
