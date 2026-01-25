@@ -1,142 +1,133 @@
 ﻿---
-title: "Statistics in Social science (1): How to choose an appropriate correlation test?"
-date: "2021-02-26T11:47:00+00:00"
+title: "Statistics in Social Science(3): Step-by-Step tutorial on One-way ANOVA test"
+date: "2021-04-14T12:18:52+01:00"
 draft: false
-slug: "statistics-in-social-science-1-how-to-choose-an-appropriate-statistical-test"
+slug: "statistics-in-social-science3-step-by-step-tutorial-on-one-way-anova-test"
 tags: []
 categories: []
-aliases: ["https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/2021/02/26/statistics-in-social-science-1-how-to-choose-an-appropriate-statistical-test/"]
 ---
-This blog will give you the idea of choosing an appropriate statistical correlation test in social science area.
+<span class="has-inline-color has-secondary-color">This blog will explain the one-way ANOVA test in detail (including assumptions, implementing situation and explanation), and an example analysed by R will be shown at the end.</span>
 
-Recently I am talking with friends who are studying in the social science area, and they are confused about how to use statistical test appropriately. So I decided to write a series of blogs talking about the common statistical method in social science and how to explain the result.
+## What is this test for?
 
-In social science, it is common to calculate the association between two variables. For example, you may want to test the relationship between smoking and lung cancer, consumption and income, etc. The test method could be summarized in the table below under different variables and different distributions. In this blog, we only measure two continuous variables.
+You may be familiar with the t-test and some other nonparametric test used to test if there is a difference in the mean between two groups (e.g., if there is a difference in mean score between two classes; if one treatment is better than another treatment). The one-way analysis of variance (ANOVA) is used to **determine if there is a significant difference among the means of three or more independent groups**. For example, the application situation could be:
 
-<figure class="wp-block-table is-style-regular">
-<table>
-<tbody>
-<tr>
-<td><strong>Two continuous variables</strong></td>
-<td></td>
-</tr>
-<tr>
-<td>Normal distributed?</td>
-<td><a href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson Correlation coefficient</a></td>
-</tr>
-<tr>
-<td>Not normal distributed</td>
-<td><a href="https://en.wikipedia.org/wiki/Spearman%27s_rank_correlation_coefficient">Spearman Correlation coefficient</a></td>
-</tr>
-<tr>
-<td><strong>Two categorical variables</strong></td>
-<td><a href="https://en.wikipedia.org/wiki/Fisher%27s_exact_test">Fisher exact test</a>; <a href="https://en.wikipedia.org/wiki/Chi-squared_test">Chi-square test</a></td>
-</tr>
-<tr>
-<td><strong>one continuous variable and one continuous variable</strong></td>
-<td><a href="https://en.wikipedia.org/wiki/Box_plot#:~:text=In%20descriptive%20statistics%2C%20a%20box,whisker%20plot%20and%20box%2Dand%2D">Boxplot</a>; <a href="https://www.scalestatistics.com/rank-biserial.html#:~:text=The%20rank%20biserial%20correlation%20is,variable%20and%20an%20ordinal%20variable.&amp;text=Rank%20biserial%20is%20the%20correlation,categorical%20and%20an%20ordinal%20variable.">Biserial rank correlation</a></td>
-</tr>
-</tbody>
-</table>
-</figure>
+- if there is a difference in mean score among the four classes
+- if there is a difference in the mean effect among the three types of treatment
 
-# Analysis of Correlation
+## Assumptions:
 
-## Drawing the plot â€“ a direct way
+There is no free lunch. To implement the one-way ANOVA test, it should satisfy three assumptions:
 
-The first step of measuring the correlation is drawing the plot:
+- The variable is normally distributed in each group in the one-way ANOVA (technically, it is the residuals that need to be normally distributed, but the results will be the same). For example, if we want to compare the mean score on three classes, the score should have a [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution#:~:text=The%20normal%20distribution%20is%20the,a%20specified%20mean%20and%20variance.) for each class.
+- The variances are homogenous. This means the population variance in each group should equal. For example, the scores of the students in the three classes should fluctuate by a similar level.
+- The observations should be independent. This means one observation will not influence other observations. For example, student Aâ€™s grade will not influence student Bâ€™s grade as they took their exam independently.
+
+All three test will be tested before implementing one-way ANOVA test. Now, letâ€™s look at how to implementing ANOVA test through R.
+
+## How to do it and explain it (An example in R)
+
+Letâ€™s use the dataset in R called â€˜PlantGrowthâ€™. It includes the weight of 30 plants with three groups (10 plants will not receive any treatment (control group), 10 plants receive treatment A, and 10 plants receive treatment B). And our purpose is to find if there is a difference in the mean effect among the three groups?
+
+Firstly, lets draw a boxplot to see the data graphically.
 
 <div class="wp-block-image">
 
 <figure class="aligncenter size-large is-resized">
-<img src="/old_posts_pics/18/2021/02/Untitled.png" class="wp-image-198" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/02/Untitled.png 787w, /old_posts_pics/18/2021/02/Untitled-300x205.png 300w, /old_posts_pics/18/2021/02/Untitled-768x526.png 768w" sizes="auto, (max-width: 584px) 100vw, 584px" width="584" height="400" />
+<img src="/old_posts_pics/18/2021/04/image-2-1024x541.png" class="wp-image-252" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-2-1024x541.png 1024w, /old_posts_pics/18/2021/04/image-2-300x158.png 300w, /old_posts_pics/18/2021/04/image-2-768x406.png 768w, /old_posts_pics/18/2021/04/image-2.png 1043w" sizes="auto, (max-width: 566px) 100vw, 566px" width="566" height="298" />
 </figure>
 
 </div>
 
-Assume we have continuous data y1, x1, x2, x3 and x4. From the plot above, we could see the correlation between y1 and x1 is a positive linear correlation; y2 and x2 seem no apparent linear correlation and non-linear correlation; y1 and x3 have negative linear correlation and y1 and x4 have a non-linear correlation.
+From the boxplot, we could conclude that treatment 1 has a lower effect than the control group, but the difference is not too large. And plants received treatment 3 has a larger weight than the other two groups.
 
-## Calculating the correlation coefficient â€“ a mathematical way
-
-The correlation coefficient is a statistic measuring the strength of the linear correlation. Usually, there are two ways: the Pearson correlation coefficient and the Spearman correlation coefficient. Although you may want to report the P-value of the correlation test, it is necessary to report the coefficient at the same time.
-
-<div class="wp-block-image">
-
-<figure class="aligncenter">
-<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTX0ajRSz4AXEjEt5E4CVH1FEWbD9I7NRrw-A&amp;usqp=CAU" decoding="async" alt="Correlation Coefficient - quickmeme" />
-</figure>
-
-</div>
-
-### Pearson correlation coefficient
-
-Pearson correlation coefficient could be calculated in R by cor() function. It is the most commonly used statistics; However, it assumes normal or bell-shaped distribution for continuous variable. We didnâ€™t check the assumption here but it has to be done in real data analysis.
-
-The correlation coefficient ranges from -1 to 1. The sign measures the direction of correlation: positive refers to the positive relationship while negative value refers to the negative relationship. The absolute value measures the strength of the correlation. Usually, the absolute value \|value\|\>0.7 could be considered as a strong correlation.
-
-From the example we could see, y1 and x1 have a strong positive correlation; the correlation coefficient between y1 and x2 is really small only 0.016; y1 and x3 have a strong negative correlation; while y1 and x4 have a mild correlation. Note: Here we could only say they have a linear correlation since Pearson ignore the non-linear relationship.
+Next, we measure the difference through One-way ANOVA, and we got the result:
 
 ``` wp-block-code
-> cor(y1,x1)
-[1] 0.8708785
-> cor(y1,x2)
-[1] 0.01631352
-> cor(y1,x3)
-[1] -0.9145617
-> cor(y1,x4)
-[1] 0.405236
+res.aov <- aov(weight ~ group, data = data)
+# Summary of the analysis
+summary(res.aov)
+            Df Sum Sq Mean Sq F value Pr(>F)  
+group        2  3.766  1.8832   4.846 0.0159 *
+Residuals   27 10.492  0.3886                 
+---
+Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
 ```
 
-### Spearman Rank correlation coefficient
+##### Interpretation
 
-Unlike Pearsonâ€™s method, Spearmanâ€™s method does not assume the distribution of the variables. Usually, we got a similar result to Pearson (as the result we see below). The difference between the Spearman rank correlation and Pearson rank correlation is that Pearson only takes account into the linear relationship but discards non-linear relationship. However, the Spearman test considers both linear and non-linear relationship.
+Under a 5% significance level, the P-value of the test is less than 0.05 (P=0.0159\<0.05). So we could conclude there is a significant difference among groups.
+
+However, we could only say there is a significant difference among groups, but we donâ€™t know which pairs of groups are different. To understand if there is a difference between specific pairs of groups, we could implement Tukey multiple pairwise-comparisons:
 
 ``` wp-block-code
-> cor(y1,x1,method = 'spearman')
-[1] 0.8520012
-> cor(y1,x2,method = 'spearman')
-[1] 0.01749775
-> cor(y1,x3,method = 'spearman')
-[1] -0.9017702
-> cor(y1,x4,method = 'spearman')
-[1] 0.4252865
+TukeyHSD(res.aov)
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+Fit: aov(formula = weight ~ group, data = data)
+$group
+            diff        lwr       upr     p adj
+trt1-ctrl -0.371 -1.0622161 0.3202161 0.3908711
+trt2-ctrl  0.494 -0.1972161 1.1852161 0.1979960
+trt2-trt1  0.865  0.1737839 1.5562161 0.0120064
 ```
 
-## How we report?
+Under a 5% significance level, we could conclude that treatment 2 is significantly better than treatment1 on the mean weight of the plant. However, there is no statistical evidence that treatment 2 is better than treatment 1, and treatment 1 is worse than receiving no treatment.
 
-1.  Firstly, draw the plot to see the relationship.
-2.  If you want a statistical test:
+#### Checking the assumptions
 
-- draw the histogram to see if they have a normal/bell-shaped distribution
-- If yes, using a test with the Pearson method
-- If no, using the test with the Spearman method
+Now lets check the assumptions:
 
-It is worth noting that the statistical test is only an assisted tool for the relationship plot. Since in some cases, the result of the test is not reliable. For example, we could see a strong nonlinear correlation in the plot below. However, the Pearson coefficient and Spearman coefficient are both approximately 0.
+- Normally distributed assumptions. On the QQ plot, most points lie on the straight line except point 4, 15 and 17. However, we only have a small sample size (30 plants), so it is reasonable to see a normal QQ plot like this. We could also test the normality through the Shapiro-Wilk normality test. Under the 5% significance level, we could not reject the null hypothesis that the residuals are normally distributed.
 
 <div class="wp-block-image">
 
 <figure class="aligncenter size-large is-resized">
-<img src="/old_posts_pics/18/2021/02/Untitled-1.png" class="wp-image-197" loading="lazy" decoding="async" width="397" height="260" />
-<figcaption>Cited from <a href="https://support.minitab.com/en-us/minitab-express/1/help-and-how-to/modeling-statistics/regression/supporting-topics/basics/a-comparison-of-the-pearson-and-spearman-correlation-methods/">https://support.minitab.com/en-us/minitab-express/1/help-and-how-to/modeling-statistics/regression/supporting-topics/basics/a-comparison-of-the-pearson-and-spearman-correlation-methods/</a></figcaption>
+<img src="/old_posts_pics/18/2021/04/image-3-1024x541.png" class="wp-image-253" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-3-1024x541.png 1024w, /old_posts_pics/18/2021/04/image-3-300x158.png 300w, /old_posts_pics/18/2021/04/image-3-768x406.png 768w, /old_posts_pics/18/2021/04/image-3.png 1043w" sizes="auto, (max-width: 623px) 100vw, 623px" width="623" height="328" />
 </figure>
 
 </div>
 
-Besides, we could only say there is a correlation between variables and we could not get a conclusion that one variable is the causality of another variable. Specifically, if two variables have a large correlation of 0.9 and variable A has a high value, variable B will probably have a high value. However, we could not say high value in variable A causes the high value in variable B.
+``` wp-block-code
+shapiro.test(x = residuals(res.aov) )
+
+    Shapiro-Wilk normality test
+
+data:  residuals(res.aov)
+W = 0.96607, p-value = 0.4379
+```
+
+- Homogenous variance assumption: From the Residual vs Fitted plot, we could see slight evidence of non-constant variance since the degree of dispersion for each group is different. However, it seems not serious. LeveneTest could also be done to test the homogeneity of variance. Under 5% significance, we could not reject the null hypothesis (P-value\>0.05) to assume the homogeneity of variances in the different treatment groups.
 
 <div class="wp-block-image">
 
 <figure class="aligncenter size-large is-resized">
-<img src="/old_posts_pics/18/2021/04/image-18.png" class="wp-image-292" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-18.png 502w, /old_posts_pics/18/2021/04/image-18-300x211.png 300w" sizes="auto, (max-width: 366px) 100vw, 366px" width="366" height="257" />
+<img src="/old_posts_pics/18/2021/04/image-4-1024x541.png" class="wp-image-254" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-4-1024x541.png 1024w, /old_posts_pics/18/2021/04/image-4-300x158.png 300w, /old_posts_pics/18/2021/04/image-4-768x406.png 768w, /old_posts_pics/18/2021/04/image-4.png 1043w" sizes="auto, (max-width: 599px) 100vw, 599px" width="599" height="316" />
 </figure>
 
 </div>
 
-For more readings:
+``` wp-block-code
+leveneTest(weight ~ group, data =data)
+Levene's Test for Homogeneity of Variance (center = median)
+      Df F value Pr(>F)
+group  2  1.1192 0.3412
+      27      
+```
 
-<http://www.sthda.com/english/wiki/correlation-test-between-two-variables-in-r> This blog specifically listed how to conduct other correlation test between two variables in R
+- Independent assumption: This assumption needs more consideration. In our example, we could assume satisfying this independent assumption since the weight of one plant will not influence the weight of other plants.
 
-<https://www.statisticshowto.com/probability-and-statistics/correlation-coefficient-formula/> This is a really good blog about the definition and it also contains a good video!
+Thatâ€™s all done! This blog references the blog which including specific R code:
+
+<http://mathsbox.com/notebooks/python-utilities.html>
+
+Besides, I also found useful blogs which using SPSS to do one-way ANOVA test:
+
+<https://statistics.laerd.com/statistical-guides/one-way-anova-statistical-guide-3.php>
+
+<https://statistics.laerd.com/spss-tutorials/one-way-anova-using-spss-statistics.php>
+
+
 
 
 

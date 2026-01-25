@@ -1,129 +1,134 @@
 ﻿---
-title: "3 steps to build own R package – Rcpp"
-date: "2021-03-13T18:10:19+00:00"
+title: "Statistics in Social Science(3): Step-by-Step tutorial on One-way ANOVA test"
+date: "2021-04-14T12:18:52+01:00"
 draft: false
-slug: "3-steps-to-build-own-r-package-rcpp"
-tags: ["","","",""]
-categories: ["","","",""]
-aliases: ["https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/2021/03/13/3-steps-to-build-own-r-package-rcpp/"]
+slug: "statistics-in-social-science3-step-by-step-tutorial-on-one-way-anova-test"
+tags: []
+categories: []
 ---
-<span class="has-inline-color" style="color:#0a6b29">This blog is to give ideas how to build R package through Rcpp and C++. Here we assume our readers are confident of C++, Linux and R.</span>
+<span class="has-inline-color has-secondary-color">This blog will explain the one-way ANOVA test in detail (including assumptions, implementing situation and explanation), and an example analysed by R will be shown at the end.</span>
 
-This semester we have been trained to use C++ and Rcpp to write the R package. It is well known that the computing speed of R is slower than C++. Rcpp is an R Package that combines C++ and R. With Rcpp, it could easily transfer the algorithm or functions between R and C++, providing high-performance statistical computing to most R users. It is useful when statisticians want to develop their own R package. So, I will write it in 3 steps and using an Example.
+## What is this test for?
 
-------------------------------------------------------------------------
+You may be familiar with the t-test and some other nonparametric test used to test if there is a difference in the mean between two groups (e.g., if there is a difference in mean score between two classes; if one treatment is better than another treatment). The one-way analysis of variance (ANOVA) is used to **determine if there is a significant difference among the means of three or more independent groups**. For example, the application situation could be:
 
-# Step 1: Write your own algorithm in C++
+- if there is a difference in mean score among the four classes
+- if there is a difference in the mean effect among the three types of treatment
 
-Firstly, you have to write your own algorithm in C++ in a Linux system. And next, we have to add some code in C++ to make sure it could be translated by R:
+## Assumptions:
 
-- Add \#include\<Rcpp.h\> at the beginning
+There is no free lunch. To implement the one-way ANOVA test, it should satisfy three assumptions:
 
-<figure class="wp-block-image size-large is-resized">
-<img src="/old_posts_pics/18/2021/03/image.png" class="wp-image-204" loading="lazy" decoding="async" width="371" height="175" />
+- The variable is normally distributed in each group in the one-way ANOVA (technically, it is the residuals that need to be normally distributed, but the results will be the same). For example, if we want to compare the mean score on three classes, the score should have a [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution#:~:text=The%20normal%20distribution%20is%20the,a%20specified%20mean%20and%20variance.) for each class.
+- The variances are homogenous. This means the population variance in each group should equal. For example, the scores of the students in the three classes should fluctuate by a similar level.
+- The observations should be independent. This means one observation will not influence other observations. For example, student Aâ€™s grade will not influence student Bâ€™s grade as they took their exam independently.
+
+All three test will be tested before implementing one-way ANOVA test. Now, letâ€™s look at how to implementing ANOVA test through R.
+
+## How to do it and explain it (An example in R)
+
+Letâ€™s use the dataset in R called â€˜PlantGrowthâ€™. It includes the weight of 30 plants with three groups (10 plants will not receive any treatment (control group), 10 plants receive treatment A, and 10 plants receive treatment B). And our purpose is to find if there is a difference in the mean effect among the three groups?
+
+Firstly, lets draw a boxplot to see the data graphically.
+
+<div class="wp-block-image">
+
+<figure class="aligncenter size-large is-resized">
+<img src="/old_posts_pics/18/2021/04/image-2-1024x541.png" class="wp-image-252" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-2-1024x541.png 1024w, /old_posts_pics/18/2021/04/image-2-300x158.png 300w, /old_posts_pics/18/2021/04/image-2-768x406.png 768w, /old_posts_pics/18/2021/04/image-2.png 1043w" sizes="auto, (max-width: 566px) 100vw, 566px" width="566" height="298" />
 </figure>
 
-- Add //\[\[Rcpp::export\]\] in your main function
+</div>
 
-<figure class="wp-block-image size-large is-resized">
-<img src="/old_posts_pics/18/2021/03/image-1.png" class="wp-image-205" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/03/image-1.png 602w, /old_posts_pics/18/2021/03/image-1-300x46.png 300w" sizes="auto, (max-width: 670px) 100vw, 670px" width="670" height="102" />
-</figure>
+From the boxplot, we could conclude that treatment 1 has a lower effect than the control group, but the difference is not too large. And plants received treatment 3 has a larger weight than the other two groups.
 
-- Add user interrupt through <span class="has-inline-color has-quaternary-color">Rcpp::checkUserInterrupt()</span>. It allows users to terminal algorithm when it runs too long.
-
-<figure class="wp-block-image size-large is-resized">
-<img src="/old_posts_pics/18/2021/03/image-7.png" class="wp-image-211" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/03/image-7.png 602w, /old_posts_pics/18/2021/03/image-7-300x69.png 300w" sizes="auto, (max-width: 681px) 100vw, 681px" width="681" height="156" />
-</figure>
-
-------------------------------------------------------------------------
-
-# Step 2: Build package
-
-After obtaining our â€˜cppâ€™ algorithm, we have to package it as a â€˜zipâ€™ file so it could be easily downloaded by anyone who wants to implement it in R. To do so, we have two simple steps:
-
-## 1. Building Skeleton Folder
-
-Skeleton folder just like the skeleton, containing all the main programs here. It is very simple to create: in R, run the code:
+Next, we measure the difference through One-way ANOVA, and we got the result:
 
 ``` wp-block-code
-package.skeleton(â€œThe name of packageâ€, cpp_files=â€path to your c++ fileâ€, example_code=FALSE) 
+res.aov <- aov(weight ~ group, data = data)
+# Summary of the analysis
+summary(res.aov)
+            Df Sum Sq Mean Sq F value Pr(>F)  
+group        2  3.766  1.8832   4.846 0.0159 *
+Residuals   27 10.492  0.3886                 
+---
+Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
 ```
 
-In my example, I created a package called â€˜finaljarvismarchâ€™, and write the path to my cpp file in â€˜cpp_filesâ€™. If example_code=TRUE, the package will contain an example code.
+##### Interpretation
 
-<figure class="wp-block-image size-large">
-<img src="/old_posts_pics/18/2021/03/image-3.png" class="wp-image-207" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/03/image-3.png 584w, /old_posts_pics/18/2021/03/image-3-300x116.png 300w" sizes="auto, (max-width: 584px) 100vw, 584px" width="584" height="225" />
-</figure>
+Under a 5% significance level, the P-value of the test is less than 0.05 (P=0.0159\<0.05). So we could conclude there is a significant difference among groups.
 
-This creates the package skeleton in the working directory. It contains three files and three folders:
-
-- Man: It contains the Rd file, which is the description shows in R.
-- R: It contains all â€œ.Râ€ files written by R.
-- Src: It contains all â€œ.cppâ€ files written by C++.
-
-We could manually put our further R function or C++ function in different folders.
-
-<figure class="wp-block-image size-large">
-<img src="/old_posts_pics/18/2021/03/image-4.png" class="wp-image-208" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/03/image-4.png 489w, /old_posts_pics/18/2021/03/image-4-300x80.png 300w" sizes="auto, (max-width: 489px) 100vw, 489px" width="489" height="130" />
-</figure>
-
-## 2. Building Package
-
-Once we got the skeleton folder, run the command in terminal to create the package:
+However, we could only say there is a significant difference among groups, but we donâ€™t know which pairs of groups are different. To understand if there is a difference between specific pairs of groups, we could implement Tukey multiple pairwise-comparisons:
 
 ``` wp-block-code
-R CMD build PackageDirectory/PackageSkeletonName 
+TukeyHSD(res.aov)
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+Fit: aov(formula = weight ~ group, data = data)
+$group
+            diff        lwr       upr     p adj
+trt1-ctrl -0.371 -1.0622161 0.3202161 0.3908711
+trt2-ctrl  0.494 -0.1972161 1.1852161 0.1979960
+trt2-trt1  0.865  0.1737839 1.5562161 0.0120064
 ```
 
-This builds the packageÂ [tarball](https://en.wikipedia.org/wiki/Tar_(computing)), which can then be sent to and installed on any machine running R.
+Under a 5% significance level, we could conclude that treatment 2 is significantly better than treatment1 on the mean weight of the plant. However, there is no statistical evidence that treatment 2 is better than treatment 1, and treatment 1 is worse than receiving no treatment.
 
-<figure class="wp-block-image size-large is-resized">
-<img src="/old_posts_pics/18/2021/03/image-5.png" class="wp-image-209" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/03/image-5.png 541w, /old_posts_pics/18/2021/03/image-5-300x83.png 300w" sizes="auto, (max-width: 635px) 100vw, 635px" width="635" height="175" />
+#### Checking the assumptions
+
+Now lets check the assumptions:
+
+- Normally distributed assumptions. On the QQ plot, most points lie on the straight line except point 4, 15 and 17. However, we only have a small sample size (30 plants), so it is reasonable to see a normal QQ plot like this. We could also test the normality through the Shapiro-Wilk normality test. Under the 5% significance level, we could not reject the null hypothesis that the residuals are normally distributed.
+
+<div class="wp-block-image">
+
+<figure class="aligncenter size-large is-resized">
+<img src="/old_posts_pics/18/2021/04/image-3-1024x541.png" class="wp-image-253" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-3-1024x541.png 1024w, /old_posts_pics/18/2021/04/image-3-300x158.png 300w, /old_posts_pics/18/2021/04/image-3-768x406.png 768w, /old_posts_pics/18/2021/04/image-3.png 1043w" sizes="auto, (max-width: 623px) 100vw, 623px" width="623" height="328" />
 </figure>
 
-------------------------------------------------------------------------
-
-# Step 3: Checking instalment
-
-Until now, we have successfully create a package. However, we have to test if it could be install appropriately.
-
-Run the command in the terminal in the directory:
+</div>
 
 ``` wp-block-code
- R CMD INSTALL PackageTarBallName
+shapiro.test(x = residuals(res.aov) )
+
+    Shapiro-Wilk normality test
+
+data:  residuals(res.aov)
+W = 0.96607, p-value = 0.4379
 ```
 
-<figure class="wp-block-image size-large is-resized">
-<img src="/old_posts_pics/18/2021/03/image-6.png" class="wp-image-210" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/03/image-6.png 577w, /old_posts_pics/18/2021/03/image-6-300x138.png 300w" sizes="auto, (max-width: 654px) 100vw, 654px" width="654" height="301" />
+- Homogenous variance assumption: From the Residual vs Fitted plot, we could see slight evidence of non-constant variance since the degree of dispersion for each group is different. However, it seems not serious. LeveneTest could also be done to test the homogeneity of variance. Under 5% significance, we could not reject the null hypothesis (P-value\>0.05) to assume the homogeneity of variances in the different treatment groups.
+
+<div class="wp-block-image">
+
+<figure class="aligncenter size-large is-resized">
+<img src="/old_posts_pics/18/2021/04/image-4-1024x541.png" class="wp-image-254" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-4-1024x541.png 1024w, /old_posts_pics/18/2021/04/image-4-300x158.png 300w, /old_posts_pics/18/2021/04/image-4-768x406.png 768w, /old_posts_pics/18/2021/04/image-4.png 1043w" sizes="auto, (max-width: 599px) 100vw, 599px" width="599" height="316" />
 </figure>
 
-Luckily without any error! Now, our package could be downloaded as a tarball by any user, and successfully install in R. To use package, directly run: <span class="has-inline-color has-quaternary-color">library(â€˜PackageTarBallNameâ€™)</span>
+</div>
 
-------------------------------------------------------------------------
+``` wp-block-code
+leveneTest(weight ~ group, data =data)
+Levene's Test for Homogeneity of Variance (center = median)
+      Df F value Pr(>F)
+group  2  1.1192 0.3412
+      27      
+```
 
-# Example: Jarvis March algorithm
+- Independent assumption: This assumption needs more consideration. In our example, we could assume satisfying this independent assumption since the weight of one plant will not influence the weight of other plants.
 
-We are asked to build a [Jarvis March](https://en.wikipedia.org/wiki/Gift_wrapping_algorithm) package, you could download the <a href="https://livelancsac-my.sharepoint.com/:u:/g/personal/yangz40_lancaster_ac_uk/EZaiLkjQfzVBvixEsiKZHc0Bjj9adHBO261iv7gYzH-NFg" rel="noreferrer noopener" target="_blank">tar file</a> here. After download it, it could be installed easily
+Thatâ€™s all done! This blog references the blog which including specific R code:
 
-- Run the command in the terminal: <span class="has-inline-color has-quaternary-color">R CMD INSTALL finaljarvismarch</span>
-- Run the code in R: <span class="has-inline-color has-quaternary-color">library(finaljarvismarch)</span>
+<http://mathsbox.com/notebooks/python-utilities.html>
 
-Now you could use Jarvis march algorithm for 2 dimension data. In this package, it contains two functions:
+Besides, I also found useful blogs which using SPSS to do one-way ANOVA test:
 
-- findpoint_jarvis(x,y): inputting the x and y, it outputs the points in the convex hull.
-- plot_jarvis(x,y): inputting x and y, it returns a plot containing all the data points and convex hull.
+<https://statistics.laerd.com/statistical-guides/one-way-anova-statistical-guide-3.php>
 
-For example, simulating 100 points, and run the functions:
+<https://statistics.laerd.com/spss-tutorials/one-way-anova-using-spss-statistics.php>
 
-<figure class="wp-block-image size-large is-resized">
-<img src="/old_posts_pics/18/2021/03/image-9.png" class="wp-image-215" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/03/image-9.png 586w, /old_posts_pics/18/2021/03/image-9-300x96.png 300w" sizes="auto, (max-width: 586px) 100vw, 586px" width="586" height="187" />
-</figure>
 
-x and y is the corresponded coordinates of points on the convex hull, and we could also draw the plot:
 
-<figure class="wp-block-image size-large">
-<img src="/old_posts_pics/18/2021/03/image-10.png" class="wp-image-216" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/03/image-10.png 522w, /old_posts_pics/18/2021/03/image-10-294x300.png 294w" sizes="auto, (max-width: 522px) 100vw, 522px" width="522" height="532" />
-</figure>
 
 
 

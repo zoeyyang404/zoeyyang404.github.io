@@ -1,88 +1,133 @@
 ﻿---
-title: "How do grocery stores know pregnancy? Why is the beer aisle always next to the diapers? – Data science in the retail industry"
-date: "2021-04-02T17:55:36+01:00"
+title: "Statistics in Social Science(3): Step-by-Step tutorial on One-way ANOVA test"
+date: "2021-04-14T12:18:52+01:00"
 draft: false
-slug: "association-analysis-in-retail-industry-how-grocery-stores-knows-pregnancy"
+slug: "statistics-in-social-science3-step-by-step-tutorial-on-one-way-anova-test"
 tags: []
 categories: []
-aliases: ["https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/2021/04/02/association-analysis-in-retail-industry-how-grocery-stores-knows-pregnancy/"]
 ---
-Recently, I was interested in the application of data science. It is well known that data science could be used in personalised treatment, advertising, beating credit card fraud, etc. To my surprising, data science has already been used in the retail industry for long years. In the competitive retail industry, how could data science do? Letâ€™s look at two real examples in the supermarket.
+<span class="has-inline-color has-secondary-color">This blog will explain the one-way ANOVA test in detail (including assumptions, implementing situation and explanation), and an example analysed by R will be shown at the end.</span>
 
-## Grocery store know pregnancy
+## What is this test for?
 
-> In 2003, an angry man went to his local supermarket â€˜Targetâ€™ to complain with the manager that his teenage daughter received a personally addressed flyer from this supermarket. And the flyers were advertising maternity products, babywear, baby furniture, nappies and infant formula.
->
-> â€œare you trying to encourage my daughter to get pregnant?â€
->
-> Some weeks later, the store manager rang back to apologise once again. It turns out his teenage daughter was, in fact pregnant, and she hadnâ€™t told her parents yet.
->
-> â€“ [How Companies Learn Your Secrets](https://www.nytimes.com/2012/02/19/magazine/shopping-habits.html)
+You may be familiar with the t-test and some other nonparametric test used to test if there is a difference in the mean between two groups (e.g., if there is a difference in mean score between two classes; if one treatment is better than another treatment). The one-way analysis of variance (ANOVA) is used to **determine if there is a significant difference among the means of three or more independent groups**. For example, the application situation could be:
 
-<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex">
+- if there is a difference in mean score among the four classes
+- if there is a difference in the mean effect among the three types of treatment
 
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:33.33%">
+## Assumptions:
 
-<figure class="wp-block-image size-large">
-<img src="/old_posts_pics/18/2021/04/128px-Target_logo.svg_.png" class="wp-image-243" loading="lazy" decoding="async" width="128" height="170" />
-</figure>
+There is no free lunch. To implement the one-way ANOVA test, it should satisfy three assumptions:
 
-</div>
+- The variable is normally distributed in each group in the one-way ANOVA (technically, it is the residuals that need to be normally distributed, but the results will be the same). For example, if we want to compare the mean score on three classes, the score should have a [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution#:~:text=The%20normal%20distribution%20is%20the,a%20specified%20mean%20and%20variance.) for each class.
+- The variances are homogenous. This means the population variance in each group should equal. For example, the scores of the students in the three classes should fluctuate by a similar level.
+- The observations should be independent. This means one observation will not influence other observations. For example, student Aâ€™s grade will not influence student Bâ€™s grade as they took their exam independently.
 
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:66.66%">
+All three test will be tested before implementing one-way ANOVA test. Now, letâ€™s look at how to implementing ANOVA test through R.
 
-So, how did Target knows the daughter gets pregnant before his father? The answer is to find **the correlation through [Association analysis](https://en.wikipedia.org/wiki/Association_rule_learning)**. Briefly speaking, correlation is a statistical term, and it measures the degree of relevance. Target supermarket researchers found that pregnant women are more likely to purchase a certain type of products. This means there is a high correlation between pregnancy and purchasing a certain type of products. <a href="https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/2021/02/26/statistics-in-social-science-1-how-to-choose-an-appropriate-statistical-test/" data-type="URL" data-id="https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/2021/02/26/statistics-in-social-science-1-how-to-choose-an-appropriate-statistical-test/">This blog</a> illustrates the correlation with a simple example.
+## How to do it and explain it (An example in R)
 
-</div>
+Letâ€™s use the dataset in R called â€˜PlantGrowthâ€™. It includes the weight of 30 plants with three groups (10 plants will not receive any treatment (control group), 10 plants receive treatment A, and 10 plants receive treatment B). And our purpose is to find if there is a difference in the mean effect among the three groups?
 
-</div>
-
-Statisticians in Target uses the customersâ€™ shopping habits and physical condition to find the relationship. Shopping habits are usually fixed, but customers will make changes when some events happen. For example, customers purchase more toilet rolls and hand sanitisers than usual during Covid-19. Pregnant women usually switch from scented soap to unscented soap and start to buy supplements such as calcium, magnesium and zinc. With such customers habit prediction models, Targetsâ€™ annual sales rise from 44 billion dollars to 67 billion dollars between 2002 and 2010, which indicates the success of prediction models based on association analysis.
-
-## Beers and diapers
-
-This reminds me of another real example in the retail industry â€“ â€˜beer and diapersâ€™. Walmart found that men are more likely to purchase beers and diapers together at once shopping. Similarly, they use the association analysis to study the correlation among shopping history and find out beers and diapers are commonly purchased together. Thus, you may find the beer aisle is always next to the diapers.
+Firstly, lets draw a boxplot to see the data graphically.
 
 <div class="wp-block-image">
 
 <figure class="aligncenter size-large is-resized">
-<img src="/old_posts_pics/18/2021/04/image.png" class="wp-image-244" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image.png 582w, /old_posts_pics/18/2021/04/image-300x260.png 300w" sizes="auto, (max-width: 379px) 100vw, 379px" width="379" height="328" />
+<img src="/old_posts_pics/18/2021/04/image-2-1024x541.png" class="wp-image-252" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-2-1024x541.png 1024w, /old_posts_pics/18/2021/04/image-2-300x158.png 300w, /old_posts_pics/18/2021/04/image-2-768x406.png 768w, /old_posts_pics/18/2021/04/image-2.png 1043w" sizes="auto, (max-width: 566px) 100vw, 566px" width="566" height="298" />
 </figure>
 
 </div>
 
-## Furthermoreâ€¦..
+From the boxplot, we could conclude that treatment 1 has a lower effect than the control group, but the difference is not too large. And plants received treatment 3 has a larger weight than the other two groups.
 
-As most of us already know, the location of the aisle is designed exactly by statistical research. But it is too outdated. Nowadays, supermarkets are using data science to do more things. For example, they use data science to help them make good promotion methods; they predict the sales of certain products (like umbrellas, ice creams and so on) based on the weather to prepare enough stock. Besides, they also use data science to manage inventory based on the prediction of the next day. Watching BBC documentary â€˜[Supermarket secret](https://www.bbc.co.uk/programmes/b036q93n)â€˜, you will be amazed how much data science they have been used to provide a more convenient shopping environment to attract you!!
+Next, we measure the difference through One-way ANOVA, and we got the result:
 
-## However, data science will not always true?
+``` wp-block-code
+res.aov <- aov(weight ~ group, data = data)
+# Summary of the analysis
+summary(res.aov)
+            Df Sum Sq Mean Sq F value Pr(>F)  
+group        2  3.766  1.8832   4.846 0.0159 *
+Residuals   27 10.492  0.3886                 
+---
+Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
+```
 
-Such models are based on typical rules; as long as user fit their rules (e.g., purchasing unscented soap and supplement), they may get the result like pregnancy. Although such a model is blatant and crude, it indeed helps retailers make better decisions resulting in high profits.
+##### Interpretation
 
-**However, is Targetsâ€™ model always true?** A woman may start to buy supplements and unscented soaps when she becomes allergic and want to improve her physical condition by supplements. Still, the model thinks she has a high probability of being pregnant. In other words, pregnant women are more likely to purchase supplements and unscented soaps, but purchasing supplements and unscented soaps donâ€™t mean pregnant. Thatâ€™s the difference between correlation and causality. And such causality somehow relates to the prediction ability of the model.
+Under a 5% significance level, the P-value of the test is less than 0.05 (P=0.0159\<0.05). So we could conclude there is a significant difference among groups.
+
+However, we could only say there is a significant difference among groups, but we donâ€™t know which pairs of groups are different. To understand if there is a difference between specific pairs of groups, we could implement Tukey multiple pairwise-comparisons:
+
+``` wp-block-code
+TukeyHSD(res.aov)
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+Fit: aov(formula = weight ~ group, data = data)
+$group
+            diff        lwr       upr     p adj
+trt1-ctrl -0.371 -1.0622161 0.3202161 0.3908711
+trt2-ctrl  0.494 -0.1972161 1.1852161 0.1979960
+trt2-trt1  0.865  0.1737839 1.5562161 0.0120064
+```
+
+Under a 5% significance level, we could conclude that treatment 2 is significantly better than treatment1 on the mean weight of the plant. However, there is no statistical evidence that treatment 2 is better than treatment 1, and treatment 1 is worse than receiving no treatment.
+
+#### Checking the assumptions
+
+Now lets check the assumptions:
+
+- Normally distributed assumptions. On the QQ plot, most points lie on the straight line except point 4, 15 and 17. However, we only have a small sample size (30 plants), so it is reasonable to see a normal QQ plot like this. We could also test the normality through the Shapiro-Wilk normality test. Under the 5% significance level, we could not reject the null hypothesis that the residuals are normally distributed.
 
 <div class="wp-block-image">
 
-<figure class="aligncenter size-large">
-<img src="/old_posts_pics/18/2021/04/image-1.png" class="wp-image-245" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-1.png 554w, /old_posts_pics/18/2021/04/image-1-300x120.png 300w" sizes="auto, (max-width: 554px) 100vw, 554px" width="554" height="222" />
-<figcaption>Third nature, Inc</figcaption>
+<figure class="aligncenter size-large is-resized">
+<img src="/old_posts_pics/18/2021/04/image-3-1024x541.png" class="wp-image-253" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-3-1024x541.png 1024w, /old_posts_pics/18/2021/04/image-3-300x158.png 300w, /old_posts_pics/18/2021/04/image-3-768x406.png 768w, /old_posts_pics/18/2021/04/image-3.png 1043w" sizes="auto, (max-width: 623px) 100vw, 623px" width="623" height="328" />
 </figure>
 
 </div>
 
-We could easily get the correlation result as it just the mathematics. However, the result only indicates correlation instead of causality without context. For example, in summer, the sales of ice cream will increase, and simultaneously sharks become active. We could easily get the high correlation result between ice cream and shark attacks. However, does this relationship make sense? That is to say that thereâ€™s no causal relationship in either direction â€” neither of these things causes the other, even indirectly.
+``` wp-block-code
+shapiro.test(x = residuals(res.aov) )
 
-So, the useful analysis will need both highly correlated and causal relationship. And high causality to some extent is related to the high prediction ability of the model.
+    Shapiro-Wilk normality test
 
-In conclusion, we have introduced two famous examples about data science in retail industry. And we also recommend a good BBC documentary. Finally we introduce that data science will not always be true due to the causality. When searching data science in the supermarket, I found these blogs are very useful:
+data:  residuals(res.aov)
+W = 0.96607, p-value = 0.4379
+```
 
-<https://towardsdatascience.com/how-data-science-and-ai-are-changing-supermarket-shopping-e47f63f4b53f> This blog talks about more generally how data science and AI changes supermarket
+- Homogenous variance assumption: From the Residual vs Fitted plot, we could see slight evidence of non-constant variance since the degree of dispersion for each group is different. However, it seems not serious. LeveneTest could also be done to test the homogeneity of variance. Under 5% significance, we could not reject the null hypothesis (P-value\>0.05) to assume the homogeneity of variances in the different treatment groups.
 
-<https://towardsdatascience.com/correlation-and-causality-a-beer-and-diaper-story-27a064f4f995> It talks the difference between correlation and causality.
+<div class="wp-block-image">
 
-<https://livebook.manning.com/book/machine-learning-in-action/chapter-11/#:~:text=Association%20analysis%20is%20the%20task,items%20that%20frequently%20occur%20together.> It talks about the association analysis in a mathematical way.
+<figure class="aligncenter size-large is-resized">
+<img src="/old_posts_pics/18/2021/04/image-4-1024x541.png" class="wp-image-254" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-4-1024x541.png 1024w, /old_posts_pics/18/2021/04/image-4-300x158.png 300w, /old_posts_pics/18/2021/04/image-4-768x406.png 768w, /old_posts_pics/18/2021/04/image-4.png 1043w" sizes="auto, (max-width: 599px) 100vw, 599px" width="599" height="316" />
+</figure>
 
-<https://towardsdatascience.com/association-analysis-explained-255823c1cf9a> It explained the association analysis in detail and in a technical way with R code.
+</div>
+
+``` wp-block-code
+leveneTest(weight ~ group, data =data)
+Levene's Test for Homogeneity of Variance (center = median)
+      Df F value Pr(>F)
+group  2  1.1192 0.3412
+      27      
+```
+
+- Independent assumption: This assumption needs more consideration. In our example, we could assume satisfying this independent assumption since the weight of one plant will not influence the weight of other plants.
+
+Thatâ€™s all done! This blog references the blog which including specific R code:
+
+<http://mathsbox.com/notebooks/python-utilities.html>
+
+Besides, I also found useful blogs which using SPSS to do one-way ANOVA test:
+
+<https://statistics.laerd.com/statistical-guides/one-way-anova-statistical-guide-3.php>
+
+<https://statistics.laerd.com/spss-tutorials/one-way-anova-using-spss-statistics.php>
+
+
 
 
 
