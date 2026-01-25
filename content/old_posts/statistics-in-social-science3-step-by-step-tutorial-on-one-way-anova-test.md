@@ -1,9 +1,10 @@
 ﻿---
-title: "Statistics in social science3 step by step tutorial on one way anova test"
+title: "Statistics in Social Science(3): Step-by-Step tutorial on One-way ANOVA test"
 date: "2021-04-14T12:18:52+01:00"
 draft: false
-tags: []
-categories: []
+slug: "statistics-in-social-science3-step-by-step-tutorial-on-one-way-anova-test"
+tags: [""]
+categories: [""]
 ---
 <span class="has-inline-color has-secondary-color">This blog will explain the one-way ANOVA test in detail (including assumptions, implementing situation and explanation), and an example analysed by R will be shown at the end.</span>
 
@@ -125,11 +126,5 @@ Besides, I also found useful blogs which using SPSS to do one-way ANOVA test:
 <https://statistics.laerd.com/statistical-guides/one-way-anova-statistical-guide-3.php>
 
 <https://statistics.laerd.com/spss-tutorials/one-way-anova-using-spss-statistics.php>
-
-
-
-
-
-
 
 

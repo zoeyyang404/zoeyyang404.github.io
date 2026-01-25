@@ -1,136 +1,175 @@
 ﻿---
-title: "How could particle filter track thanos explaining particle filter without mathematics"
-date: "2021-04-14T12:18:52+01:00"
+title: "How could particle filter track Thanos? – explaining particle filter without mathematics"
+date: "2021-04-25T00:43:24+01:00"
 draft: false
-tags: []
-categories: []
+slug: "how-could-particle-filter-track-thanos-explaining-particle-filter-without-mathematics"
+tags: [""]
+categories: [""]
 ---
-<span class="has-inline-color has-secondary-color">This blog will explain the one-way ANOVA test in detail (including assumptions, implementing situation and explanation), and an example analysed by R will be shown at the end.</span>
+This blog will give an general idea about the principle of particle filter without mathematical proofing.
 
-## What is this test for?
+Recently, we are given talks about particle filter (or sequential Monte Carlo). Particle filter has a wide application in signal processing, tracking objects, time series, finance, etc. In the beginning, I am also scared by the maths of particle filter, like partial differential equations and Bayesian stuff. However, the idea behind the particle filter is very straightforward and intuitive.
 
-You may be familiar with the t-test and some other nonparametric test used to test if there is a difference in the mean between two groups (e.g., if there is a difference in mean score between two classes; if one treatment is better than another treatment). The one-way analysis of variance (ANOVA) is used to **determine if there is a significant difference among the means of three or more independent groups**. For example, the application situation could be:
+**Now, lets set a situation to explain it under the tracking problem without mathematics!**
 
-- if there is a difference in mean score among the four classes
-- if there is a difference in the mean effect among the three types of treatment
+# Scenario Setting
 
-## Assumptions:
+Assume we are agents of [the avengers](https://en.wikipedia.org/wiki/The_Avengers_(2012_film)) located in â€˜chessboardâ€™ country (that is because the map of this country is like a chessboard <img src="https://s.w.org/images/core/emoji/16.0.1/72x72/1f642.png" class="wp-smiley" style="height: 1em; max-height: 1em;" alt="ðŸ™‚" /> ). One day Thanos came to this country and said he steal our magic stone and then he just left away and hid somewhere in our city.
 
-There is no free lunch. To implement the one-way ANOVA test, it should satisfy three assumptions:
-
-- The variable is normally distributed in each group in the one-way ANOVA (technically, it is the residuals that need to be normally distributed, but the results will be the same). For example, if we want to compare the mean score on three classes, the score should have a [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution#:~:text=The%20normal%20distribution%20is%20the,a%20specified%20mean%20and%20variance.) for each class.
-- The variances are homogenous. This means the population variance in each group should equal. For example, the scores of the students in the three classes should fluctuate by a similar level.
-- The observations should be independent. This means one observation will not influence other observations. For example, student Aâ€™s grade will not influence student Bâ€™s grade as they took their exam independently.
-
-All three test will be tested before implementing one-way ANOVA test. Now, letâ€™s look at how to implementing ANOVA test through R.
-
-## How to do it and explain it (An example in R)
-
-Letâ€™s use the dataset in R called â€˜PlantGrowthâ€™. It includes the weight of 30 plants with three groups (10 plants will not receive any treatment (control group), 10 plants receive treatment A, and 10 plants receive treatment B). And our purpose is to find if there is a difference in the mean effect among the three groups?
-
-Firstly, lets draw a boxplot to see the data graphically.
+**Our aim: we are told to trace him before the avengers came.**
 
 <div class="wp-block-image">
 
-<figure class="aligncenter size-large is-resized">
-<img src="/old_posts_pics/18/2021/04/image-2-1024x541.png" class="wp-image-252" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-2-1024x541.png 1024w, /old_posts_pics/18/2021/04/image-2-300x158.png 300w, /old_posts_pics/18/2021/04/image-2-768x406.png 768w, /old_posts_pics/18/2021/04/image-2.png 1043w" sizes="auto, (max-width: 566px) 100vw, 566px" width="566" height="298" />
+<figure class="aligncenter is-resized">
+<img src="https://sm.mashable.com/t/mashable_sea/feature/t/the-thanos/the-thanos-snap-for-real-lets-remove-humans-from-half-of-ear_bq2q.h720.jpg" decoding="async" alt="The Thanos snap for real: Let&#39;s remove humans from half of Earth - Science" />
+<figcaption>He is Thanos. You only need to know he is a bad guy if you donâ€™t know him. If we canâ€™t find where he hides and take our magic stone back, he will destroy the whole world!!!! And the avengers will help us if we could successfully find his location!</figcaption>
 </figure>
 
 </div>
 
-From the boxplot, we could conclude that treatment 1 has a lower effect than the control group, but the difference is not too large. And plants received treatment 3 has a larger weight than the other two groups.
+# How to find him?
 
-Next, we measure the difference through One-way ANOVA, and we got the result:
+Luckily, we have three clever dogs named â€˜particle Aâ€™, â€˜particle Bâ€™, and â€˜particle Câ€™. They have already remembered the smell of Thanos! And we are also clever enough to communicate with them.
 
-``` wp-block-code
-res.aov <- aov(weight ~ group, data = data)
-# Summary of the analysis
-summary(res.aov)
-            Df Sum Sq Mean Sq F value Pr(>F)  
-group        2  3.766  1.8832   4.846 0.0159 *
-Residuals   27 10.492  0.3886                 
----
-Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
-```
+Every 10 minutes, they could go head 1 grid in the map based on their own ideas. And then our dogs have to report their location and how likely Thanos come across these areas.
 
-##### Interpretation
-
-Under a 5% significance level, the P-value of the test is less than 0.05 (P=0.0159\<0.05). So we could conclude there is a significant difference among groups.
-
-However, we could only say there is a significant difference among groups, but we donâ€™t know which pairs of groups are different. To understand if there is a difference between specific pairs of groups, we could implement Tukey multiple pairwise-comparisons:
-
-``` wp-block-code
-TukeyHSD(res.aov)
-  Tukey multiple comparisons of means
-    95% family-wise confidence level
-Fit: aov(formula = weight ~ group, data = data)
-$group
-            diff        lwr       upr     p adj
-trt1-ctrl -0.371 -1.0622161 0.3202161 0.3908711
-trt2-ctrl  0.494 -0.1972161 1.1852161 0.1979960
-trt2-trt1  0.865  0.1737839 1.5562161 0.0120064
-```
-
-Under a 5% significance level, we could conclude that treatment 2 is significantly better than treatment1 on the mean weight of the plant. However, there is no statistical evidence that treatment 2 is better than treatment 1, and treatment 1 is worse than receiving no treatment.
-
-#### Checking the assumptions
-
-Now lets check the assumptions:
-
-- Normally distributed assumptions. On the QQ plot, most points lie on the straight line except point 4, 15 and 17. However, we only have a small sample size (30 plants), so it is reasonable to see a normal QQ plot like this. We could also test the normality through the Shapiro-Wilk normality test. Under the 5% significance level, we could not reject the null hypothesis that the residuals are normally distributed.
+### Time=0 minutes
 
 <div class="wp-block-image">
 
-<figure class="aligncenter size-large is-resized">
-<img src="/old_posts_pics/18/2021/04/image-3-1024x541.png" class="wp-image-253" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-3-1024x541.png 1024w, /old_posts_pics/18/2021/04/image-3-300x158.png 300w, /old_posts_pics/18/2021/04/image-3-768x406.png 768w, /old_posts_pics/18/2021/04/image-3.png 1043w" sizes="auto, (max-width: 623px) 100vw, 623px" width="623" height="328" />
+<figure class="aligncenter size-large">
+<img src="/old_posts_pics/18/2021/04/image-14.png" class="wp-image-268" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-14.png 572w, /old_posts_pics/18/2021/04/image-14-300x195.png 300w" sizes="auto, (max-width: 572px) 100vw, 572px" width="572" height="371" />
 </figure>
 
 </div>
 
-``` wp-block-code
-shapiro.test(x = residuals(res.aov) )
+At the beginning, particle B said it is 90% sure there is Thanosâ€™scent. So we think at the beginning Thanos are more likely to go across the middle way.
 
-    Shapiro-Wilk normality test
-
-data:  residuals(res.aov)
-W = 0.96607, p-value = 0.4379
-```
-
-- Homogenous variance assumption: From the Residual vs Fitted plot, we could see slight evidence of non-constant variance since the degree of dispersion for each group is different. However, it seems not serious. LeveneTest could also be done to test the homogeneity of variance. Under 5% significance, we could not reject the null hypothesis (P-value\>0.05) to assume the homogeneity of variances in the different treatment groups.
+## Time=10 minutes
 
 <div class="wp-block-image">
 
-<figure class="aligncenter size-large is-resized">
-<img src="/old_posts_pics/18/2021/04/image-4-1024x541.png" class="wp-image-254" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-4-1024x541.png 1024w, /old_posts_pics/18/2021/04/image-4-300x158.png 300w, /old_posts_pics/18/2021/04/image-4-768x406.png 768w, /old_posts_pics/18/2021/04/image-4.png 1043w" sizes="auto, (max-width: 599px) 100vw, 599px" width="599" height="316" />
+<figure class="aligncenter size-large">
+<img src="/old_posts_pics/18/2021/04/image-8.png" class="wp-image-261" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-8.png 532w, /old_posts_pics/18/2021/04/image-8-300x186.png 300w" sizes="auto, (max-width: 532px) 100vw, 532px" width="532" height="330" />
 </figure>
 
 </div>
 
-``` wp-block-code
-leveneTest(weight ~ group, data =data)
-Levene's Test for Homogeneity of Variance (center = median)
-      Df F value Pr(>F)
-group  2  1.1192 0.3412
-      27      
-```
+After 10 minutes, our dog moved to new locations and reported their location and their findings. Thanos seems go up from the middle way. as Particle A was 60% sure.
 
-- Independent assumption: This assumption needs more consideration. In our example, we could assume satisfying this independent assumption since the weight of one plant will not influence the weight of other plants.
+## Time=70 minutes
 
-Thatâ€™s all done! This blog references the blog which including specific R code:
+<div class="wp-block-image">
 
-<http://mathsbox.com/notebooks/python-utilities.html>
+<figure class="aligncenter size-large">
+<img src="/old_posts_pics/18/2021/04/image-9.png" class="wp-image-262" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-9.png 522w, /old_posts_pics/18/2021/04/image-9-300x187.png 300w" sizes="auto, (max-width: 522px) 100vw, 522px" width="522" height="326" />
+<figcaption>The purple line is the real trace of Thanos</figcaption>
+</figure>
 
-Besides, I also found useful blogs which using SPSS to do one-way ANOVA test:
+</div>
 
-<https://statistics.laerd.com/statistical-guides/one-way-anova-statistical-guide-3.php>
+At T=70, we report the most likely route to the avengers (blue line in the figure) based on our three dogs findings. We traced Thanos very well at the beginning. But after T=40, we are far away from his real trace! Finally, our task failed, the avengers could not find him, and he destroyed our world at the end!
 
-<https://statistics.laerd.com/spss-tutorials/one-way-anova-using-spss-statistics.php>
+<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex">
 
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:33.33%">
 
+<figure class="wp-block-image size-large">
+<img src="/old_posts_pics/18/2021/04/sfsfsfsfsfsf.gif" class="wp-image-263" loading="lazy" decoding="async" width="315" height="212" />
+</figure>
 
+</div>
 
+<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:66.66%">
 
+Why are we failed? Our dogs are clever, and we are clever. Wait! We track his route very well initially, but after time = 40, particle B and particle C always explore the bottom area. Particle B and particle C said they are not sure Thanos came here, but particle A always said he smelled Thanosâ€™ scent. So we could only rely on Particle A. Thatâ€™s why we sure Thanos go as particle Aâ€™s route.
 
+</div>
 
+</div>
+
+> Particle filter without resampling
+>
+> The example above illustrates the principle of particle filter without resampling. Each time step, several particles will move follows the transition distribution (like our dogs follow their mind to go head). And based on the evidence (scent of Thanos in our case), we could get the possible location at each time step. Along the time, we could get a trace. However, particle filter without resampling always fails in the long run due to weight degeneracy that the trace is concluded from few particles (In our example, this means we only rely on Particle A after T=40).
+
+## Time goes back
+
+Okay, so now the avengers make the time back and we could search again. Particle B and Particle C always explore the locations in the right-bottom corner where Thanos obviously not been there. So let them find those locations is a waste.
+
+**New rule: If one of the dogs found Thanos most likely came across their area, we introduce a new dog in this area to pinpoint search. Additionally, if a dog has the least amount of certainty, we remove this dog.**
+
+## Time = 0 minutes
+
+<div class="wp-block-image">
+
+<figure class="aligncenter size-large">
+<img src="/old_posts_pics/18/2021/04/image-13.png" class="wp-image-267" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-13.png 545w, /old_posts_pics/18/2021/04/image-13-300x199.png 300w" sizes="auto, (max-width: 545px) 100vw, 545px" width="545" height="361" />
+</figure>
+
+</div>
+
+Particle B is 90% sure while Particle C is only 2% sure. So we move particle C and give one more dog on the area where Particle B is.
+
+## Time = 10 minutes
+
+<div class="wp-block-image">
+
+<figure class="aligncenter size-large">
+<img src="/old_posts_pics/18/2021/04/image-11.png" class="wp-image-265" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-11.png 536w, /old_posts_pics/18/2021/04/image-11-300x194.png 300w" sizes="auto, (max-width: 536px) 100vw, 536px" width="536" height="346" />
+</figure>
+
+</div>
+
+Next, our particles remove follow their mind. Since Particle A is 60% sure it smelled Thanos, we introduce a new dog in its area. Since Particle C in the bottom grid only 5% sure it smelled Thanos, we discard it and let it go back home.
+
+## Time = 70 minutes
+
+<div class="wp-block-image">
+
+<figure class="aligncenter size-large">
+<img src="/old_posts_pics/18/2021/04/image-10.png" class="wp-image-264" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-10.png 538w, /old_posts_pics/18/2021/04/image-10-300x182.png 300w" sizes="auto, (max-width: 538px) 100vw, 538px" width="538" height="327" />
+</figure>
+
+</div>
+
+As we see, at time 70 we successfully trace Thanos, and we save the world!
+
+> Particle filter with resampling
+>
+> Due to the limitation of particle filter without sampling, we introduce the resampling scheme in the process. It is easy to understand as we duplicate particles when they have a high probability of getting the right path (like introducing a new dog in that area). In addition, we discard those particles with less probability to find the true path.
+
+<div class="wp-block-image">
+
+<figure class="aligncenter is-resized">
+<img src="https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/v1555921064/shape/mentalfloss/spongebob_0_0.jpg?itok=FF47w3bl" loading="lazy" decoding="async" width="633" height="355" alt="14 Things You May Not Have Known About &#39;SpongeBob SquarePants&#39; | Mental Floss" />
+</figure>
+
+</div>
+
+This is the intuitive idea behind particle filter! Now you could understand the whole process of particle filter!
+
+For more reading:
+
+<https://www.stats.ox.ac.uk/~doucet/doucet_johansen_tutorialPF2011.pdf> This is a really good review paper!
+
+<http://wwwf.imperial.ac.uk/~nkantas/notes4ltcc.pdf> This is a really good tutorial! And the references are very famous papers!
+
+This is a really good cartoon to show the whole process:
+
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-4-3 wp-has-aspect-ratio">
+<div class="wp-block-embed__wrapper">
+<div class="iframe">
+<div id="player">
+
+</div>
+<div class="player-unavailable">
+<h1 id="an-error-occurred." class="message">An error occurred.</h1>
+<div class="submessage">
+Unable to execute JavaScript.
+</div>
+</div>
+</div>
+</div>
+</figure>
 
 
