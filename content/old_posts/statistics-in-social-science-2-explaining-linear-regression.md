@@ -3,8 +3,8 @@ title: "Statistics in Social science (2): Explaining Linear regression"
 date: "2021-03-14T23:10:34+00:00"
 draft: false
 slug: "statistics-in-social-science-2-explaining-linear-regression"
-tags: [""]
-categories: [""]
+tags: []
+categories: []
 aliases: ["https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/2021/03/14/statistics-in-social-science-2-explaining-linear-regression/"]
 ---
 <span class="has-inline-color has-secondary-color">This blog will give you a real example how to explain linear regression</span>
@@ -74,4 +74,5 @@ How to build models in SPSS: <https://www.r-bloggers.com/2020/05/step-by-step-gu
 For more readings about the linear regression:
 
 <https://www.youtube.com/watch?v=ZkjP5RJLQF4>
+
 

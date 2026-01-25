@@ -3,8 +3,8 @@ title: "How do grocery stores know pregnancy? Why is the beer aisle always next 
 date: "2021-04-02T17:55:36+01:00"
 draft: false
 slug: "association-analysis-in-retail-industry-how-grocery-stores-knows-pregnancy"
-tags: [""]
-categories: [""]
+tags: []
+categories: []
 aliases: ["https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/2021/04/02/association-analysis-in-retail-industry-how-grocery-stores-knows-pregnancy/"]
 ---
 Recently, I was interested in the application of data science. It is well known that data science could be used in personalised treatment, advertising, beating credit card fraud, etc. To my surprising, data science has already been used in the retail industry for long years. In the competitive retail industry, how could data science do? Letâ€™s look at two real examples in the supermarket.
@@ -24,7 +24,7 @@ Recently, I was interested in the application of data science. It is well known 
 <div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:33.33%">
 
 <figure class="wp-block-image size-large">
-<img src="/old_posts_image/wp-content/uploads/sites/18/2021/04/128px-Target_logo.svg_.png" class="wp-image-243" loading="lazy" decoding="async" width="128" height="170" />
+<img src="/old_posts_pics/18/2021/04/128px-Target_logo.svg_.png" class="wp-image-243" loading="lazy" decoding="async" width="128" height="170" />
 </figure>
 
 </div>
@@ -46,7 +46,7 @@ This reminds me of another real example in the retail industry â€“ â€˜b
 <div class="wp-block-image">
 
 <figure class="aligncenter size-large is-resized">
-<img src="/old_posts_image/wp-content/uploads/sites/18/2021/04/image.png" class="wp-image-244" loading="lazy" decoding="async" srcset="/old_posts_image/wp-content/uploads/sites/18/2021/04/image.png 582w, /old_posts_image/wp-content/uploads/sites/18/2021/04/image-300x260.png 300w" sizes="auto, (max-width: 379px) 100vw, 379px" width="379" height="328" />
+<img src="/old_posts_pics/18/2021/04/image.png" class="wp-image-244" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image.png 582w, /old_posts_pics/18/2021/04/image-300x260.png 300w" sizes="auto, (max-width: 379px) 100vw, 379px" width="379" height="328" />
 </figure>
 
 </div>
@@ -64,7 +64,7 @@ Such models are based on typical rules; as long as user fit their rules (e.g., p
 <div class="wp-block-image">
 
 <figure class="aligncenter size-large">
-<img src="/old_posts_image/wp-content/uploads/sites/18/2021/04/image-1.png" class="wp-image-245" loading="lazy" decoding="async" srcset="/old_posts_image/wp-content/uploads/sites/18/2021/04/image-1.png 554w, /old_posts_image/wp-content/uploads/sites/18/2021/04/image-1-300x120.png 300w" sizes="auto, (max-width: 554px) 100vw, 554px" width="554" height="222" />
+<img src="/old_posts_pics/18/2021/04/image-1.png" class="wp-image-245" loading="lazy" decoding="async" srcset="/old_posts_pics/18/2021/04/image-1.png 554w, /old_posts_pics/18/2021/04/image-1-300x120.png 300w" sizes="auto, (max-width: 554px) 100vw, 554px" width="554" height="222" />
 <figcaption>Third nature, Inc</figcaption>
 </figure>
 
@@ -83,6 +83,8 @@ In conclusion, we have introduced two famous examples about data science in reta
 <https://livebook.manning.com/book/machine-learning-in-action/chapter-11/#:~:text=Association%20analysis%20is%20the%20task,items%20that%20frequently%20occur%20together.> It talks about the association analysis in a mathematical way.
 
 <https://towardsdatascience.com/association-analysis-explained-255823c1cf9a> It explained the association analysis in detail and in a technical way with R code.
+
+
 
 
 

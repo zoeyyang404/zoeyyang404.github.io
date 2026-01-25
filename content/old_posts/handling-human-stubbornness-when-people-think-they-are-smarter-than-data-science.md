@@ -3,8 +3,8 @@ title: "Handling human stubbornness when people think they are smarter than data
 date: "2021-04-25T18:05:46+01:00"
 draft: false
 slug: "handling-human-stubbornness-when-people-think-they-are-smarter-than-data-science"
-tags: [""]
-categories: [""]
+tags: []
+categories: []
 aliases: ["https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/2021/04/25/handling-human-stubbornness-when-people-think-they-are-smarter-than-data-science/"]
 ---
 Last month, we had a problem-solving day talking about handling human stubbornness during the implementation of data science. You may hear data science could make good decisions, like [data science help groceries to make a better decision](https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/2021/04/02/association-analysis-in-retail-industry-how-grocery-stores-knows-pregnancy/). And you may be also familiar with the travel route planned by Google map! Like us, delivery companies also plan an optimized route for drivers. For example, drivers for delivery companies (e.g.Â Amazon) have toÂ deliver hundreds of parcels to many different addresses everyÂ day. And these companies use vehicle routing models to compute the bestÂ routes for delivery drivers (maybe the routes has the least time).
@@ -85,4 +85,5 @@ Unable to execute JavaScript.
 </div>
 </div>
 </figure>
+
 
