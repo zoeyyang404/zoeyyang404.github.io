@@ -2,7 +2,6 @@
 title: "Statistics in Social Science(3): Step-by-Step tutorial on One-way ANOVA test"
 date: "2021-04-14T12:18:52+01:00"
 draft: false
-slug: "statistics-in-social-science3-step-by-step-tutorial-on-one-way-anova-test"
 tags: []
 categories: []
 ---
@@ -126,6 +125,7 @@ Besides, I also found useful blogs which using SPSS to do one-way ANOVA test:
 <https://statistics.laerd.com/statistical-guides/one-way-anova-statistical-guide-3.php>
 
 <https://statistics.laerd.com/spss-tutorials/one-way-anova-using-spss-statistics.php>
+
 
 
 
