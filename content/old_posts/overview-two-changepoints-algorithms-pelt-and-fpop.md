@@ -1,137 +1,81 @@
-﻿---
-title: "Overview two changepoints algorithms pelt and fpop"
-date: "2021-04-14T12:18:52+01:00"
+---
+title: "Overview two changepoints algorithms – PELT and FPOP"
+date: "Sat, 11 Dec 2021 20:18:53 +0000"
 draft: false
+slug: "overview-two-changepoints-algorithms-pelt-and-fpop"
 tags: []
 categories: []
+math: true
 ---
-<span class="has-inline-color has-secondary-color">This blog will explain the one-way ANOVA test in detail (including assumptions, implementing situation and explanation), and an example analysed by R will be shown at the end.</span>
+<span class="has-inline-color has-secondary-color">Hi! As you know I have started my first year of PhD, and my research direction is anomaly detection. And it could be seen as some special changepoint questions. So I started to write some notes during my PhD learning period. This is suitable for people already familiar with changepoint algorithms and who wants to have a look. I am happy to discuss with you my notes if there is something I misunderstand:)</span>
 
-## What is this test for?
+# To detect the change!
 
-You may be familiar with the t-test and some other nonparametric test used to test if there is a difference in the mean between two groups (e.g., if there is a difference in mean score between two classes; if one treatment is better than another treatment). The one-way analysis of variance (ANOVA) is used to **determine if there is a significant difference among the means of three or more independent groups**. For example, the application situation could be:
+The story begins by detecting the change. Assume we observed data from time \\ 1 \\ to time \\ t \\ ; we could name this sequence of observations by \\ y_1, y_2,…, y_t \\. We aim to infer the locations and numbers of these changes – that is, to infer \\ \tau \\ . This question could be easily transferred to a classification problem, that is, how could we classify an ordered sequence into several categories as good as we can. Based on this idea, we could write the following minimisation problem:
 
-- if there is a difference in mean score among the four classes
-- if there is a difference in the mean effect among the three types of treatment
+\$\$ \min\_{K \in N ; \tau_1,\tau_2,…,\tau_K} \sum\_{k=0}^K L(y\_{\tau_k+1:\tau\_{k+1}}), \$\$
 
-## Assumptions:
+\\ L(y\_{\tau_k+1:\tau\_{k+1}})\\ represents the cost for modelling the data \\ y\_{\tau_k+1},y\_{\tau_k+2},…,y\_{\tau\_{k+1}} \\ as a segment, it could be the negative log-likelihood; \\ K \\ is the total number of changepoints. Thus, this problem means we want to classify the ordered sequence into \\ K+1 \\ segments and make sure the classification could achieve the minimum log-likelihood. A question is that if we directly use this minimisation expression, we will always assign only one observation into one segment. Imagine that if we have 3 data points, when \\ K=2 \\ , we always achieve its minimum coz the cost for each segment is 0 and the sum is 0 too. Thus, we need a constrain!
 
-There is no free lunch. To implement the one-way ANOVA test, it should satisfy three assumptions:
+# Constrained problem and penalised optimisation problem
 
-- The variable is normally distributed in each group in the one-way ANOVA (technically, it is the residuals that need to be normally distributed, but the results will be the same). For example, if we want to compare the mean score on three classes, the score should have a [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution#:~:text=The%20normal%20distribution%20is%20the,a%20specified%20mean%20and%20variance.) for each class.
-- The variances are homogenous. This means the population variance in each group should equal. For example, the scores of the students in the three classes should fluctuate by a similar level.
-- The observations should be independent. This means one observation will not influence other observations. For example, student Aâ€™s grade will not influence student Bâ€™s grade as they took their exam independently.
+If we know the optimal number of changepoint \\ K \\ , we could force our algorithm to find \\ K+1 \\ segments. This is the constrained problem:
 
-All three test will be tested before implementing one-way ANOVA test. Now, letâ€™s look at how to implementing ANOVA test through R.
+\$\$Q_n^K=\min\_{K \in N ; \tau_1,\tau_2,…,\tau_K} \sum\_{k=0}^K L(y\_{\tau_k+1:\tau\_{k+1}}), \$\$
 
-## How to do it and explain it (An example in R)
+Solve the RHS of the above equation by dynamic programming; we will get the optimal location of \\ K \\ changepoints. However, this requires prior knowledge of the number of changepoints. When we don’t know the exact number of changepoint, we could try to give a maximum number of changepoints, e.g.10; then compute \\ Q_n^k \\ for all \\ k=0,1,2,…,10 \\ , and choose the minimum \\ Q_n^k \\ as the final solution. In general, it could be written like:
 
-Letâ€™s use the dataset in R called â€˜PlantGrowthâ€™. It includes the weight of 30 plants with three groups (10 plants will not receive any treatment (control group), 10 plants receive treatment A, and 10 plants receive treatment B). And our purpose is to find if there is a difference in the mean effect among the three groups?
+\$\$\min_k\[Q_n^k+g(k,n)\],\$\$
 
-Firstly, lets draw a boxplot to see the data graphically.
+where \\ g(k,n) \\ is the penalty function for overfitting the number of changepoints.
+
+Given this idea above, a group of clever people think why not transfer the problem into a penalised one. If the penalty function is linear in \\ k \\ , say, \\ g(k,n)=\beta k, \beta\>0 \\, we could write it as:
+
+\$\$Q\_{n,\beta}=\min\_{k}\[Q_n^k+\beta k\]=\min\_{k,\tau}\[\sum\_{k=0}^K L(y\_{\tau_k+1:\tau\_{k+1}})+\beta \] – \beta\$\$
+
+This is known as the penalised optimisation problem. And all our stories come from here.
+
+To solve the penalised optimisation problem, we could use dynamic programming! Given \\ Q\_{0,\beta}=-\beta \\ , we have
+
+\$\$Q\_{t,\beta}=\min\_{0\leq\tau\<t} \[Q\_{\tau,\beta}+L(y\_{\tau+1:t})+\beta\],\$\$
+
+for \\ t=1,2,…,n \\ . However, solving this one requires \\ O(n^2) \\ time complexity! Because of each step, we have to recalculate the cost for each observation. In order to reduce the computational complexity, two approaches have been proposed – PELT and FPOP!
+
+# PELT
+
+Let’s look at some maths first! Assume there exists a constant \$a\$ and
+
+\$\$Q\_\tau + L(y\_{\tau+1:t}) +a \>Q_t,\$\$
+
+\\ y\_\tau \\ will never be the optimal change point in the future recursion. The LHS of the inequality above means the cost for modelling data have a changepoint at \\ \tau \\ until time \\ t \\ , while the RHS represents the cost without changepoint at \\ \tau \\ . Thus, in the following calculation, we do not need to consider the possibility that \$\tau\$ is the optimal last changepoint. So, the search space is reduced!
+
+In each recursion, instead of calculating the cost and finding the minimum, we need to add an additional step to check if the inequality holds. In the worst cases, the computational complexity is still \\ O(n^2) \\ . However, when the number of changepoint increases with the number of observations, PELT could achieve linear computational complexity!
+
+# FPOP
+
+FPOP is functional pruning. In the optimisation problem, we firstly model the segment then find the minimisation. But functional pruning swaps the order of minimisation, that is to find the segment for different parameters. Assume cost function could be represented as the sum of \\ \gamma(y_i,\theta), \\ you will be very clear if we do some maths:
+
+\$\$\begin{split} Q_t&=\min\_{0 \leq \tau \< t} \[Q\_\tau+L(y\_{\tau+1:t})+\beta\]\\&=\min\_{0 \leq \tau \< t} \[Q\_\tau+\min\_\theta \sum\_{i=\tau+1}^t \gamma(y\_{i,\theta})+\beta\]\\\\\\\\ (\mathrm{independent\\ assumption})\\&=\min\_{\theta} \min\_{0 \leq \tau \< t} \[Q\_\tau+\sum\_{i=\tau+1}^t \gamma(y\_{i,\theta})+\beta\]\\& = \min\_{\theta} \min\_{0 \leq \tau \< t} q_t^\tau(\theta)\\&=\min\_{\theta} Q_t(\theta),\end{split} \$\$
+
+where \\ q_t^\tau(\theta) \\ is the optimal cost of partitioning the data up to time \\ t \\ conditional on the last changepoint being at \\ \tau \\ with the current parameter being \\ \theta \\ ; and \\ Q_t(\theta) \\ is the optimal cost of partitioning the data up to time \\ t \\ with the current segment parameter being \\ \theta \\ . Simply, assume we have two possible changepoint candidates \\ \tau_1 \\ and \\ \tau_2 \\ , \\ \tau_1 \\ will never be the optimal partition if \\ q^{\tau_1}\_t \> q^{\tau_2}\_t \\ , then we could simply prune \\ \tau_1 \\ .
+
+You could easily find the difference. Before in penalised optimisation problem, we firstly find the possible partition and then estimate the parameter in the segment, and then find the minimum cost. As a result, the associated partition is the solution we want. But here, we have possible estimated parameters, for each estimated parameter, we have corresponded partition. Then the minimum cost over all possible parameters is the solution we want.
+
+The equation above could be easily solved by dynamic programming:
+
+\$\$Q_t(\theta)=\min \big\\Q\_{t-1}(\theta), \min\_\theta Q\_{t-1}(\theta)+\beta\big\\+\gamma(y_t,\theta)\$\$
+
+The former one in the bracket means there is no new changepoint in the last iteration, while the latter one in the bracket means that add a new changepoint in the last iteration after updating one observation. In the worst case, the time complexity is \\ O(n^2) \\ ; but in the best case, the time complexity is \\ O(n\log n) \\ .
+
+I will explain the Figure here, and you will understand how FPOP prune candidate changepoint.
 
 <div class="wp-block-image">
 
-<figure class="aligncenter size-large is-resized">
-<img src="/old_posts_image/18/2021/04/image-2-1024x541.png" class="wp-image-252" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-2-1024x541.png 1024w, /old_posts_image/18/2021/04/image-2-300x158.png 300w, /old_posts_image/18/2021/04/image-2-768x406.png 768w, /old_posts_image/18/2021/04/image-2.png 1043w" sizes="auto, (max-width: 566px) 100vw, 566px" width="566" height="298" />
+<figure class="aligncenter size-full is-resized">
+<img src="/old_posts_image/18/2021/12/Untitled.png" class="wp-image-409" fetchpriority="high" decoding="async" srcset="/old_posts_image/18/2021/12/Untitled.png 879w, /old_posts_image/18/2021/12/Untitled-300x141.png 300w, /old_posts_image/18/2021/12/Untitled-768x362.png 768w" sizes="(max-width: 575px) 100vw, 575px" width="575" height="271" />
+<figcaption>This is a direct screenshot from Paper (On Optimal Multiple Changepoint Algorithms for Large Data, arxiv: 1409.1942</figcaption>
 </figure>
 
 </div>
 
-From the boxplot, we could conclude that treatment 1 has a lower effect than the control group, but the difference is not too large. And plants received treatment 3 has a larger weight than the other two groups.
-
-Next, we measure the difference through One-way ANOVA, and we got the result:
-
-``` wp-block-code
-res.aov <- aov(weight ~ group, data = data)
-# Summary of the analysis
-summary(res.aov)
-            Df Sum Sq Mean Sq F value Pr(>F)  
-group        2  3.766  1.8832   4.846 0.0159 *
-Residuals   27 10.492  0.3886                 
----
-Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
-```
-
-##### Interpretation
-
-Under a 5% significance level, the P-value of the test is less than 0.05 (P=0.0159\<0.05). So we could conclude there is a significant difference among groups.
-
-However, we could only say there is a significant difference among groups, but we donâ€™t know which pairs of groups are different. To understand if there is a difference between specific pairs of groups, we could implement Tukey multiple pairwise-comparisons:
-
-``` wp-block-code
-TukeyHSD(res.aov)
-  Tukey multiple comparisons of means
-    95% family-wise confidence level
-Fit: aov(formula = weight ~ group, data = data)
-$group
-            diff        lwr       upr     p adj
-trt1-ctrl -0.371 -1.0622161 0.3202161 0.3908711
-trt2-ctrl  0.494 -0.1972161 1.1852161 0.1979960
-trt2-trt1  0.865  0.1737839 1.5562161 0.0120064
-```
-
-Under a 5% significance level, we could conclude that treatment 2 is significantly better than treatment1 on the mean weight of the plant. However, there is no statistical evidence that treatment 2 is better than treatment 1, and treatment 1 is worse than receiving no treatment.
-
-#### Checking the assumptions
-
-Now lets check the assumptions:
-
-- Normally distributed assumptions. On the QQ plot, most points lie on the straight line except point 4, 15 and 17. However, we only have a small sample size (30 plants), so it is reasonable to see a normal QQ plot like this. We could also test the normality through the Shapiro-Wilk normality test. Under the 5% significance level, we could not reject the null hypothesis that the residuals are normally distributed.
-
-<div class="wp-block-image">
-
-<figure class="aligncenter size-large is-resized">
-<img src="/old_posts_image/18/2021/04/image-3-1024x541.png" class="wp-image-253" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-3-1024x541.png 1024w, /old_posts_image/18/2021/04/image-3-300x158.png 300w, /old_posts_image/18/2021/04/image-3-768x406.png 768w, /old_posts_image/18/2021/04/image-3.png 1043w" sizes="auto, (max-width: 623px) 100vw, 623px" width="623" height="328" />
-</figure>
-
-</div>
-
-``` wp-block-code
-shapiro.test(x = residuals(res.aov) )
-
-    Shapiro-Wilk normality test
-
-data:  residuals(res.aov)
-W = 0.96607, p-value = 0.4379
-```
-
-- Homogenous variance assumption: From the Residual vs Fitted plot, we could see slight evidence of non-constant variance since the degree of dispersion for each group is different. However, it seems not serious. LeveneTest could also be done to test the homogeneity of variance. Under 5% significance, we could not reject the null hypothesis (P-value\>0.05) to assume the homogeneity of variances in the different treatment groups.
-
-<div class="wp-block-image">
-
-<figure class="aligncenter size-large is-resized">
-<img src="/old_posts_image/18/2021/04/image-4-1024x541.png" class="wp-image-254" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-4-1024x541.png 1024w, /old_posts_image/18/2021/04/image-4-300x158.png 300w, /old_posts_image/18/2021/04/image-4-768x406.png 768w, /old_posts_image/18/2021/04/image-4.png 1043w" sizes="auto, (max-width: 599px) 100vw, 599px" width="599" height="316" />
-</figure>
-
-</div>
-
-``` wp-block-code
-leveneTest(weight ~ group, data =data)
-Levene's Test for Homogeneity of Variance (center = median)
-      Df F value Pr(>F)
-group  2  1.1192 0.3412
-      27      
-```
-
-- Independent assumption: This assumption needs more consideration. In our example, we could assume satisfying this independent assumption since the weight of one plant will not influence the weight of other plants.
-
-Thatâ€™s all done! This blog references the blog which including specific R code:
-
-<http://mathsbox.com/notebooks/python-utilities.html>
-
-Besides, I also found useful blogs which using SPSS to do one-way ANOVA test:
-
-<https://statistics.laerd.com/statistical-guides/one-way-anova-statistical-guide-3.php>
-
-<https://statistics.laerd.com/spss-tutorials/one-way-anova-using-spss-statistics.php>
-
-
-
-
-
-
-
-
-
-
+At time \\ t=78 \\ , we stored \\ 7 \\ intervals with associated \\ \mu \\ . Since we assume \\ \gamma \\ function is a negative loglikelihood for normally distributed data, it shows a quadratic shape in the Figure. At time \\ t=79 \\ , we observed new data, so we recompute the cost function and get the result as the middle Figure shows. In the middle Figure, notice that the purple line is not optimal anymore (it is above all the curves), and the purple line corresponds to the cost when the changepoint is located in 78. Thus, we could prune this candidate that we will not consider \\ y\_{78} \\ to be the possible changepoint anymore (as shown in Figure (c)).

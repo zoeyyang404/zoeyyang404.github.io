@@ -1,9 +1,11 @@
-﻿---
-title: "Statistics in social science3 step by step tutorial on one way anova test"
-date: "2021-04-14T12:18:52+01:00"
+---
+title: "Statistics in Social Science(3): Step-by-Step tutorial on One-way ANOVA test"
+date: "Wed, 14 Apr 2021 11:18:52 +0000"
 draft: false
+slug: "statistics-in-social-science3-step-by-step-tutorial-on-one-way-anova-test"
 tags: []
 categories: []
+math: true
 ---
 <span class="has-inline-color has-secondary-color">This blog will explain the one-way ANOVA test in detail (including assumptions, implementing situation and explanation), and an example analysed by R will be shown at the end.</span>
 
@@ -20,13 +22,13 @@ There is no free lunch. To implement the one-way ANOVA test, it should satisfy t
 
 - The variable is normally distributed in each group in the one-way ANOVA (technically, it is the residuals that need to be normally distributed, but the results will be the same). For example, if we want to compare the mean score on three classes, the score should have a [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution#:~:text=The%20normal%20distribution%20is%20the,a%20specified%20mean%20and%20variance.) for each class.
 - The variances are homogenous. This means the population variance in each group should equal. For example, the scores of the students in the three classes should fluctuate by a similar level.
-- The observations should be independent. This means one observation will not influence other observations. For example, student Aâ€™s grade will not influence student Bâ€™s grade as they took their exam independently.
+- The observations should be independent. This means one observation will not influence other observations. For example, student A’s grade will not influence student B’s grade as they took their exam independently.
 
-All three test will be tested before implementing one-way ANOVA test. Now, letâ€™s look at how to implementing ANOVA test through R.
+All three test will be tested before implementing one-way ANOVA test. Now, let’s look at how to implementing ANOVA test through R.
 
 ## How to do it and explain it (An example in R)
 
-Letâ€™s use the dataset in R called â€˜PlantGrowthâ€™. It includes the weight of 30 plants with three groups (10 plants will not receive any treatment (control group), 10 plants receive treatment A, and 10 plants receive treatment B). And our purpose is to find if there is a difference in the mean effect among the three groups?
+Let’s use the dataset in R called ‘PlantGrowth’. It includes the weight of 30 plants with three groups (10 plants will not receive any treatment (control group), 10 plants receive treatment A, and 10 plants receive treatment B). And our purpose is to find if there is a difference in the mean effect among the three groups?
 
 Firstly, lets draw a boxplot to see the data graphically.
 
@@ -50,14 +52,14 @@ summary(res.aov)
 group        2  3.766  1.8832   4.846 0.0159 *
 Residuals   27 10.492  0.3886                 
 ---
-Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
 ```
 
 ##### Interpretation
 
 Under a 5% significance level, the P-value of the test is less than 0.05 (P=0.0159\<0.05). So we could conclude there is a significant difference among groups.
 
-However, we could only say there is a significant difference among groups, but we donâ€™t know which pairs of groups are different. To understand if there is a difference between specific pairs of groups, we could implement Tukey multiple pairwise-comparisons:
+However, we could only say there is a significant difference among groups, but we don’t know which pairs of groups are different. To understand if there is a difference between specific pairs of groups, we could implement Tukey multiple pairwise-comparisons:
 
 ``` wp-block-code
 TukeyHSD(res.aov)
@@ -116,7 +118,7 @@ group  2  1.1192 0.3412
 
 - Independent assumption: This assumption needs more consideration. In our example, we could assume satisfying this independent assumption since the weight of one plant will not influence the weight of other plants.
 
-Thatâ€™s all done! This blog references the blog which including specific R code:
+That’s all done! This blog references the blog which including specific R code:
 
 <http://mathsbox.com/notebooks/python-utilities.html>
 
@@ -125,12 +127,3 @@ Besides, I also found useful blogs which using SPSS to do one-way ANOVA test:
 <https://statistics.laerd.com/statistical-guides/one-way-anova-statistical-guide-3.php>
 
 <https://statistics.laerd.com/spss-tutorials/one-way-anova-using-spss-statistics.php>
-
-
-
-
-
-
-
-
-
