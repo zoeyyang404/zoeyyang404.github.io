@@ -1,61 +1,137 @@
 ﻿---
-title: "It is NOT a failure for a PhD to work in the industry instead of academia"
-date: "2021-04-27T22:26:25+01:00"
+title: "It is not a failure for a phd working in the industry instead of academia"
+date: "2021-04-14T12:18:52+01:00"
 draft: false
-slug: "it-is-not-a-failure-for-a-phd-working-in-the-industry-instead-of-academia"
-tags: [""]
-categories: [""]
+tags: []
+categories: []
 ---
-<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex">
+<span class="has-inline-color has-secondary-color">This blog will explain the one-way ANOVA test in detail (including assumptions, implementing situation and explanation), and an example analysed by R will be shown at the end.</span>
 
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:33.33%">
+## What is this test for?
 
-<figure class="wp-block-image size-large">
-<img src="/old_posts_image/18/2021/04/fdsfsfdsf.jpg" class="wp-image-302" decoding="async" srcset="/old_posts_image/18/2021/04/fdsfsfdsf.jpg 715w, /old_posts_image/18/2021/04/fdsfsfdsf-300x168.jpg 300w" sizes="(max-width: 715px) 100vw, 715px" width="715" height="400" />
+You may be familiar with the t-test and some other nonparametric test used to test if there is a difference in the mean between two groups (e.g., if there is a difference in mean score between two classes; if one treatment is better than another treatment). The one-way analysis of variance (ANOVA) is used to **determine if there is a significant difference among the means of three or more independent groups**. For example, the application situation could be:
+
+- if there is a difference in mean score among the four classes
+- if there is a difference in the mean effect among the three types of treatment
+
+## Assumptions:
+
+There is no free lunch. To implement the one-way ANOVA test, it should satisfy three assumptions:
+
+- The variable is normally distributed in each group in the one-way ANOVA (technically, it is the residuals that need to be normally distributed, but the results will be the same). For example, if we want to compare the mean score on three classes, the score should have a [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution#:~:text=The%20normal%20distribution%20is%20the,a%20specified%20mean%20and%20variance.) for each class.
+- The variances are homogenous. This means the population variance in each group should equal. For example, the scores of the students in the three classes should fluctuate by a similar level.
+- The observations should be independent. This means one observation will not influence other observations. For example, student Aâ€™s grade will not influence student Bâ€™s grade as they took their exam independently.
+
+All three test will be tested before implementing one-way ANOVA test. Now, letâ€™s look at how to implementing ANOVA test through R.
+
+## How to do it and explain it (An example in R)
+
+Letâ€™s use the dataset in R called â€˜PlantGrowthâ€™. It includes the weight of 30 plants with three groups (10 plants will not receive any treatment (control group), 10 plants receive treatment A, and 10 plants receive treatment B). And our purpose is to find if there is a difference in the mean effect among the three groups?
+
+Firstly, lets draw a boxplot to see the data graphically.
+
+<div class="wp-block-image">
+
+<figure class="aligncenter size-large is-resized">
+<img src="/old_posts_image/18/2021/04/image-2-1024x541.png" class="wp-image-252" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-2-1024x541.png 1024w, /old_posts_image/18/2021/04/image-2-300x158.png 300w, /old_posts_image/18/2021/04/image-2-768x406.png 768w, /old_posts_image/18/2021/04/image-2.png 1043w" sizes="auto, (max-width: 566px) 100vw, 566px" width="566" height="298" />
 </figure>
 
 </div>
 
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:66.66%">
+From the boxplot, we could conclude that treatment 1 has a lower effect than the control group, but the difference is not too large. And plants received treatment 3 has a larger weight than the other two groups.
 
-I am currently an MRes student at [STOR-i](https://www.lancaster.ac.uk/stor-i/), and I was thinking about the possible career path (either industry or academia) since we have to choose either strategic or industry PhD projects. Last week, I attended an online career event in stats held by [Biometrika](https://academic.oup.com/biomet), discussing the possible career path for a PhD student. That reminds me of a recent popular question: Is it a failure for a PhD to work in the industry after graduation? Most people think it is a shame that PhD students do not continue to work in academia after spending several years obtaining a PhD degree, and they could not back to academia without research.
+Next, we measure the difference through One-way ANOVA, and we got the result:
 
-</div>
+``` wp-block-code
+res.aov <- aov(weight ~ group, data = data)
+# Summary of the analysis
+summary(res.aov)
+            Df Sum Sq Mean Sq F value Pr(>F)  
+group        2  3.766  1.8832   4.846 0.0159 *
+Residuals   27 10.492  0.3886                 
+---
+Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
+```
 
-</div>
+##### Interpretation
 
-This reminds me of the reason why I attend the STOR-i programme is the close incorporation with industries. As we know, stats is a very applicable discipline. That is why I like stats since stats could directly impact our daily life, such as detecting changepoint, predicting the earthquake by extreme value theory, testing the efficiency of the clinical methods or drugs, etc. And STOR-i programmes will allow me to directly work with the company to solve real-world problems after I finish the first MRes year :). Naturally, my career plan is to work in the industry after graduation (but maybe change my idea afterwards).
+Under a 5% significance level, the P-value of the test is less than 0.05 (P=0.0159\<0.05). So we could conclude there is a significant difference among groups.
 
-<div id="block-5c5fe2d8-2160-4236-93a8-8d66abb8b17f" class="wp-block-image">
+However, we could only say there is a significant difference among groups, but we donâ€™t know which pairs of groups are different. To understand if there is a difference between specific pairs of groups, we could implement Tukey multiple pairwise-comparisons:
 
-<figure class="aligncenter is-resized">
-<img src="/old_posts_image/18/2021/04/image.jpeg" decoding="async" width="402" height="286" alt="This image has an empty alt attribute; its file name is image.jpeg" />
-<figcaption>Really???? I was also scared by choosing the industry path as I originally thought I could never do research and return to academia.</figcaption>
+``` wp-block-code
+TukeyHSD(res.aov)
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+Fit: aov(formula = weight ~ group, data = data)
+$group
+            diff        lwr       upr     p adj
+trt1-ctrl -0.371 -1.0622161 0.3202161 0.3908711
+trt2-ctrl  0.494 -0.1972161 1.1852161 0.1979960
+trt2-trt1  0.865  0.1737839 1.5562161 0.0120064
+```
+
+Under a 5% significance level, we could conclude that treatment 2 is significantly better than treatment1 on the mean weight of the plant. However, there is no statistical evidence that treatment 2 is better than treatment 1, and treatment 1 is worse than receiving no treatment.
+
+#### Checking the assumptions
+
+Now lets check the assumptions:
+
+- Normally distributed assumptions. On the QQ plot, most points lie on the straight line except point 4, 15 and 17. However, we only have a small sample size (30 plants), so it is reasonable to see a normal QQ plot like this. We could also test the normality through the Shapiro-Wilk normality test. Under the 5% significance level, we could not reject the null hypothesis that the residuals are normally distributed.
+
+<div class="wp-block-image">
+
+<figure class="aligncenter size-large is-resized">
+<img src="/old_posts_image/18/2021/04/image-3-1024x541.png" class="wp-image-253" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-3-1024x541.png 1024w, /old_posts_image/18/2021/04/image-3-300x158.png 300w, /old_posts_image/18/2021/04/image-3-768x406.png 768w, /old_posts_image/18/2021/04/image-3.png 1043w" sizes="auto, (max-width: 623px) 100vw, 623px" width="623" height="328" />
 </figure>
 
 </div>
 
-### Working in the industry doesnâ€™t mean no publication
+``` wp-block-code
+shapiro.test(x = residuals(res.aov) )
 
-Prof. Tawn Jonathan said most PhD went to the industry due to the direct effect of their work and they still have publications in the industry. When I wrote my research report on Thompson sampling, I found the Microsoft research sectors published several famous papers. It seems reasonable since industries also need creativity, and they could find real-world open questions easily. So, working in the industry does not equal no research.
+    Shapiro-Wilk normality test
 
-### Working in the industry doesnâ€™t mean no way return to academia
+data:  residuals(res.aov)
+W = 0.96607, p-value = 0.4379
+```
 
-Besides, it is also possible to return to academia from industry but on different routes. The possible normal route for academia is PhD â€“ Post Doc â€“ Lecturer â€“ Senior Lecturer â€“ Reader/Professor. The possible route for academia returning from industry is PhD â€“ Industry â€“ Lecturer â€“ etc. Thus, people working in the industries could also back to academia.
+- Homogenous variance assumption: From the Residual vs Fitted plot, we could see slight evidence of non-constant variance since the degree of dispersion for each group is different. However, it seems not serious. LeveneTest could also be done to test the homogeneity of variance. Under 5% significance, we could not reject the null hypothesis (P-value\>0.05) to assume the homogeneity of variances in the different treatment groups.
 
-### Working in industry project doesnâ€™t mean no theoretical development
+<div class="wp-block-image">
 
-Originally I thought the industry project might be applicable and no theoretical development. When I met with possible supervisors, they said we have to develop a new method based on the questions provided by the companies. So, we are not working as employees of their company doing similar and regular works. Indeed we have to create a new methodology, new algorithm or new theory!! Just like other academic projects. Besides, the research scope is not fixed like the company asks us to solve a typical question. Usually, the scope is flexible enough and allow us to boost both academic and industry development at the same time.
-
-<div id="block-b5569ddc-b00f-40bc-8300-3a15764e5dcc" class="wp-block-image">
-
-<figure class="aligncenter is-resized">
-<img src="https://s30876.pcdn.co/wp-content/uploads/PhD3-1170x630.jpg" loading="lazy" decoding="async" width="487" height="261" alt="Post PhD, Where Do I Go From Here? - career-advice.jobs.ac.uk" />
+<figure class="aligncenter size-large is-resized">
+<img src="/old_posts_image/18/2021/04/image-4-1024x541.png" class="wp-image-254" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-4-1024x541.png 1024w, /old_posts_image/18/2021/04/image-4-300x158.png 300w, /old_posts_image/18/2021/04/image-4-768x406.png 768w, /old_posts_image/18/2021/04/image-4.png 1043w" sizes="auto, (max-width: 599px) 100vw, 599px" width="599" height="316" />
 </figure>
 
 </div>
 
-As a result, working in the industry doesnâ€™t mean the end of academia. And it allows you to see the direct impact. Now I am much clear about my path and hope this blog could help you if you have similar questions.
+``` wp-block-code
+leveneTest(weight ~ group, data =data)
+Levene's Test for Homogeneity of Variance (center = median)
+      Df F value Pr(>F)
+group  2  1.1192 0.3412
+      27      
+```
+
+- Independent assumption: This assumption needs more consideration. In our example, we could assume satisfying this independent assumption since the weight of one plant will not influence the weight of other plants.
+
+Thatâ€™s all done! This blog references the blog which including specific R code:
+
+<http://mathsbox.com/notebooks/python-utilities.html>
+
+Besides, I also found useful blogs which using SPSS to do one-way ANOVA test:
+
+<https://statistics.laerd.com/statistical-guides/one-way-anova-statistical-guide-3.php>
+
+<https://statistics.laerd.com/spss-tutorials/one-way-anova-using-spss-statistics.php>
+
+
+
+
+
+
+
 
 
 

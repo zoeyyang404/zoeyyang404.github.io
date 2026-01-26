@@ -1,182 +1,137 @@
 ﻿---
-title: "Why does Amazon always guess our preference? – explaining contextual bandit problem without mathematics"
-date: "2021-02-08T13:36:37+00:00"
+title: "Contextual bandit problem starting from an example"
+date: "2021-04-14T12:18:52+01:00"
 draft: false
-slug: "contextual-bandit-problem-starting-from-an-example"
-tags: [""]
-categories: [""]
+tags: []
+categories: []
 ---
-<span class="has-inline-color has-secondary-color">This blog will give you an idea of the rationale behind the recommendation system. How contextual bandit problem works in such a system? Hope this blog will give you an answer.</span>
+<span class="has-inline-color has-secondary-color">This blog will explain the one-way ANOVA test in detail (including assumptions, implementing situation and explanation), and an example analysed by R will be shown at the end.</span>
 
-During last semester, we are given a list of topics to discuss as a team. The fourth topic is bandit problem!
+## What is this test for?
 
-<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex">
+You may be familiar with the t-test and some other nonparametric test used to test if there is a difference in the mean between two groups (e.g., if there is a difference in mean score between two classes; if one treatment is better than another treatment). The one-way analysis of variance (ANOVA) is used to **determine if there is a significant difference among the means of three or more independent groups**. For example, the application situation could be:
 
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:33.33%">
+- if there is a difference in mean score among the four classes
+- if there is a difference in the mean effect among the three types of treatment
 
-<figure class="wp-block-image size-large is-resized">
-<img src="/old_posts_image/18/2021/04/1_pcEsW85jbSIzsEONxn1XRQ.jpeg" class="wp-image-286" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/1_pcEsW85jbSIzsEONxn1XRQ.jpeg 345w, /old_posts_image/18/2021/04/1_pcEsW85jbSIzsEONxn1XRQ-259x300.jpeg 259w" sizes="auto, (max-width: 251px) 100vw, 251px" width="251" height="291" />
-</figure>
+## Assumptions:
 
-</div>
+There is no free lunch. To implement the one-way ANOVA test, it should satisfy three assumptions:
 
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:66.66%">
+- The variable is normally distributed in each group in the one-way ANOVA (technically, it is the residuals that need to be normally distributed, but the results will be the same). For example, if we want to compare the mean score on three classes, the score should have a [normal distribution](https://en.wikipedia.org/wiki/Normal_distribution#:~:text=The%20normal%20distribution%20is%20the,a%20specified%20mean%20and%20variance.) for each class.
+- The variances are homogenous. This means the population variance in each group should equal. For example, the scores of the students in the three classes should fluctuate by a similar level.
+- The observations should be independent. This means one observation will not influence other observations. For example, student Aâ€™s grade will not influence student Bâ€™s grade as they took their exam independently.
 
-This is the two-arm bandit machine. Each time you have to choose to pull one arm to earn money. How will you do that? Which arm you will choose to pull? Probably try several times, and summarise some experience. Then you may have some rules to guide you to pull the arm.
+All three test will be tested before implementing one-way ANOVA test. Now, letâ€™s look at how to implementing ANOVA test through R.
 
-This is the bandit problem which is clearly about how to make a good decision. In a two-arm bandit machine, it is to choose to pull which arm to earn more money. When it comes to the recommendation system, it is to choose the good news/products/videos to earn a more click-through rate!!!
+## How to do it and explain it (An example in R)
 
-</div>
+Letâ€™s use the dataset in R called â€˜PlantGrowthâ€™. It includes the weight of 30 plants with three groups (10 plants will not receive any treatment (control group), 10 plants receive treatment A, and 10 plants receive treatment B). And our purpose is to find if there is a difference in the mean effect among the three groups?
 
-</div>
-
-# <span class="has-inline-color" style="color:#00983f">Amazonâ€™s secret â€“ recommendation system</span>
-
-------------------------------------------------------------------------
-
-<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex">
-
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-
-<figure class="wp-block-image size-large">
-<img src="/old_posts_image/18/2021/02/recommendation-1-1024x350.png" class="wp-image-180" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/02/recommendation-1-1024x350.png 1024w, /old_posts_image/18/2021/02/recommendation-1-300x103.png 300w, /old_posts_image/18/2021/02/recommendation-1-768x263.png 768w, /old_posts_image/18/2021/02/recommendation-1-1536x525.png 1536w, /old_posts_image/18/2021/02/recommendation-1.png 1558w" sizes="auto, (max-width: 1024px) 100vw, 1024px" width="1024" height="350" />
-</figure>
-
-</div>
-
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow">
-
-When you open your Amazon, you may notice it automatically recommends products for you. And when you using Tictok, it probability recommends videos that most attracts you. That is a recommendation system.
-
-</div>
-
-</div>
-
-> Judging by Amazonâ€™s success, the recommendation system works. The company reported a 29% sales increase to \$12.83 billion during its second fiscal quarter, up from \$9.9 billion during the same time last year. A lot of that growth arguably has to do with the way Amazon has integrated recommendations into nearly every part of the purchasing process.
-
-Amazon benefits from its recommendation system by recommending personalised products to different customers. You may have noticed that once you open Amazon, it shows the recommendation for you that you are actually interested in. Similarly, you may notice that Yahoo! recommends news you interests in, Tiktok always knows your tastes in videos. Although they may use a different algorithm, such personalized recommendation could be done by contextual bandit algorithms. **A good recommendation system will always know you better than yourself !!** Now, letâ€™s look at what is contextual bandit problem through an example.
-
-# <span class="has-inline-color" style="color:#019925">Looking at the contextual bandit problem through an example</span>
-
-------------------------------------------------------------------------
-
-------------------------------------------------------------------------
-
-Assuming we have a website called â€˜click meâ€™ posting interesting news, and we make a profit from the click-through rate on web advertising. A list of companies asked us to put their advertisements on our website. In order to maximize our profit, we want to personalize these advertisements and attract our customers to click. In other words, we want to show specific advertisements to specific viewers. But how? This is the bandit problem.
-
-## Collecting the contextual information
-
-If we want to guess a personâ€™s preference, we firstly want to know more about this person. Similarly, to our company, we want to know more about our viewers, which is called context in bandit problem. These contexts may contain:
-
-- Personal information: Gender, region, age, etcâ€¦
-- Recent browsing records and click-through records: Even including how many seconds you spend in viewing one advertisement
-- The preference of the categories of news: for example, our viewer may like the news of Justin Bieber, or they may focus on sales information.
-- etcâ€¦
-
-## Trying and learning how to guess
-
-Okay dokey. Now we have lots of information about our viewers. Whatâ€™s the next step? If you want to guess a personsâ€™ favourite movie, you might want to show them some movies and observe their reactions. For example, if we show them â€˜Titanicâ€™ and they said they really love this movie, they probably like a romantic movie and we will show them more romantic movies to guess. If you show them â€˜The Lion Kingâ€™ and they said they do not like this movie, you will not show them more cartoon movies. (Just example, I love The Lion King!!!!)
+Firstly, lets draw a boxplot to see the data graphically.
 
 <div class="wp-block-image">
 
-<figure class="aligncenter is-resized">
-<img src="https://i.imgflip.com/15at2x.jpg" loading="lazy" decoding="async" width="198" height="173" alt="Uh... is it Alien? - Imgflip" />
+<figure class="aligncenter size-large is-resized">
+<img src="/old_posts_image/18/2021/04/image-2-1024x541.png" class="wp-image-252" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-2-1024x541.png 1024w, /old_posts_image/18/2021/04/image-2-300x158.png 300w, /old_posts_image/18/2021/04/image-2-768x406.png 768w, /old_posts_image/18/2021/04/image-2.png 1043w" sizes="auto, (max-width: 566px) 100vw, 566px" width="566" height="298" />
 </figure>
 
 </div>
 
-Similarity, we have a list of advertisement from a list of companies. Which advertisement we choose to show for viewers with certain type?
+From the boxplot, we could conclude that treatment 1 has a lower effect than the control group, but the difference is not too large. And plants received treatment 3 has a larger weight than the other two groups.
 
-<figure class="wp-block-image size-large">
-<img src="/old_posts_image/18/2021/02/contextualbanditdiag-1024x170.png" class="wp-image-181" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/02/contextualbanditdiag-1024x170.png 1024w, /old_posts_image/18/2021/02/contextualbanditdiag-300x50.png 300w, /old_posts_image/18/2021/02/contextualbanditdiag-768x127.png 768w, /old_posts_image/18/2021/02/contextualbanditdiag-1536x255.png 1536w, /old_posts_image/18/2021/02/contextualbanditdiag-1600x265.png 1600w, /old_posts_image/18/2021/02/contextualbanditdiag.png 1762w" sizes="auto, (max-width: 1024px) 100vw, 1024px" width="1024" height="170" />
-</figure>
+Next, we measure the difference through One-way ANOVA, and we got the result:
 
-Similarly, each time, our system will give them a type of advertisement (that is choose an action), and watch their reaction. If guess correctly, the machine will gain â€˜rewardsâ€™ (that is you click the products), and such rewards will transfer to experience about this type of viewers. If guess incorrectly, the machine is â€˜regretâ€™ that do not guess viewers preference and try to guess again and again. After a long time, our machine could guess the preference of viewers correctly!
+``` wp-block-code
+res.aov <- aov(weight ~ group, data = data)
+# Summary of the analysis
+summary(res.aov)
+            Df Sum Sq Mean Sq F value Pr(>F)  
+group        2  3.766  1.8832   4.846 0.0159 *
+Residuals   27 10.492  0.3886                 
+---
+Signif. codes:  0 â€˜***â€™ 0.001 â€˜**â€™ 0.01 â€˜*â€™ 0.05 â€˜.â€™ 0.1 â€˜ â€™ 1
+```
 
-For example, for viewers age below 6 years old. When the machine shows the ads about toys, and childrenâ€™s clicked that ad. The machine will gain experience that children are more likely to click ads about toys. And next time our machine is more likely to put an advertisement about toys on our website.
+##### Interpretation
 
-After a while and huge data, this engine has cumulated enough information about viewers preference and has a high probability to guess the preference â€“ just like the process of learning (learn experience from success and try after failure!)
+Under a 5% significance level, the P-value of the test is less than 0.05 (P=0.0159\<0.05). So we could conclude there is a significant difference among groups.
 
-Now our company runs very well and could show certain advertisements to certain viewers! With a high click-through rate, we made lots of profit!!
+However, we could only say there is a significant difference among groups, but we donâ€™t know which pairs of groups are different. To understand if there is a difference between specific pairs of groups, we could implement Tukey multiple pairwise-comparisons:
+
+``` wp-block-code
+TukeyHSD(res.aov)
+  Tukey multiple comparisons of means
+    95% family-wise confidence level
+Fit: aov(formula = weight ~ group, data = data)
+$group
+            diff        lwr       upr     p adj
+trt1-ctrl -0.371 -1.0622161 0.3202161 0.3908711
+trt2-ctrl  0.494 -0.1972161 1.1852161 0.1979960
+trt2-trt1  0.865  0.1737839 1.5562161 0.0120064
+```
+
+Under a 5% significance level, we could conclude that treatment 2 is significantly better than treatment1 on the mean weight of the plant. However, there is no statistical evidence that treatment 2 is better than treatment 1, and treatment 1 is worse than receiving no treatment.
+
+#### Checking the assumptions
+
+Now lets check the assumptions:
+
+- Normally distributed assumptions. On the QQ plot, most points lie on the straight line except point 4, 15 and 17. However, we only have a small sample size (30 plants), so it is reasonable to see a normal QQ plot like this. We could also test the normality through the Shapiro-Wilk normality test. Under the 5% significance level, we could not reject the null hypothesis that the residuals are normally distributed.
 
 <div class="wp-block-image">
 
-<figure class="aligncenter is-resized">
-<img src="https://pyxis.nymag.com/v1/imgs/8f8/e12/51b54d13d65d8ee3773ce32da03e1fa220-dogecoin.rsquare.w1200.jpg" loading="lazy" decoding="async" width="242" height="242" alt="Why Dogecoin Is Forcing People to Take It Seriously" />
+<figure class="aligncenter size-large is-resized">
+<img src="/old_posts_image/18/2021/04/image-3-1024x541.png" class="wp-image-253" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-3-1024x541.png 1024w, /old_posts_image/18/2021/04/image-3-300x158.png 300w, /old_posts_image/18/2021/04/image-3-768x406.png 768w, /old_posts_image/18/2021/04/image-3.png 1043w" sizes="auto, (max-width: 623px) 100vw, 623px" width="623" height="328" />
 </figure>
 
 </div>
 
-# <span class="has-inline-color" style="color:#089b4c">Extended reading</span>
+``` wp-block-code
+shapiro.test(x = residuals(res.aov) )
 
-This blog is only a general idea of multi-arm bandit problem, see more explanation including Maths please visit:
+    Shapiro-Wilk normality test
 
-<figure class="wp-block-embed is-type-wp-embed is-provider-maddie-smith wp-block-embed-maddie-smith">
-<div class="wp-block-embed__wrapper">
-<blockquote>
-<a href="https://www.lancaster.ac.uk/stor-i-student-sites/maddie-smith/2021/02/02/learn-from-your-mistakes-multi-armed-bandits/">Learn From Your Mistakes â€“ Multi-armed Bandits</a>
-</blockquote>
-<div class="iframe">
-<div class="wp-embed post-204 post type-post status-publish format-standard hentry category-optimisation tag-operational-research tag-optimisation tag-statistics">
-<p><a href="https://www.lancaster.ac.uk/stor-i-student-sites/maddie-smith/2021/02/02/learn-from-your-mistakes-multi-armed-bandits/" target="_top">Learn From Your Mistakes â€“ Multi-armed Bandits</a></p>
-<div class="wp-embed-excerpt">
-<p>In a recent talk given to the MRes students, I was asked for my opinion on a multi-armed bandit problem. In these working from home times, Iâ€™m sure most of us know of the combined dread and panic that comes with taking your microphone off â€¦ <a href="https://www.lancaster.ac.uk/stor-i-student-sites/maddie-smith/2021/02/02/learn-from-your-mistakes-multi-armed-bandits/" class="wp-embed-more" target="_top">Continue reading <span class="screen-reader-text">Learn From Your Mistakes â€“ Multi-armed Bandits</span></a></p>
-</div>
-<div class="wp-embed-footer">
-<div class="wp-embed-site-title">
-<a href="https://www.lancaster.ac.uk/stor-i-student-sites/maddie-smith" target="_top"><img src="https://www.lancaster.ac.uk/stor-i-student-sites/maddie-smith/wp-content/uploads/sites/27/2020/11/cropped-S-3-32x32.png" class="wp-embed-site-icon" srcset="https://www.lancaster.ac.uk/stor-i-student-sites/maddie-smith/wp-content/uploads/sites/27/2020/11/cropped-S-3-150x150.png 2x" width="32" height="32" /><span>Maddie Smith</span></a>
-</div>
-<div class="wp-embed-meta">
-<div class="wp-embed-share">
-<span class="dashicons dashicons-share"></span>
-</div>
-</div>
-</div>
-</div>
-<div class="wp-embed-share-dialog hidden" role="dialog" aria-label="Sharing options">
-<div class="wp-embed-share-dialog-content">
-<div class="wp-embed-share-dialog-text">
-<ul>
-<li>WordPress Embed</li>
-<li>HTML Embed</li>
-</ul>
-<div id="wp-embed-share-tab-wordpress-204-1248573818" class="wp-embed-share-tab" role="tabpanel" aria-hidden="false">
-<p>Copy and paste this URL into your WordPress site to embed</p>
-</div>
-<div id="wp-embed-share-tab-html-204-1248573818" class="wp-embed-share-tab" role="tabpanel" aria-hidden="true">
-<p>Copy and paste this code into your site to embed</p>
-</div>
-</div>
-<span class="dashicons dashicons-no"></span>
-</div>
-</div>
-</div>
-</div>
+data:  residuals(res.aov)
+W = 0.96607, p-value = 0.4379
+```
+
+- Homogenous variance assumption: From the Residual vs Fitted plot, we could see slight evidence of non-constant variance since the degree of dispersion for each group is different. However, it seems not serious. LeveneTest could also be done to test the homogeneity of variance. Under 5% significance, we could not reject the null hypothesis (P-value\>0.05) to assume the homogeneity of variances in the different treatment groups.
+
+<div class="wp-block-image">
+
+<figure class="aligncenter size-large is-resized">
+<img src="/old_posts_image/18/2021/04/image-4-1024x541.png" class="wp-image-254" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-4-1024x541.png 1024w, /old_posts_image/18/2021/04/image-4-300x158.png 300w, /old_posts_image/18/2021/04/image-4-768x406.png 768w, /old_posts_image/18/2021/04/image-4.png 1043w" sizes="auto, (max-width: 599px) 100vw, 599px" width="599" height="316" />
 </figure>
 
-See more references on contextual bandits and reinforcement learning in depth please visit:
-
-<https://towardsdatascience.com/contextual-bandits-and-reinforcement-learning-6bdfeaece72a>
-
-<https://www.cs.ubc.ca/labs/lci/mlrg/slides/2019_summer_5_contextual_bandits.pdf>
-
-And this video is really good to watch if you want to learn it at the beginning:
-
-<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio">
-<div class="wp-block-embed__wrapper">
-<div class="iframe">
-<div id="player">
-
 </div>
-<div class="player-unavailable">
-<h1 id="an-error-occurred." class="message">An error occurred.</h1>
-<div class="submessage">
-Unable to execute JavaScript.
-</div>
-</div>
-</div>
-</div>
-</figure>
+
+``` wp-block-code
+leveneTest(weight ~ group, data =data)
+Levene's Test for Homogeneity of Variance (center = median)
+      Df F value Pr(>F)
+group  2  1.1192 0.3412
+      27      
+```
+
+- Independent assumption: This assumption needs more consideration. In our example, we could assume satisfying this independent assumption since the weight of one plant will not influence the weight of other plants.
+
+Thatâ€™s all done! This blog references the blog which including specific R code:
+
+<http://mathsbox.com/notebooks/python-utilities.html>
+
+Besides, I also found useful blogs which using SPSS to do one-way ANOVA test:
+
+<https://statistics.laerd.com/statistical-guides/one-way-anova-statistical-guide-3.php>
+
+<https://statistics.laerd.com/spss-tutorials/one-way-anova-using-spss-statistics.php>
+
+
+
+
+
+
+
 
 
 
