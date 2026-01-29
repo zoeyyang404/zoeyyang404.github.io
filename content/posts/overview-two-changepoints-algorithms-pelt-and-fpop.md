@@ -174,6 +174,7 @@ Q_{t-1}(\theta),
 \ \min_{\theta'} Q_{t-1}(\theta') + \beta
 \right\}.
 $$
+
 In the worst case, FPOP has a computational complexity of $\mathcal{O}(n^2)$; however, under favourable conditions, it can achieve a complexity of $\mathcal{O}(n \log n)$.
 
 The accompanying figure illustrates how FPOP prunes candidate changepoints in practice.
