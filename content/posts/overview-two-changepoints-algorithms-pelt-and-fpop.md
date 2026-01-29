@@ -156,6 +156,7 @@ Q_\tau + \sum_{i=\tau+1}^{t} \gamma(y_i, \theta) + \beta
 &= \min_{\theta} Q_t(\theta),
 \end{aligned}
 $$
+
 where $Q_t(\theta)$ denotes the minimum cost of partitioning the data up to time $t$, given that the parameter of the current segment is $\theta$.
 
 If, for two candidate changepoints $\tau_1$ and $\tau_2$, we have
@@ -163,16 +164,9 @@ $q_t^{\tau_1}(\theta) \ge q_t^{\tau_2}(\theta)$ for all $\theta$, then $\tau_1$ 
 
 The dynamic programming recursion for FPOP is given by
 
-$$
-Q_t(\theta)
-=
-\gamma(y_t, \theta)
-+
-\min
-\left\{
-Q_{t-1}(\theta),
-\ \min_{\theta'} Q_{t-1}(\theta') + \beta
-\right\}.
+$$Q_t(\theta)
+=\gamma(y_t, \theta)+\min\left\{Q_{t-1}(\theta),\ 
+\min_{\theta'} Q_{t-1}(\theta') + \beta\right\}.
 $$
 
 In the worst case, FPOP has a computational complexity of $\mathcal{O}(n^2)$; however, under favourable conditions, it can achieve a complexity of $\mathcal{O}(n \log n)$.
