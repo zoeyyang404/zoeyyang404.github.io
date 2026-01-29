@@ -20,21 +20,14 @@ Firstly, you have to write your own algorithm in C++ in a Linux system. And next
 - Add \#include\<Rcpp.h\> at the beginning
 ![](/old_posts_image/18/2021/03/image.png)
 
-<figure class="wp-block-image size-large is-resized">
-<img src="old_posts_image/18/2021/03/image.png" class="wp-image-204" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/03/image.png 541w, /old_posts_image/18/2021/03/image.png 300w" sizes="auto, (max-width: 635px) 100vw, 635px" width="371" height="175" />
-</figure>
 
 - Add //\[\[Rcpp::export\]\] in your main function
-
-<figure class="wp-block-image size-large is-resized">
-<img src="/old_posts_image/18/2021/03/image-1.png" class="wp-image-205" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/03/image-1.png 602w, /old_posts_image/18/2021/03/image-1-300x46.png 300w" sizes="auto, (max-width: 670px) 100vw, 670px" width="670" height="102" />
-</figure>
+![](/old_posts_image/18/2021/03/image-1.png)
 
 - Add user interrupt through <span class="has-inline-color has-quaternary-color">Rcpp::checkUserInterrupt()</span>. It allows users to terminal algorithm when it runs too long.
 
-<figure class="wp-block-image size-large is-resized">
-<img src="/old_posts_image/18/2021/03/image-7.png" class="wp-image-211" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/03/image-7.png 602w, /old_posts_image/18/2021/03/image-7-300x69.png 300w" sizes="auto, (max-width: 681px) 100vw, 681px" width="681" height="156" />
-</figure>
+![](/old_posts_image/18/2021/03/image-7.png)
+
 
 ------------------------------------------------------------------------
 
@@ -52,9 +45,8 @@ package.skeleton(“The name of package”, cpp_files=”path to your c++ file�
 
 In my example, I created a package called ‘finaljarvismarch’, and write the path to my cpp file in ‘cpp_files’. If example_code=TRUE, the package will contain an example code.
 
-<figure class="wp-block-image size-large">
-<img src="/old_posts_image/18/2021/03/image-3.png" class="wp-image-207" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/03/image-3.png 584w, /old_posts_image/18/2021/03/image-3-300x116.png 300w" sizes="auto, (max-width: 584px) 100vw, 584px" width="584" height="225" />
-</figure>
+<img src="/old_posts_image/18/2021/03/image-3.png"
+     style="max-width: 584px;">
 
 This creates the package skeleton in the working directory. It contains three files and three folders:
 
@@ -64,9 +56,8 @@ This creates the package skeleton in the working directory. It contains three fi
 
 We could manually put our further R function or C++ function in different folders.
 
-<figure class="wp-block-image size-large">
-<img src="/old_posts_image/18/2021/03/image-4.png" class="wp-image-208" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/03/image-4.png 489w, /old_posts_image/18/2021/03/image-4-300x80.png 300w" sizes="auto, (max-width: 489px) 100vw, 489px" width="489" height="130" />
-</figure>
+<img src="/old_posts_image/18/2021/03/image-4.png"
+     style="max-width: 489px;">
 
 ## 2. Building Package
 
@@ -78,9 +69,8 @@ R CMD build PackageDirectory/PackageSkeletonName
 
 This builds the package [tarball](https://en.wikipedia.org/wiki/Tar_(computing)), which can then be sent to and installed on any machine running R.
 
-<figure class="wp-block-image size-large is-resized">
-<img src="/old_posts_image/18/2021/03/image-5.png" class="wp-image-209" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/03/image-5.png 541w, /old_posts_image/18/2021/03/image-5-300x83.png 300w" sizes="auto, (max-width: 635px) 100vw, 635px" width="635" height="175" />
-</figure>
+<img src="/old_posts_image/18/2021/03/image-5.png"
+     style="max-width: 635px;">
 
 ------------------------------------------------------------------------
 
@@ -94,9 +84,8 @@ Run the command in the terminal in the directory:
  R CMD INSTALL PackageTarBallName
 ```
 
-<figure class="wp-block-image size-large is-resized">
-<img src="/old_posts_image/18/2021/03/image-6.png" class="wp-image-210" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/03/image-6.png 577w, /old_posts_image/18/2021/03/image-6-300x138.png 300w" sizes="auto, (max-width: 654px) 100vw, 654px" width="654" height="301" />
-</figure>
+<img src="/old_posts_image/18/2021/03/image-6.png"
+     style="max-width: 654px;">
 
 Luckily without any error! Now, our package could be downloaded as a tarball by any user, and successfully install in R. To use package, directly run: <span class="has-inline-color has-quaternary-color">library(‘PackageTarBallName’)</span>
 
@@ -116,12 +105,10 @@ Now you could use Jarvis march algorithm for 2 dimension data. In this package, 
 
 For example, simulating 100 points, and run the functions:
 
-<figure class="wp-block-image size-large is-resized">
-<img src="/old_posts_image/18/2021/03/image-9.png" class="wp-image-215" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/03/image-9.png 586w, /old_posts_image/18/2021/03/image-9-300x96.png 300w" sizes="auto, (max-width: 586px) 100vw, 586px" width="586" height="187" />
-</figure>
+<img src="/old_posts_image/18/2021/03/image-9.png"
+     style="max-width: 586px;">
 
 x and y is the corresponded coordinates of points on the convex hull, and we could also draw the plot:
 
-<figure class="wp-block-image size-large">
-<img src="/old_posts_image/18/2021/03/image-10.png" class="wp-image-216" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/03/image-10.png 522w, /old_posts_image/18/2021/03/image-10-294x300.png 294w" sizes="auto, (max-width: 522px) 100vw, 522px" width="522" height="532" />
-</figure>
+<img src="/old_posts_image/18/2021/03/image-10.png"
+     style="max-width: 522px;">
