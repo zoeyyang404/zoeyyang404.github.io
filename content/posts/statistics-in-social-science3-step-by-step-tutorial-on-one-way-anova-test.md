@@ -101,7 +101,7 @@ $group
 trt1-ctrl -0.371 -1.0622161 0.3202161 0.3908711
 trt2-ctrl  0.494 -0.1972161 1.1852161 0.1979960
 trt2-trt1  0.865  0.1737839 1.5562161 0.0120064
-'''
+```
 Under a 5% significance level, we conclude that **treatment 2 is significantly better
 than treatment 1** in terms of mean plant weight. However, there is no statistical
 evidence that treatment 2 is better than the control group, nor that treatment 1

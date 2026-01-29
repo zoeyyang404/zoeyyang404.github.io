@@ -53,6 +53,7 @@ cor(y1,x3)
 
 cor(y1,x4)
 # [1] 0.405236
+```
 ### Spearman Rank Correlation Coefficient
 
 Unlike Pearson’s method, Spearman’s rank correlation does not assume any specific
@@ -74,7 +75,7 @@ cor(y1, x3, method = "spearman")
 
 cor(y1, x4, method = "spearman")
 # [1] 0.4252865
-
+```
 ## How we report?
 
 1. Firstly, draw the plot to see the relationship.
