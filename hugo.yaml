@@ -23,6 +23,10 @@ params:
       url: "zoey.ziyang.yang@outlook.com"
   footer:
     text: "Ziyang Yang. Contact: zoey.ziyang.yang [at] outlook.com"
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
 menu:
   main:
     - name: Blog
