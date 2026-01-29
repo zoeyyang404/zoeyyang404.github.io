@@ -107,8 +107,10 @@ For example, simulating 100 points, and run the functions:
 
 <img src="/old_posts_image/18/2021/03/image-9.png"
      style="max-width: 586px;">
+![](/old_posts_image/18/2021/03/image-9.png)
 
 x and y is the corresponded coordinates of points on the convex hull, and we could also draw the plot:
+![](/old_posts_image/18/2021/03/image-10.png)
 
 <img src="/old_posts_image/18/2021/03/image-10.png"
      style="max-width: 522px;">
