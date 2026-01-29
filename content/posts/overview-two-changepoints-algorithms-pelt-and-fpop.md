@@ -162,6 +162,7 @@ If, for two candidate changepoints $\tau_1$ and $\tau_2$, we have
 $q_t^{\tau_1}(\theta) \ge q_t^{\tau_2}(\theta)$ for all $\theta$, then $\tau_1$ can be safely pruned, as it is never optimal for any value of $\theta$.
 
 The dynamic programming recursion for FPOP is given by
+
 $$
 Q_t(\theta)
 =
