@@ -19,17 +19,7 @@ Recently, I was interested in the application of data science. It is well known 
 >
 > – [How Companies Learn Your Secrets](https://www.nytimes.com/2012/02/19/magazine/shopping-habits.html)
 
-<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex">
-
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:33.33%">
-
-<figure class="wp-block-image size-large">
-<img src="/old_posts_image/18/2021/04/128px-Target_logo.svg_.png" class="wp-image-243" loading="lazy" decoding="async" width="128" height="170" />
-</figure>
-
-</div>
-
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:66.66%">
+![](/old_posts_image/18/2021/04/128px-Target_logo.svg_.png)
 
 So, how did Target knows the daughter gets pregnant before his father? The answer is to find **the correlation through [Association analysis](https://en.wikipedia.org/wiki/Association_rule_learning)**. Briefly speaking, correlation is a statistical term, and it measures the degree of relevance. Target supermarket researchers found that pregnant women are more likely to purchase a certain type of products. This means there is a high correlation between pregnancy and purchasing a certain type of products. <a href="https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/2021/02/26/statistics-in-social-science-1-how-to-choose-an-appropriate-statistical-test/" data-type="URL" data-id="https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/2021/02/26/statistics-in-social-science-1-how-to-choose-an-appropriate-statistical-test/">This blog</a> illustrates the correlation with a simple example.
 
@@ -43,13 +33,7 @@ Statisticians in Target uses the customers’ shopping habits and physical condi
 
 This reminds me of another real example in the retail industry – ‘beer and diapers’. Walmart found that men are more likely to purchase beers and diapers together at once shopping. Similarly, they use the association analysis to study the correlation among shopping history and find out beers and diapers are commonly purchased together. Thus, you may find the beer aisle is always next to the diapers.
 
-<div class="wp-block-image">
-
-<figure class="aligncenter size-large is-resized">
-<img src="/old_posts_image/18/2021/04/image.png" class="wp-image-244" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image.png 582w, /old_posts_image/18/2021/04/image-300x260.png 300w" sizes="auto, (max-width: 379px) 100vw, 379px" width="379" height="328" />
-</figure>
-
-</div>
+![](/old_posts_image/18/2021/04/image.png)
 
 ## Furthermore…..
 
@@ -61,14 +45,7 @@ Such models are based on typical rules; as long as user fit their rules (e.g., p
 
 **However, is Targets’ model always true?** A woman may start to buy supplements and unscented soaps when she becomes allergic and want to improve her physical condition by supplements. Still, the model thinks she has a high probability of being pregnant. In other words, pregnant women are more likely to purchase supplements and unscented soaps, but purchasing supplements and unscented soaps don’t mean pregnant. That’s the difference between correlation and causality. And such causality somehow relates to the prediction ability of the model.
 
-<div class="wp-block-image">
-
-<figure class="aligncenter size-large">
-<img src="/old_posts_image/18/2021/04/image-1.png" class="wp-image-245" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-1.png 554w, /old_posts_image/18/2021/04/image-1-300x120.png 300w" sizes="auto, (max-width: 554px) 100vw, 554px" width="554" height="222" />
-<figcaption>Third nature, Inc</figcaption>
-</figure>
-
-</div>
+![](/old_posts_image/18/2021/04/image-1.png)
 
 We could easily get the correlation result as it just the mathematics. However, the result only indicates correlation instead of causality without context. For example, in summer, the sales of ice cream will increase, and simultaneously sharks become active. We could easily get the high correlation result between ice cream and shark attacks. However, does this relationship make sense? That is to say that there’s no causal relationship in either direction — neither of these things causes the other, even indirectly.
 

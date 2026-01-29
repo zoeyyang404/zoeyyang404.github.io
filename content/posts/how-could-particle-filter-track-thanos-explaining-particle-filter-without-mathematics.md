@@ -19,14 +19,10 @@ Assume we are agents of [the avengers](https://en.wikipedia.org/wiki/The_Avenger
 
 **Our aim: we are told to trace him before the avengers came.**
 
-<div class="wp-block-image">
 
-<figure class="aligncenter is-resized">
-<img src="https://sm.mashable.com/t/mashable_sea/feature/t/the-thanos/the-thanos-snap-for-real-lets-remove-humans-from-half-of-ear_bq2q.h720.jpg" decoding="async" alt="The Thanos snap for real: Let&#39;s remove humans from half of Earth - Science" />
-<figcaption>He is Thanos. You only need to know he is a bad guy if you don’t know him. If we can’t find where he hides and take our magic stone back, he will destroy the whole world!!!! And the avengers will help us if we could successfully find his location!</figcaption>
-</figure>
+![](https://sm.mashable.com/t/mashable_sea/feature/t/the-thanos/the-thanos-snap-for-real-lets-remove-humans-from-half-of-ear_bq2q.h720.jpg
 
-</div>
+He is Thanos. You only need to know he is a bad guy if you don’t know him. If we can’t find where he hides and take our magic stone back, he will destroy the whole world!!!! And the avengers will help us if we could successfully find his location!</figcaption>
 
 # How to find him?
 
@@ -35,59 +31,21 @@ Luckily, we have three clever dogs named ‘particle A’, ‘particle B’, and
 Every 10 minutes, they could go head 1 grid in the map based on their own ideas. And then our dogs have to report their location and how likely Thanos come across these areas.
 
 ### Time=0 minutes
-
-<div class="wp-block-image">
-
-<figure class="aligncenter size-large">
-<img src="/old_posts_image/18/2021/04/image-14.png" class="wp-image-268" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-14.png 572w, /old_posts_image/18/2021/04/image-14-300x195.png 300w" sizes="auto, (max-width: 572px) 100vw, 572px" width="572" height="371" />
-</figure>
-
-</div>
+![](/old_posts_image/18/2021/04/image-14.png)
 
 At the beginning, particle B said it is 90% sure there is Thanos’scent. So we think at the beginning Thanos are more likely to go across the middle way.
 
 ## Time=10 minutes
-
-<div class="wp-block-image">
-
-<figure class="aligncenter size-large">
-<img src="/old_posts_image/18/2021/04/image-8.png" class="wp-image-261" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-8.png 532w, /old_posts_image/18/2021/04/image-8-300x186.png 300w" sizes="auto, (max-width: 532px) 100vw, 532px" width="532" height="330" />
-</figure>
-
-</div>
-
+![](/old_posts_image/18/2021/04/image-8.png)
 After 10 minutes, our dog moved to new locations and reported their location and their findings. Thanos seems go up from the middle way. as Particle A was 60% sure.
 
 ## Time=70 minutes
-
-<div class="wp-block-image">
-
-<figure class="aligncenter size-large">
-<img src="/old_posts_image/18/2021/04/image-9.png" class="wp-image-262" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-9.png 522w, /old_posts_image/18/2021/04/image-9-300x187.png 300w" sizes="auto, (max-width: 522px) 100vw, 522px" width="522" height="326" />
-<figcaption>The purple line is the real trace of Thanos</figcaption>
-</figure>
-
-</div>
+![](/old_posts_image/18/2021/04/image-9.png)
 
 At T=70, we report the most likely route to the avengers (blue line in the figure) based on our three dogs findings. We traced Thanos very well at the beginning. But after T=40, we are far away from his real trace! Finally, our task failed, the avengers could not find him, and he destroyed our world at the end!
-
-<div class="wp-block-columns is-layout-flex wp-container-core-columns-is-layout-9d6595d7 wp-block-columns-is-layout-flex">
-
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:33.33%">
-
-<figure class="wp-block-image size-large">
-<img src="/old_posts_image/18/2021/04/sfsfsfsfsfsf.gif" class="wp-image-263" loading="lazy" decoding="async" width="315" height="212" />
-</figure>
-
-</div>
-
-<div class="wp-block-column is-layout-flow wp-block-column-is-layout-flow" style="flex-basis:66.66%">
-
+![](/old_posts_image/18/2021/04/sfsfsfsfsfsf.gif)
 Why are we failed? Our dogs are clever, and we are clever. Wait! We track his route very well initially, but after time = 40, particle B and particle C always explore the bottom area. Particle B and particle C said they are not sure Thanos came here, but particle A always said he smelled Thanos’ scent. So we could only rely on Particle A. That’s why we sure Thanos go as particle A’s route.
 
-</div>
-
-</div>
 
 > Particle filter without resampling
 >
@@ -101,52 +59,24 @@ Okay, so now the avengers make the time back and we could search again. Particle
 
 ## Time = 0 minutes
 
-<div class="wp-block-image">
-
-<figure class="aligncenter size-large">
-<img src="/old_posts_image/18/2021/04/image-13.png" class="wp-image-267" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-13.png 545w, /old_posts_image/18/2021/04/image-13-300x199.png 300w" sizes="auto, (max-width: 545px) 100vw, 545px" width="545" height="361" />
-</figure>
-
-</div>
+![](/old_posts_image/18/2021/04/image-13.png)
 
 Particle B is 90% sure while Particle C is only 2% sure. So we move particle C and give one more dog on the area where Particle B is.
 
 ## Time = 10 minutes
-
-<div class="wp-block-image">
-
-<figure class="aligncenter size-large">
-<img src="/old_posts_image/18/2021/04/image-11.png" class="wp-image-265" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-11.png 536w, /old_posts_image/18/2021/04/image-11-300x194.png 300w" sizes="auto, (max-width: 536px) 100vw, 536px" width="536" height="346" />
-</figure>
-
-</div>
+![](/old_posts_image/18/2021/04/image-11.png)
 
 Next, our particles remove follow their mind. Since Particle A is 60% sure it smelled Thanos, we introduce a new dog in its area. Since Particle C in the bottom grid only 5% sure it smelled Thanos, we discard it and let it go back home.
 
 ## Time = 70 minutes
-
-<div class="wp-block-image">
-
-<figure class="aligncenter size-large">
-<img src="/old_posts_image/18/2021/04/image-10.png" class="wp-image-264" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/04/image-10.png 538w, /old_posts_image/18/2021/04/image-10-300x182.png 300w" sizes="auto, (max-width: 538px) 100vw, 538px" width="538" height="327" />
-</figure>
-
-</div>
+![](/old_posts_image/18/2021/04/image-10.png)
 
 As we see, at time 70 we successfully trace Thanos, and we save the world!
 
 > Particle filter with resampling
 >
 > Due to the limitation of particle filter without sampling, we introduce the resampling scheme in the process. It is easy to understand as we duplicate particles when they have a high probability of getting the right path (like introducing a new dog in that area). In addition, we discard those particles with less probability to find the true path.
-
-<div class="wp-block-image">
-
-<figure class="aligncenter is-resized">
-<img src="https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/v1555921064/shape/mentalfloss/spongebob_0_0.jpg?itok=FF47w3bl" loading="lazy" decoding="async" width="633" height="355" alt="14 Things You May Not Have Known About &#39;SpongeBob SquarePants&#39; | Mental Floss" />
-</figure>
-
-</div>
-
+![](https://images2.minutemediacdn.com/image/upload/c_fill,g_auto,h_1248,w_2220/v1555921064/shape/mentalfloss/spongebob_0_0.jpg?itok=FF47w3bl)
 This is the intuitive idea behind particle filter! Now you could understand the whole process of particle filter!
 
 For more reading:
