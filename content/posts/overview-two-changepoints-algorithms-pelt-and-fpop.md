@@ -164,7 +164,8 @@ $q_t^{\tau_1}(\theta) \ge q_t^{\tau_2}(\theta)$ for all $\theta$, then $\tau_1$ 
 
 The dynamic programming recursion for FPOP is given by
 
-$$Q_t(\theta)
+$$
+Q_t(\theta)
 =\gamma(y_t, \theta)+\min\left\{Q_{t-1}(\theta),\ 
 \min_{\theta'} Q_{t-1}(\theta') + \beta\right\}.
 $$
