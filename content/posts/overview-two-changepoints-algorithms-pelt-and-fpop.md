@@ -170,8 +170,7 @@ Q_t(\theta)
 \gamma(y_t, \theta)
 +
 \min\left\{
-Q_{t-1}(\theta),
-\ \min_{\vartheta} Q_{t-1}(\vartheta) + \beta
+Q_{t-1}(\theta), \min_{\vartheta} Q_{t-1}(\vartheta) + \beta
 \right\}.
 $$
 
