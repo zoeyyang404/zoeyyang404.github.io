@@ -11,7 +11,7 @@ params:
     subtitle: "Data Scientist | PhD in Statistics | Interested in changepoint, time series forecasting, ML and DL."
     buttons:
       - name: Blog
-        url: /old_posts/
+        url: /posts/
       - name: About Me
         url: /about-me/
   socialIcons:
@@ -26,7 +26,7 @@ params:
 menu:
   main:
     - name: Blog
-      url: /old_posts/
+      url: /posts/
       weight: 10
     - name: About Me
       url: /about-me/
