@@ -18,6 +18,7 @@ This semester we have been trained to use C++ and Rcpp to write the R package. I
 Firstly, you have to write your own algorithm in C++ in a Linux system. And next, we have to add some code in C++ to make sure it could be translated by R:
 
 - Add \#include\<Rcpp.h\> at the beginning
+![](/old_posts_image/18/2021/03/image.png)
 
 <figure class="wp-block-image size-large is-resized">
 <img src="old_posts_image/18/2021/03/image.png" class="wp-image-204" loading="lazy" decoding="async" srcset="/old_posts_image/18/2021/03/image.png 541w, /old_posts_image/18/2021/03/image.png 300w" sizes="auto, (max-width: 635px) 100vw, 635px" width="371" height="175" />
