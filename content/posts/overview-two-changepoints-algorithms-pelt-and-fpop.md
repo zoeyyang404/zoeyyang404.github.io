@@ -156,31 +156,29 @@ Q_\tau + \sum_{i=\tau+1}^{t} \gamma(y_i, \theta) + \beta
 &= \min_{\theta} Q_t(\theta),
 \end{aligned}
 $$
+where $Q_t(\theta)$ denotes the minimum cost of partitioning the data up to time $t$, given that the parameter of the current segment is $\theta$.
 
-where $Q_t(\theta)$ is the optimal cost of partitioning the data up to time $t$ given that the
-current segment parameter is $\theta$.
+If, for two candidate changepoints $\tau_1$ and $\tau_2$, we have
+$q_t^{\tau_1}(\theta) \ge q_t^{\tau_2}(\theta)$ for all $\theta$, then $\tau_1$ can be safely pruned, as it is never optimal for any value of $\theta$.
 
-If for two candidate changepoints $\tau_1$ and $\tau_2$ we have
-$q_t^{\tau_1}(\theta) > q_t^{\tau_2}(\theta)$ for all $\theta$, then $\tau_1$ can be pruned.
-
-The dynamic programming recursion for FPOP is
-
+The dynamic programming recursion for FPOP is given by
 $$
 Q_t(\theta)
 =
+\gamma(y_t, \theta)
++
 \min
 \left\{
 Q_{t-1}(\theta),
-\ \min_{\theta} Q_{t-1}(\theta) + \beta
-\right\}
-+ \gamma(y_t, \theta).
+\ \min_{\theta'} Q_{t-1}(\theta') + \beta
+\right\}.
 $$
 
-In the worst case, FPOP has $\mathcal{O}(n^2)$ complexity, but in favourable settings it can
-achieve $\mathcal{O}(n \log n)$ complexity.
+In the worst case, FPOP has a computational complexity of $\mathcal{O}(n^2)$; however, under favourable conditions, it can achieve a complexity of $\mathcal{O}(n \log n)$.
 
 The accompanying figure illustrates how FPOP prunes candidate changepoints in practice.
 ![](/old_posts_image/18/2021/12/Untitled.png)
+
 At time $t = 78$, we store $7$ candidate intervals together with their associated parameter values $\mu$.
 Since we assume the function $\gamma$ corresponds to the negative log-likelihood of normally distributed
 data, each cost function exhibits a quadratic shape, as shown in Figure (a).
