@@ -4,6 +4,7 @@ title: "Ziyang Yang"
 theme: "PaperMod"
 
 params:
+  katex: true
   math: true
   profileMode:
     enabled: true
