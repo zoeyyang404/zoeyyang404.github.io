@@ -171,7 +171,7 @@ Q_t(\theta)
 +
 \min\left\{
 Q_{t-1}(\theta),
-\ \min_{\theta'} Q_{t-1}(\theta') + \beta
+\ \min_{\vartheta} Q_{t-1}(\vartheta) + \beta
 \right\}.
 $$
 
