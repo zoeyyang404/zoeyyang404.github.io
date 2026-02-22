@@ -7,7 +7,7 @@ categories: [career]
 math: false
 ---
 ## Today, Five Months After Graduation
-Today marks the fifth month since I started working as a data scientist at an IoT company, after finishing my PhD.
+Today marks the fifth month since I started working as a data scientist at industry after finishing my PhD.
 I want to use this post to reflect on how my view of my PhD, and careers has changed since entering industry.
 ## During the PhD: Optimization Without Perspective
 My PhD research focused on anomaly detection in the Internet of Things.
