@@ -45,3 +45,7 @@ Ironically, the projects I think it is not cool enough prepared me the best for 
 In industry, creativity is not about inventing the most elegant model. It is about delivering a workable and dependable solution under time pressure, data imperfections, and real operational constraints.
 
 Seen from this perspective, my PhD was never about elegance. It was about learning how to make imperfect systems work in imperfect conditions.
+
+## A Late but Lasting Understanding
+
+If you are still in your PhD and feel unsure why your work matters, that does not mean it doesn’t. It may simply mean you are still too close to see it. 
