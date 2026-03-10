@@ -2,8 +2,22 @@ baseURL: "https://zoeyyang404.github.io/"
 languageCode: "en-gb"
 title: "Ziyang Yang"
 theme: "PaperMod"
+enableRobotsTXT: true
 
+sitemap:
+  changefreq: monthly
+  priority: 0.5
+  filename: sitemap.xml
+
+  
 params:
+  author: "Ziyang Yang"
+  description: "Ziyang Yang (Zoey Yang), statistician working on time series forecasting and anomaly detection."
+  keywords:
+    - "Zoey Yang"
+    - "Ziyang Yang"
+    - "time series"
+    - "anomaly detection"
   katex: true
   math: true
   profileMode:
