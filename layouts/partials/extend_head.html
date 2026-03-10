@@ -1,43 +1,46 @@
-{{- if or .Params.math site.Params.math -}}
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
-        crossorigin="anonymous">
-
-  <script defer
-          src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"
-          crossorigin="anonymous"></script>
-
-  <script defer
-          src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
-          crossorigin="anonymous"></script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      renderMathInElement(document.body, {
-        delimiters: [
-          { left: "$$", right: "$$", display: true },
-          { left: "$", right: "$", display: false }
-        ]
-      });
-    });
-  </script>
 <meta name="google-site-verification" content="ph3rD_NuXgqKtRakKu240846a1c4eISy119q9NDCKUI" />
-<meta name="author" content="Ziyang Yang">
-<meta name="description" content="Ziyang Yang, data scientist working on time series forecasting and anomaly detection.">
-<meta name="keywords" content="Zoey Yang, Ziyang Yang, anomaly detection, time series forecasting.">
+<meta name="author" content="Zoey Yang">
+<meta name="description" content="Zoey Yang (Ziyang Yang), data scientist working on anomaly detection and time series forecasting.">
+<meta name="keywords" content="Zoey Yang, Ziyang Yang, anomaly detection, time series forecasting">
 
-  <script type="application/ld+json">
+<script type="application/ld+json">
 {
  "@context": "https://schema.org",
  "@type": "Person",
- "name": "Ziyang Yang",
+ "name": "Zoey Yang",
  "alternateName": "Ziyang Yang",
  "url": "https://zoeyyang.github.io",
  "sameAs": [
    "https://github.com/zoeyyang",
-  "https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/",
-  "https://linkedin.com/in/statistics-ziyang-yang"
+   "https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/",
+   "https://www.linkedin.com/in/statistics-ziyang-yang/"
  ]
 }
 </script>
+
+{{- if or .Params.math site.Params.math -}}
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
+      crossorigin="anonymous">
+
+<script defer
+        src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"
+        crossorigin="anonymous"></script>
+
+<script defer
+        src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
+        crossorigin="anonymous"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  renderMathInElement(document.body, {
+    delimiters: [
+      { left: "$$", right: "$$", display: true },
+      { left: "$", right: "$", display: false }
+    ]
+  });
+});
+</script>
+
 {{- end -}}
