@@ -9,8 +9,6 @@ math: true
 summary: "A simple explanation of contextual bandit algorithms with an intuitive example."
 cover:
   image: "/old_posts_image/18/2021/02/contextualbanditdiag-1024x170.png"
-  alt: "Cover image for my post"
-  relative: false
 ---
 <span class="has-inline-color has-secondary-color">This blog will give you an idea of the rationale behind the recommendation system. How contextual bandit problem works in such a system? Hope this blog will give you an answer.</span>
 
@@ -36,7 +34,6 @@ When you open your Amazon, you may notice it automatically recommends products f
 
 ------------------------------------------------------------------------
 
-------------------------------------------------------------------------
 
 Assuming we have a website called ‘click me’ posting interesting news, and we make a profit from the click-through rate on web advertising. A list of companies asked us to put their advertisements on our website. In order to maximize our profit, we want to personalize these advertisements and attract our customers to click. In other words, we want to show specific advertisements to specific viewers. But how? This is the bandit problem.
 
