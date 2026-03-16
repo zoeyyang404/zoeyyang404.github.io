@@ -1,35 +1,28 @@
 ---
 title: "Publications"
-summary: "Publications"
-ShowToc: false
+author: ""
+ShowReadingTime: false
+ShowPostNavLinks: false
+ShowBreadCrumbs: false
 ---
 
-## Anomaly detection in the Internet of Things
-
-**Authors:** Yang, Z.
-
-*Doctoral thesis, Lancaster University, 2025.*
-
+**Anomaly detection in the Internet of Things**  
+Yang, Z.  
+*Doctoral thesis, Lancaster University, 2025.*  
 [Publication][paper3]
 
 ---
 
-## mixFOCuS: A Communication-Efficient Online Changepoint Detection Method in Distributed System for Mixed-Type Data
-
-**Authors:** Yang, Z., Eckley, I.A. and Fearnhead, P.
-
-*Journal of Time Series Analysis, 2025.*
-
+**mixFOCuS: A Communication-Efficient Online Changepoint Detection Method in Distributed System for Mixed-Type Data**  
+Yang, Z., Eckley, I.A. and Fearnhead, P.  
+*Journal of Time Series Analysis, 2025.*  
 [Publication][paper2]
 
 ---
 
-## A communication-efficient, online changepoint detection method for monitoring distributed sensor networks
-
-**Authors:** Yang, Z., Eckley, I.A. and Fearnhead, P.
-
-*Statistics and Computing, 2024.*
-
+**A communication-efficient, online changepoint detection method for monitoring distributed sensor networks**  
+Yang, Z., Eckley, I.A. and Fearnhead, P.  
+*Statistics and Computing, 2024.*  
 [Publication][paper1]
 
 ---
