@@ -29,6 +29,8 @@ params:
         url: /posts/
       - name: About Me
         url: /about-me/
+      - name: Publications
+      - url: /publications/
   socialIcons:
     - name: github
       url: "https://github.com/zoeyyang404"
