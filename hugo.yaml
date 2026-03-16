@@ -30,7 +30,7 @@ params:
       - name: About Me
         url: /about-me/
       - name: Publications
-      - url: /publications/
+      - url: /Publications/
   socialIcons:
     - name: github
       url: "https://github.com/zoeyyang404"
@@ -53,6 +53,6 @@ menu:
       url: /about-me/
       weight: 20
     - name: Publications
-      url: /publications/
+      url: /Publications/
       weight: 30
 
