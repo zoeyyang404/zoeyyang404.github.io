@@ -20,10 +20,9 @@ jobs:
           submodules: recursive
           fetch-depth: 0
       - name: Setup Hugo
-        uses: hugo-actions/setup-hugo@v1
-        with:
-          hugo-version: "0.146.0"
-          extended: true
+        uses: peaceiris/actions-hugo@v3
+        env:
+          FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v6
