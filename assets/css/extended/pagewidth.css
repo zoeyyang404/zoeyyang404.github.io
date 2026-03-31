@@ -19,7 +19,16 @@ header.header {
 }
 
 .katex-display {
+  display: block;
   overflow-x: auto;
   overflow-y: hidden;
-  padding: 0.5rem 0;
+}
+
+.katex-display > .katex {
+  display: inline-block;
+  text-align: center;
+}
+
+.katex-display .tag {
+  margin-left: 1em;
 }
