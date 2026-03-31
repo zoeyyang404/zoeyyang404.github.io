@@ -1,6 +1,6 @@
 ---
 title: "Gradient Boosting Machine, XGBoost and LightGBM"
-date: "Thur, 12 Feb 2026"
+date: "2026-03-15"
 draft: false
 slug: "machine-learning"
 tags: []
