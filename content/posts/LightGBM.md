@@ -15,7 +15,7 @@ LightGBM is a member of the gradient boosting family and belongs to the universe
 
 We start from the ancestor of XGBoost and LightGBM: the Gradient Boosting Machine (GBM). Assume we observe $N$ i.i.d. samples $\{y_i,x_i\}_{i=1}^N$. Our aim is to find the function $F(x)$ that minimizes the expected loss:
 
-$$F^* = \arg\min_{F}\, \mathbb{E}_{y,x}\!\left[L(y,F(x))\right]$$
+$$F^* = \arg\min_{F}\, \mathbb{E}_{y,x}\left[L(y,F(x))\right]$$
 
 In practice, we minimize the empirical loss:
 
@@ -23,19 +23,19 @@ $$F^* = \arg\min_{F} \sum_{i=1}^N L(y_i,F(x_i))$$
 
 In boosting, $F(x)$ is a weighted sum of weak learners, so the objective is:
 
-$$\sum_{i=1}^N L\!\left(y_i,\sum_{m=1}^M \beta_m h(x_i;a_m)\right)$$
+$$\sum_{i=1}^N L\left(y_i,\sum_{m=1}^M \beta_m h(x_i;a_m)\right)$$
 
 where $M$ is the number of boosting rounds, $h(\cdot\,;\cdot)$ is the weak learner, $a_m$ are its associated parameters (e.g., the tree structure), and $\beta_m$ is the weight of each weak learner. At iteration $m$, having fixed $F_{m-1}$, we seek:
 
-$$\sum_{i=1}^N L\!\left(y_i,F_{m-1}(x_i)+\beta_m h(x_i;a_m)\right)$$
+$$\sum_{i=1}^N L\left(y_i,F_{m-1}(x_i)+\beta_m h(x_i;a_m)\right)$$
 
 Both $\beta_m$ and $a_m$ are unknown and can in principle be jointly optimized:
 
-$$(\beta_m,a_m) = \arg \min_{\beta,a}\sum_{i=1}^N L\!\left(y_i,F_{m-1}(x_i)+\beta h(x_i;a)\right).$$
+$$(\beta_m,a_m) = \arg \min_{\beta,a}\sum_{i=1}^N L\left(y_i,F_{m-1}(x_i)+\beta h(x_i;a)\right).$$
 
 Directly optimizing $a$ is difficult because the tree structure is discrete and non-differentiable, making standard gradient-based methods inapplicable. Instead, we work in function space and apply a first-order Taylor expansion around $F_{m-1}(x_i)$:
 
-$$\sum_{i=1}^N L\!\left(y_i,F_{m-1}(x_i)+\beta h(x_i;a)\right)\approx\sum_{i=1}^N L\!\left(y_i,F_{m-1}(x_i)\right)+\beta\sum_{i=1}^Nh(x_i;a)\left[\frac{\partial L(y_i,F(x_i))}{\partial F(x_i)}\right]_{F_{m-1}(x_i)}.\tag{1}$$
+$$\sum_{i=1}^N L\left(y_i,F_{m-1}(x_i)+\beta h(x_i;a)\right)\approx\sum_{i=1}^N L\left(y_i,F_{m-1}(x_i)\right)+\beta\sum_{i=1}^Nh(x_i;a)\left[\frac{\partial L(y_i,F(x_i))}{\partial F(x_i)}\right]_{F_{m-1}(x_i)}.\tag{1}$$
 
 The first term in (1) is constant with respect to $a$. Defining the pseudo-residual $r_{i,m}=-\left[\frac{\partial L(y_i,F(x_i))}{\partial F(x_i)}\right]_{F_{m-1}(x_i)}$ as the negative gradient, minimizing (1) over $a$ reduces to:
 
@@ -43,13 +43,13 @@ $$a_m = \arg \max_{a}\sum_{i=1}^Nh(x_i;a)\,r_{i,m}.$$
 
 To maximize this inner product, we want $h(x_i;a)$ to be as aligned as possible with $r_{i,m}$. This is achieved by solving the least-squares problem:
 
-$$a_m,\rho_m = \arg\min_{a,\rho}\sum_{i=1}^N\!\left[r_{i,m} - \rho\, h(x_i;a)\right]^2. \tag{2}$$
+$$a_m,\rho_m = \arg\min_{a,\rho}\sum_{i=1}^N\left[r_{i,m} - \rho\, h(x_i;a)\right]^2. \tag{2}$$
 
 Formula (2) can be solved by a CART regression tree with the pseudo-residuals as targets. The scalar $\rho$ acts only as a scale factor on the leaf values and does not affect the optimal $a_m$. Friedman's 2001 paper uses $\beta$ for this scale factor and the later 2002 paper switches to $\rho$ to avoid confusion with the ensemble weights $\beta_m$. We follow the latter convention.
 
 Given $a_m$, the coefficient $\beta_m$ is found by a one-dimensional line search over the actual loss:
 
-$$\beta_m = \arg\min_\beta\sum_{i=1}^N L\!\left(y_i,F_{m-1}(x_i)+\beta\, h(x_i;a_m)\right),$$
+$$\beta_m = \arg\min_\beta\sum_{i=1}^N L \left(y_i,F_{m-1}(x_i)+\beta\, h(x_i;a_m)\right),$$
 
 and the model is updated as $F_m(x) = F_{m-1}(x)+\beta_m h(x;a_m)$. This says that at round $m$, we make an additive correction to the previous model in the direction of the negative gradient.
 
@@ -61,21 +61,21 @@ XGBoost was once state-of-the-art on tabular data, and even now it outperforms t
 
 Rewrite the tree ensemble as $F(x)= \sum_{m=1}^M f_m(x)$, where each $f_m(x) = w_{q(x)}$, $q:\mathbb{R}^p \to \{1,\ldots,T\}$ denotes the tree structure (mapping each instance to a leaf), and $w_j$ is the weight of the $j$-th leaf. The regularized objective is:
 
-$$\sum_{i=1}^N L\!\left(y_i,\sum_{m=1}^M f_m(x_i)\right)+\sum_{m=1}^M\Omega(f_m), \tag{3}$$
+$$\sum_{i=1}^N L \left(y_i,\sum_{m=1}^M f_m(x_i)\right)+\sum_{m=1}^M\Omega(f_m), \tag{3}$$
 
 where $\Omega(f_m)= \gamma T + \frac{1}{2}\lambda \|w\|^2$ and $T$ is the number of leaves. This penalizes complex trees at every round. At iteration $m$, having fixed $F_{m-1}$, we optimize:
 
-$$\sum_{i=1}^N L\!\left(y_i,F_{m-1}(x_i)+f_m(x_i)\right)+\Omega(f_m).$$
+$$\sum_{i=1}^N L \left(y_i,F_{m-1}(x_i)+f_m(x_i)\right)+\Omega(f_m).$$
 
 Applying the second-order Taylor expansion around $F_{m-1}(x_i)$:
 
-$$\sum_{i=1}^N \left[L\!\left(y_i,F_{m-1}(x_i)\right)+g_i f_m(x_i)+\frac{1}{2}h_i f_m^2(x_i)\right]+\Omega(f_m),$$
+$$\sum_{i=1}^N \left[L \left(y_i,F_{m-1}(x_i)\right)+g_i f_m(x_i)+\frac{1}{2}h_i f_m^2(x_i)\right]+\Omega(f_m),$$
 
 where $g_i = \left[\frac{\partial L(y_i,F(x_i))}{\partial F(x_i)}\right]_{F_{m-1}(x_i)}$ is the first-order gradient and $h_i = \left[\frac{\partial^2 L(y_i,F(x_i))}{\partial F(x_i)^2}\right]_{F_{m-1}(x_i)}$ is the second-order gradient (Hessian). Dropping the constant first term and substituting $f_m(x_i) = w_{q(x_i)}$, we group by leaves to get:
 
 $$\sum_{i=1}^N f_m(x_i)g_i+\frac{1}{2}\sum_{i=1}^N f_m^2(x_i)h_i+\Omega(f_m)$$
 $$=\sum_{j=1}^Tw_j\sum_{i\in I_j}g_i+\frac{1}{2}\sum_{j=1}^Tw^2_j\sum_{i\in I_j}h_i+\gamma T + \frac{1}{2}\lambda\sum_{j=1}^T w_j^2$$
-$$=\sum_{j=1}^T\left[w_j G_j+\frac{1}{2}w^2_j\!\left(H_j+\lambda\right)\right]+\gamma T,$$
+$$=\sum_{j=1}^T\left[w_j G_j+\frac{1}{2}w^2_j \left(H_j+\lambda\right)\right]+\gamma T,$$
 
 where $I_j = \{i : q(x_i)=j\}$ is the set of instances in leaf $j$, $G_j = \sum_{i\in I_j}g_i$, and $H_j = \sum_{i\in I_j}h_i$. For a fixed tree structure $q$, this is a sum of independent quadratics in $w_j$. The optimal leaf weight and the corresponding objective value are:
 
