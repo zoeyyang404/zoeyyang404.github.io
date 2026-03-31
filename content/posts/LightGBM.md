@@ -37,7 +37,7 @@ Directly optimizing $a$ is difficult because the tree structure is discrete and 
 
 $$\sum_{i=1}^N L\left(y_i,F_{m-1}(x_i)+\beta h(x_i;a)\right)\approx\sum_{i=1}^N L\left(y_i,F_{m-1}(x_i)\right)+\beta\sum_{i=1}^Nh(x_i;a)\left[\frac{\partial L(y_i,F(x_i))}{\partial F(x_i)}\right]_{F_{m-1}(x_i)}.\tag{1}$$
 
-The first term in (1) is constant with respect to $a$. Defining the pseudo-residual $r_{i,m}=-\left[\frac{\partial L(y_i,F(x_i))}{\partial F(x_i)}\right]_{F_{m-1}(x_i)}$ as the negative gradient, minimizing (1) over $a$ reduces to:
+The first term in (1) is constant with respect to $a$. Defining the pseudo-residual $r_{i,m}=-\left(\frac{\partial L(y_i,F(x_i))}{\partial F(x_i)}\right)_{F_{m-1}(x_i)}$ as the negative gradient, minimizing (1) over $a$ reduces to:
 
 $$a_m = \arg \max_{a}\sum_{i=1}^Nh(x_i;a)\,r_{i,m}.$$
 
