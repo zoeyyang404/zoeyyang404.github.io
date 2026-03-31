@@ -2,15 +2,16 @@
   --main-width: 1200px;
 }
 
-/* header */
 .header {
   padding: 0;
 }
 
-.nav {
+.nav,
+.main {
   max-width: var(--main-width);
   margin: 0 auto;
-  padding: 0 1rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 /* main content */
