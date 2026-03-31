@@ -2,16 +2,23 @@
   --main-width: 1200px;
 }
 
+/* 不要给 header 额外缩进 */
 .header {
   padding: 0;
 }
 
-.nav,
+/* header 内层也不要 auto 居中盒子的额外内边距 */
+.header .nav {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* 正文区域单独控制，不影响 header */
 .main {
   max-width: var(--main-width);
   margin: 0 auto;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  padding: 0;
 }
 
 /* main content */
