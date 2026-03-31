@@ -1,14 +1,16 @@
+
 :root {
   --main-width: 1200px;
 }
-header.header {
-  max-width: 100%;
-  padding: 0 2rem;
+
+.header,
+.main {
+  max-width: var(--main-width);
+  margin: 0 auto;
 }
 
 .nav {
-  max-width: 1200px;
-  margin: 0 auto;
+  padding: 0;
 }
 .main.post {
   max-width: calc(var(--main-width) + var(--gap) * 2);
