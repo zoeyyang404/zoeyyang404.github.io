@@ -29,16 +29,13 @@ params:
   authorInitials: "ZY"
   role: "Statistician & data scientist"
   tagline: "A living notebook on statistics, data, and learning."
-  homeEyebrow: "STATISTICS · DATA SCIENCE · FIELD NOTES"
-  homeTitle: "Making sense of data."
-  homeIntro: "I'm Ziyang Yang, also known as Zoey. I write about changepoints, time series, machine learning, and what I learn along the way."
   aboutIntro: "I'm a data scientist with a PhD in Statistics from Lancaster University. My work focuses on time series forecasting and anomaly detection. This is my living notebook: explanations, research notes, and reflections on learning."
   mainSection: posts
   authorPage: /about-me/
   showToc: true
-  showTopics: true
+  showTopics: false
   minTagPostsToIndex: 1
-  showAbout: true
+  showAbout: false # The homepage override places this text in the opening section.
   showNewsletter: false
   github: "https://github.com/zoeyyang404"
   email: "zoey.ziyang.yang@outlook.com"

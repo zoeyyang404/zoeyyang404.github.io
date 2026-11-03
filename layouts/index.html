@@ -1,0 +1,42 @@
+{{ define "main" }}
+  {{ $mainSection := .Site.Params.mainSection | default "articles" }}
+  {{ $articlesPage := .Site.GetPage $mainSection }}
+  {{ $articles := (where .Site.RegularPages "Section" $mainSection).ByDate.Reverse }}
+  {{ $lead := first 1 $articles }}
+  {{ $minis := first 3 (after 1 $articles) }}
+
+  <section class="hero" aria-labelledby="home-about-title">
+    <div class="hero__left">
+      <h1 class="hero__title" id="home-about-title">{{ i18n "about" }}</h1>
+      <p class="hero__sub">{{ .Site.Params.aboutIntro }}</p>
+      <div class="about__links">
+        {{ with .Site.Params.github }}<a class="about__link" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ i18n "github" }} →</a>{{ end }}
+        <a class="about__link" href="{{ .Site.Params.authorPage | default "/about/" | relURL }}">{{ i18n "about" }} →</a>
+        {{ with .Site.Params.email }}<a class="about__link" href="mailto:{{ . }}">{{ i18n "email" }} →</a>{{ end }}
+      </div>
+    </div>
+    <div class="hero__right">
+      <div class="hero__portrait" aria-hidden="true"><span>{{ .Site.Params.authorInitials | default "SN" }}</span></div>
+      <div class="hero__caption">{{ .Site.Title }} · {{ .Site.Params.role }}</div>
+    </div>
+  </section>
+
+  {{ if gt (len $articles) 0 }}
+  <section class="section" aria-labelledby="latest-articles-title">
+    <div class="container">
+      <div class="section__head">
+        <h2 class="section__title" id="latest-articles-title">{{ i18n "latestArticles" }}</h2>
+        {{ with $articlesPage }}<a class="section__all" href="{{ .RelPermalink }}">{{ i18n "viewAll" }} →</a>{{ end }}
+      </div>
+      <div class="latest__grid">
+        {{ range $lead }}{{ partial "post-card.html" (dict "page" . "variant" "lead") }}{{ end }}
+        {{ with $minis }}
+        <div class="mini-cards">
+          {{ range . }}{{ partial "post-card.html" (dict "page" . "variant" "mini") }}{{ end }}
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+  {{ end }}
+{{ end }}
