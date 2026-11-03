@@ -1,6 +1,6 @@
 ---
 title: "The history of LLM, starting from n gram"
-date: "Saturday, 9 May 2026"
+date: "2026-11-03"
 draft: true
 slug: "self"
 tags: []
