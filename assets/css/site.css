@@ -32,7 +32,7 @@
 .hero {
   width: 100%;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 17rem;
+  grid-template-columns: minmax(0, 1fr) 20rem;
   align-items: center;
   gap: clamp(2rem, 5vw, 4rem);
   padding-block: clamp(2rem, 6vh, 4rem);
@@ -46,7 +46,7 @@
 .hero__sub {
   max-width: none;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-size: clamp(1.125rem, 1.55vw, 1.25rem);
   line-height: 1.55;
   color: var(--ink);
 }
@@ -58,7 +58,7 @@
 }
 
 .hero__profile {
-  width: 17rem;
+  width: 20rem;
   margin: 0;
   gap: .5rem;
   align-self: center;
@@ -216,12 +216,12 @@
 
 @media (max-width: 52rem) {
   .hero {
-    grid-template-columns: minmax(0, 1fr) 14rem;
+    grid-template-columns: minmax(0, 1fr) 15.5rem;
     gap: 2rem;
   }
 
   .hero__profile {
-    width: 14rem;
+    width: 15.5rem;
   }
 }
 
@@ -240,7 +240,7 @@
   }
 
   .hero__profile {
-    width: 11rem;
+    width: 12.5rem;
     justify-self: center;
   }
 
