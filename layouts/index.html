@@ -5,9 +5,9 @@
   {{ $lead := first 1 $articles }}
   {{ $minis := first 3 (after 1 $articles) }}
 
-  <section class="hero" aria-labelledby="home-about-title">
+  <section class="hero" aria-labelledby="home-intro-title">
     <div class="hero__left">
-      <h1 class="hero__title" id="home-about-title">{{ i18n "about" }}</h1>
+      <h1 class="visually-hidden" id="home-intro-title">{{ .Site.Title }}</h1>
       <p class="hero__sub">{{ .Site.Params.aboutIntro }}</p>
       <div class="about__links">
         {{ with .Site.Params.github }}<a class="about__link" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ i18n "github" }} →</a>{{ end }}
