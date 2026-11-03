@@ -15,10 +15,21 @@
         {{ with .Site.Params.email }}<a class="about__link" href="mailto:{{ . }}">{{ i18n "email" }} →</a>{{ end }}
       </div>
     </div>
-    <div class="hero__right">
-      <div class="hero__portrait" aria-hidden="true"><span>{{ .Site.Params.authorInitials | default "SN" }}</span></div>
-      <div class="hero__caption">{{ .Site.Title }} · {{ .Site.Params.role }}</div>
-    </div>
+    <figure class="hero__right hero__profile">
+      {{ with resources.Get .Site.Params.profileImage }}
+        {{ $small := .Resize "480x webp q85" }}
+        {{ $large := .Resize "960x webp q85" }}
+        <div class="hero__portrait hero__portrait--photo">
+          <img src="{{ $large.RelPermalink }}"
+               srcset="{{ $small.RelPermalink }} 480w, {{ $large.RelPermalink }} 960w"
+               sizes="(max-width: 46rem) 90vw, 380px"
+               width="{{ $large.Width }}" height="{{ $large.Height }}"
+               alt="{{ $.Site.Params.profileImageAlt }}"
+               loading="eager" fetchpriority="high" decoding="async">
+        </div>
+      {{ end }}
+      <figcaption class="hero__caption">{{ .Site.Params.profileCaption }}</figcaption>
+    </figure>
   </section>
 
   {{ if gt (len $articles) 0 }}

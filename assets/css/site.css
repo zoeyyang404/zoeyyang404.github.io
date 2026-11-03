@@ -1,4 +1,21 @@
-/* Keep Stacknote's design; contain wide mathematics within the reading column. */
+/* Keep the profile frame, with Cube visible in the lower part of the photo. */
+.hero__profile {
+  margin: 0;
+}
+
+.hero__portrait--photo {
+  display: block;
+  aspect-ratio: 1;
+}
+
+.hero__portrait--photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+}
+
+/* Contain wide mathematics within the reading column. */
 .post,
 .post__body {
   min-width: 0;

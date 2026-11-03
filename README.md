@@ -25,6 +25,7 @@ GitHub Actions builds into `public/` and deploys on pushes to `main`. Commit the
 
 - Write articles in `content/posts/`; existing slugs and `/posts/` URLs are retained.
 - Edit the homepage About text (`aboutIntro`), menus, and social links in `hugo.yaml`.
+- The profile photo is stored in `assets/images/`; set `profileImage`, `profileImageAlt`, and `profileCaption` in `hugo.yaml`. Hugo generates responsive WebP images for the homepage.
 - About and publications remain in `content/about_me.md` and `content/Publications.md`.
 - Search is at `/search/` and uses Hugo's generated `/index.json`.
 - New cover images can go in `assets/images/` with `cover.image: images/example.png` and descriptive `cover.alt` text. Existing images under `static/old_posts_image/` retain their URLs.
