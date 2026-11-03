@@ -4,7 +4,7 @@
   {{ partial "head.html" . }}
   {{ partial "extend_head.html" . }}
 </head>
-<body>
+<body{{ if .IsHome }} class="page-home"{{ end }}>
   <a class="skip-link" href="#main-content">{{ i18n "skipToContent" }}</a>
   {{ partial "header.html" . }}
   <main id="main-content">

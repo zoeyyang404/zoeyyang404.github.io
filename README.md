@@ -24,12 +24,12 @@ GitHub Actions builds into `public/` and deploys on pushes to `main`. Commit the
 ## Content and customisation
 
 - Write articles in `content/posts/`; existing slugs and `/posts/` URLs are retained.
-- Edit the homepage About text (`aboutIntro`), menus, and social links in `hugo.yaml`.
+- Edit the homepage introduction (`aboutIntro`) and website note (`aboutNote`), menus, and social links in `hugo.yaml`.
 - The profile photo is stored in `assets/images/`; set `profileImage`, `profileImageAlt`, and `profileCaption` in `hugo.yaml`. Hugo generates responsive WebP images for the homepage.
 - About and publications remain in `content/about_me.md` and `content/Publications.md`.
 - The contact address is shown as plain text with `[at]` on About Me; avoid adding clickable email links or an email social icon.
 - New cover images can go in `assets/images/` with `cover.image: images/example.png` and descriptive `cover.alt` text. Existing images under `static/old_posts_image/` retain their URLs.
-- Site-specific changes live outside the theme: `layouts/index.html` pairs the introduction with a small profile photo and shows six recent articles; `layouts/baseof.html` adds the custom head partial; `assets/css/site.css` controls compact spacing, responsive layouts, and equations. Keep the theme submodule itself unmodified.
+- Site-specific changes live outside the theme: `layouts/index.html` pairs the introduction with Cube's photo, with articles available through Blog; `layouts/baseof.html` adds the custom head partial and homepage body class; `assets/css/site.css` controls compact spacing, responsive layouts, and equations. Keep the theme submodule itself unmodified.
 
 ## Mathematics
 

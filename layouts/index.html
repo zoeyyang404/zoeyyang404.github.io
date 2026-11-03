@@ -1,13 +1,9 @@
 {{ define "main" }}
-  {{ $mainSection := .Site.Params.mainSection | default "articles" }}
-  {{ $articlesPage := .Site.GetPage $mainSection }}
-  {{ $articles := (where .Site.RegularPages "Section" $mainSection).ByDate.Reverse }}
-  {{ $recent := first 6 $articles }}
-
   <section class="hero" aria-labelledby="home-intro-title">
     <div class="hero__left">
       <h1 class="visually-hidden" id="home-intro-title">{{ .Site.Title }}</h1>
       <p class="hero__sub">{{ .Site.Params.aboutIntro }}</p>
+      {{ with .Site.Params.aboutNote }}<p class="hero__note">{{ . }}</p>{{ end }}
       <div class="about__links">
         {{ with .Site.Params.github }}<a class="about__link" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ i18n "github" }} →</a>{{ end }}
         <a class="about__link" href="{{ .Site.Params.authorPage | default "/about/" | relURL }}">{{ i18n "about" }} →</a>
@@ -20,7 +16,7 @@
         <div class="hero__portrait hero__portrait--photo">
           <img src="{{ $large.RelPermalink }}"
                srcset="{{ $small.RelPermalink }} 480w, {{ $large.RelPermalink }} 960w"
-               sizes="(max-width: 38rem) 128px, (max-width: 52rem) 160px, 200px"
+               sizes="(max-width: 38rem) 176px, (max-width: 52rem) 224px, 272px"
                width="{{ $large.Width }}" height="{{ $large.Height }}"
                alt="{{ $.Site.Params.profileImageAlt }}"
                loading="eager" fetchpriority="high" decoding="async">
@@ -29,18 +25,4 @@
       <figcaption class="hero__caption">{{ .Site.Params.profileCaption }}</figcaption>
     </figure>
   </section>
-
-  {{ if gt (len $articles) 0 }}
-  <section class="section home-articles" aria-labelledby="latest-articles-title">
-    <div class="container">
-      <div class="section__head">
-        <h2 class="section__title" id="latest-articles-title">{{ i18n "latestArticles" }}</h2>
-        {{ with $articlesPage }}<a class="section__all" href="{{ .RelPermalink }}">{{ i18n "viewAll" }} →</a>{{ end }}
-      </div>
-      <div class="home-posts">
-        {{ range $recent }}{{ partial "post-card.html" (dict "page" . "variant" "mini") }}{{ end }}
-      </div>
-    </div>
-  </section>
-  {{ end }}
 {{ end }}
