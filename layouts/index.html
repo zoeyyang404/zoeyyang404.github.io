@@ -11,7 +11,6 @@
       <div class="about__links">
         {{ with .Site.Params.github }}<a class="about__link" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ i18n "github" }} →</a>{{ end }}
         <a class="about__link" href="{{ .Site.Params.authorPage | default "/about/" | relURL }}">{{ i18n "about" }} →</a>
-        {{ with .Site.Params.email }}<a class="about__link" href="mailto:{{ . }}">{{ i18n "email" }} →</a>{{ end }}
       </div>
     </div>
     <figure class="hero__right hero__profile">

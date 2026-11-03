@@ -41,15 +41,12 @@ params:
   showAbout: false # The homepage override places this text in the opening section.
   showNewsletter: false
   github: "https://github.com/zoeyyang404"
-  email: "zoey.ziyang.yang@outlook.com"
   themeColor: "#fafaf7"
   socialLinks:
     - name: github
       url: "https://github.com/zoeyyang404"
     - name: linkedin
       url: "https://www.linkedin.com/in/statistics-ziyang-yang"
-    - name: email
-      url: "mailto:zoey.ziyang.yang@outlook.com"
     - name: rss
       url: /index.xml
 

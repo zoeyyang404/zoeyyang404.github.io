@@ -39,3 +39,7 @@ Some highlights of my PhD:
 - I only applied to STOR-i and got in. I love STOR-i. Even though I was lonely at the beginning as I come from a different culture and language, especially during the pandemic. Here at STOR-i, everyone was incredibly kind and inclusive, which made my PhD experience much easier and more enjoyable.  
 - I was supervised by Idris and Paul — a great combination. I still hope one day I’ll have Idris’s interpersonal skills and Paul’s brain. I learned not only technical skills from them, but also how to think more clearly and independently.  
 - After finishing my PhD, I moved into industry. I’m now based in Edinburgh (feel free to reach out for a coffee chat), working as a data scientist at an IoT company.
+
+### Contact
+
+Email: zoey.ziyang.yang[at]outlook.com
