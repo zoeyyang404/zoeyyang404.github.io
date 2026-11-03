@@ -39,8 +39,6 @@ jobs:
           test -f public/posts/index.html
           test -f public/about-me/index.html
           test -f public/publications/index.html
-          test -f public/search/index.html
-          test -f public/index.json
           test -f public/vendor/katex/katex.min.js
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4

@@ -9,7 +9,7 @@ pagination:
   pagerSize: 10
 
 outputs:
-  home: [HTML, RSS, JSON]
+  home: [HTML, RSS]
 
 sitemap:
   changefreq: monthly
@@ -79,7 +79,4 @@ menu:
     - name: Publications
       url: /publications/
       weight: 30
-    - name: Search
-      url: /search/
-      weight: 40
 
