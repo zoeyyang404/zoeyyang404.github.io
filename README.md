@@ -24,7 +24,7 @@ GitHub Actions builds into `public/` and deploys on pushes to `main`. Commit the
 ## Content and customisation
 
 - Write articles in `content/posts/`; existing slugs and `/posts/` URLs are retained.
-- Edit the homepage introduction (`aboutIntro`) and website note (`aboutNote`), menus, and social links in `hugo.yaml`.
+- Edit the homepage introduction (`aboutIntro`), menus, and social links in `hugo.yaml`.
 - The profile photo is stored in `assets/images/`; set `profileImage`, `profileImageAlt`, and `profileCaption` in `hugo.yaml`. Hugo generates responsive WebP images for the homepage.
 - About and publications remain in `content/about_me.md` and `content/Publications.md`.
 - The contact address is shown as plain text with `[at]` on About Me; avoid adding clickable email links or an email social icon.

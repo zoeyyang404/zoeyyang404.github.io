@@ -3,7 +3,6 @@
     <div class="hero__left">
       <h1 class="visually-hidden" id="home-intro-title">{{ .Site.Title }}</h1>
       <p class="hero__sub">{{ .Site.Params.aboutIntro }}</p>
-      {{ with .Site.Params.aboutNote }}<p class="hero__note">{{ . }}</p>{{ end }}
       <div class="about__links">
         {{ with .Site.Params.github }}<a class="about__link" href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ i18n "github" }} →</a>{{ end }}
         <a class="about__link" href="{{ .Site.Params.authorPage | default "/about/" | relURL }}">{{ i18n "about" }} →</a>
