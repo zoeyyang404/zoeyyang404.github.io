@@ -1,11 +1,50 @@
-/* Keep the profile frame, with Cube visible in the lower part of the photo. */
+/* A closer, more compact reading layout across the site. */
+:root {
+  --maxw: 72rem;
+  --pad: clamp(1rem, 3vw, 2rem);
+  --space-section: 1.75rem;
+}
+
+.site-header .container {
+  min-height: 3.75rem;
+  gap: 1rem;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 12.5rem;
+  align-items: center;
+  gap: 2rem;
+  padding-block: 1.75rem 1.25rem;
+}
+
+.hero__left {
+  max-width: none;
+  gap: .65rem;
+}
+
+.hero__sub {
+  max-width: none;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.hero .about__links {
+  gap: .25rem 1.25rem;
+}
+
 .hero__profile {
+  width: 12.5rem;
   margin: 0;
+  gap: .5rem;
+  align-self: center;
 }
 
 .hero__portrait--photo {
+  width: 100%;
   display: block;
   aspect-ratio: 1;
+  box-shadow: .125rem .125rem 0 var(--line);
 }
 
 .hero__portrait--photo img {
@@ -15,7 +54,207 @@
   object-position: center bottom;
 }
 
+.hero__caption {
+  font-size: .6875rem;
+  line-height: 1.45;
+}
+
+.home-articles {
+  padding-block: .75rem 2rem;
+}
+
+.section__head {
+  margin-block-end: 1rem;
+  gap: 1rem;
+}
+
+.section__title {
+  font-size: 1.75rem;
+}
+
+.home-posts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .75rem;
+}
+
+.home-posts .post-card {
+  min-height: 0;
+}
+
+.home-posts .post-card__body {
+  padding: 1rem;
+  gap: .5rem;
+}
+
+.home-posts .post-card__title {
+  font-size: 1.3rem;
+  text-wrap: pretty;
+}
+
+.list-grid {
+  gap: .75rem;
+}
+
+.post-card__body {
+  padding: 1.1rem;
+  gap: .5rem;
+}
+
+.post-card__title {
+  font-size: clamp(1.2rem, 2vw, 1.5rem);
+}
+
+.post-card__excerpt {
+  font-size: .95rem;
+  line-height: 1.55;
+}
+
+.post-card--list.is-text-only .post-card__body {
+  min-height: 0;
+}
+
+.post-card--list .post-card__media {
+  height: 9rem;
+}
+
+.pagination {
+  margin-block-start: 1.5rem;
+}
+
+.post-layout {
+  max-width: var(--maxw);
+}
+
+.post-layout.has-toc {
+  gap: 2rem;
+}
+
+.post__header {
+  padding-block: 2rem 1rem;
+}
+
+.post__title {
+  margin-block: .5rem .75rem;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+}
+
+.post__body {
+  padding-block: .75rem 2.5rem;
+  line-height: 1.75;
+}
+
+.post__body > * {
+  margin-block-end: 1rem;
+}
+
+.post__body h2 {
+  margin-block: 2rem .75rem;
+}
+
+.post__body h3 {
+  margin-block: 1.5rem .65rem;
+}
+
+.post__body hr {
+  margin-block: 1.75rem;
+}
+
+.post-toc {
+  inset-block-start: 4.75rem;
+  padding-block-start: 2rem;
+}
+
+.post-nav {
+  margin-block: .75rem 2rem;
+}
+
+.related {
+  margin-block-end: 2.5rem;
+}
+
+.site-footer {
+  padding-block: 1.5rem 1.25rem;
+}
+
+.footer__top {
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.footer__brand {
+  gap: .5rem;
+}
+
+.footer__bottom {
+  margin-block-start: 1rem;
+  padding-block-start: .75rem;
+  gap: .75rem;
+}
+
+@media (max-width: 52rem) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) 10rem;
+    gap: 1.25rem;
+  }
+
+  .hero__profile {
+    width: 10rem;
+  }
+}
+
+@media (max-width: 42rem) {
+  .home-posts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .footer__top {
+    align-items: flex-start;
+    gap: .75rem;
+  }
+}
+
+@media (max-width: 38rem) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr) 8rem;
+    padding-block: 1.25rem 1rem;
+    gap: .75rem 1rem;
+  }
+
+  .hero__left {
+    display: contents;
+  }
+
+  .hero__sub {
+    grid-column: 1 / -1;
+  }
+
+  .hero .about__links {
+    grid-column: 1;
+    grid-row: 2;
+    flex-direction: column;
+    align-items: flex-start;
+    align-self: center;
+    gap: .125rem;
+  }
+
+  .hero__profile {
+    grid-column: 2;
+    grid-row: 2;
+    width: 8rem;
+  }
+
+  .home-posts .post-card__title {
+    font-size: 1.2rem;
+  }
+}
+
 /* Contain wide mathematics within the reading column. */
+.post__body .katex {
+  /* Contain absolutely positioned MathML within the equation's scroll area. */
+  position: relative;
+}
+
 .post,
 .post__body {
   min-width: 0;

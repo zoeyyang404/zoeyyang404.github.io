@@ -29,7 +29,7 @@ GitHub Actions builds into `public/` and deploys on pushes to `main`. Commit the
 - About and publications remain in `content/about_me.md` and `content/Publications.md`.
 - Search is at `/search/` and uses Hugo's generated `/index.json`.
 - New cover images can go in `assets/images/` with `cover.image: images/example.png` and descriptive `cover.alt` text. Existing images under `static/old_posts_image/` retain their URLs.
-- Site-specific changes live outside the theme: `layouts/index.html` places About beside the profile panel and shows the latest articles without separate featured, topic, or About sections; `layouts/baseof.html` adds the custom head partial; `assets/css/site.css` styles equations. Keep the theme submodule itself unmodified.
+- Site-specific changes live outside the theme: `layouts/index.html` pairs the introduction with a small profile photo and shows six recent articles; `layouts/baseof.html` adds the custom head partial; `assets/css/site.css` controls compact spacing, responsive layouts, and equations. Keep the theme submodule itself unmodified.
 
 ## Mathematics
 

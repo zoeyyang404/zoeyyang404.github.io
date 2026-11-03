@@ -2,8 +2,7 @@
   {{ $mainSection := .Site.Params.mainSection | default "articles" }}
   {{ $articlesPage := .Site.GetPage $mainSection }}
   {{ $articles := (where .Site.RegularPages "Section" $mainSection).ByDate.Reverse }}
-  {{ $lead := first 1 $articles }}
-  {{ $minis := first 3 (after 1 $articles) }}
+  {{ $recent := first 6 $articles }}
 
   <section class="hero" aria-labelledby="home-intro-title">
     <div class="hero__left">
@@ -22,7 +21,7 @@
         <div class="hero__portrait hero__portrait--photo">
           <img src="{{ $large.RelPermalink }}"
                srcset="{{ $small.RelPermalink }} 480w, {{ $large.RelPermalink }} 960w"
-               sizes="(max-width: 46rem) 90vw, 380px"
+               sizes="(max-width: 38rem) 128px, (max-width: 52rem) 160px, 200px"
                width="{{ $large.Width }}" height="{{ $large.Height }}"
                alt="{{ $.Site.Params.profileImageAlt }}"
                loading="eager" fetchpriority="high" decoding="async">
@@ -33,19 +32,14 @@
   </section>
 
   {{ if gt (len $articles) 0 }}
-  <section class="section" aria-labelledby="latest-articles-title">
+  <section class="section home-articles" aria-labelledby="latest-articles-title">
     <div class="container">
       <div class="section__head">
         <h2 class="section__title" id="latest-articles-title">{{ i18n "latestArticles" }}</h2>
         {{ with $articlesPage }}<a class="section__all" href="{{ .RelPermalink }}">{{ i18n "viewAll" }} →</a>{{ end }}
       </div>
-      <div class="latest__grid">
-        {{ range $lead }}{{ partial "post-card.html" (dict "page" . "variant" "lead") }}{{ end }}
-        {{ with $minis }}
-        <div class="mini-cards">
-          {{ range . }}{{ partial "post-card.html" (dict "page" . "variant" "mini") }}{{ end }}
-        </div>
-        {{ end }}
+      <div class="home-posts">
+        {{ range $recent }}{{ partial "post-card.html" (dict "page" . "variant" "mini") }}{{ end }}
       </div>
     </div>
   </section>
