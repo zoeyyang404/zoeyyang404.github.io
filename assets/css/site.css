@@ -182,10 +182,6 @@
   gap: 1.5rem;
 }
 
-.footer__brand {
-  gap: .5rem;
-}
-
 .footer__bottom {
   margin-block-start: 1rem;
   padding-block-start: .75rem;
