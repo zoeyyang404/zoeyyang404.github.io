@@ -29,7 +29,7 @@ params:
   authorInitials: "ZY"
   role: "Statistician & data scientist"
   tagline: "A living notebook on statistics, data, and learning."
-  aboutIntro: "I'm a data scientist with a PhD in Statistics from Lancaster University. My work focuses on time series forecasting and anomaly detection. This is my living notebook: explanations, research notes, and reflections on learning."
+  aboutIntro: "I'm a data scientist with a PhD in Statistics from Lancaster University. My work focuses on time series forecasting and anomaly detection. On this website, I share what I'm learning and the experiences I gain along the way."
   mainSection: posts
   authorPage: /about-me/
   showToc: true
