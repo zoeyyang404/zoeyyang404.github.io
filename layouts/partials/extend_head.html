@@ -1,46 +1,14 @@
-<meta name="google-site-verification" content="vOrBLaDzb2rXy_sYCSkdHwjTgNn-mjuH-joa2LeEQxw" />
-<meta name="author" content="Ziyang Yang">
-<meta name="description" content="Ziyang Yang, data scientist working on anomaly detection and time series forecasting.">
-<meta name="keywords" content="Zoey Yang, Ziyang Yang, anomaly detection, time series forecasting">
+﻿<meta name="google-site-verification" content="vOrBLaDzb2rXy_sYCSkdHwjTgNn-mjuH-joa2LeEQxw">
+<meta name="author" content="{{ site.Params.author }}">
+{{ with site.Params.keywords }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}
 
-<script type="application/ld+json">
-{
- "@context": "https://schema.org",
- "@type": "Person",
- "name": "Ziyang Yang",
- "alternateName": "Zoey Yang",
- "url": "https://zoeyyang.github.io",
- "sameAs": [
-   "https://github.com/zoeyyang",
-   "https://www.lancaster.ac.uk/stor-i-student-sites/ziyang-yang/",
-   "https://www.linkedin.com/in/statistics-ziyang-yang/"
- ]
-}
-</script>
+{{- $style := resources.Get "css/site.css" | minify | fingerprint -}}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
 
-{{- if or .Params.math site.Params.math -}}
-
-<link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.css"
-      crossorigin="anonymous">
-
-<script defer
-        src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/katex.min.js"
-        crossorigin="anonymous"></script>
-
-<script defer
-        src="https://cdn.jsdelivr.net/npm/katex@0.16.10/dist/contrib/auto-render.min.js"
-        crossorigin="anonymous"></script>
-
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-  renderMathInElement(document.body, {
-    delimiters: [
-      { left: "$$", right: "$$", display: true },
-      { left: "$", right: "$", display: false }
-    ]
-  });
-});
-</script>
-
+{{- if and .IsPage (.Param "math") -}}
+<link rel="stylesheet" href="{{ "vendor/katex/katex.min.css" | relURL }}">
+<script defer src="{{ "vendor/katex/katex.min.js" | relURL }}"></script>
+<script defer src="{{ "vendor/katex/auto-render.min.js" | relURL }}"></script>
+{{- $math := resources.Get "js/math.js" | minify | fingerprint -}}
+<script defer src="{{ $math.RelPermalink }}" integrity="{{ $math.Data.Integrity }}"></script>
 {{- end -}}

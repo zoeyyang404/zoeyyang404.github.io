@@ -1,8 +1,15 @@
 baseURL: "https://zoeyyang404.github.io/"
 languageCode: "en-gb"
+locale: "en-GB"
 title: "Ziyang Yang"
-theme: "PaperMod"
+theme: "stacknote"
 enableRobotsTXT: true
+
+pagination:
+  pagerSize: 10
+
+outputs:
+  home: [HTML, RSS, JSON]
 
 sitemap:
   changefreq: monthly
@@ -18,29 +25,38 @@ params:
     - "Ziyang Yang"
     - "time series"
     - "anomaly detection"
-  katex: true
   math: true
-  profileMode:
-    enabled: true
-    title: "Ziyang Yang"
-    subtitle: "Data Scientist | PhD in Statistics | Interested in changepoint, time series forecasting, ML and DL."
-    buttons:
-      - name: Blog
-        url: /posts/
-      - name: About Me
-        url: /about-me/
-  socialIcons:
+  authorInitials: "ZY"
+  role: "Statistician & data scientist"
+  tagline: "A living notebook on statistics, data, and learning."
+  homeEyebrow: "STATISTICS · DATA SCIENCE · FIELD NOTES"
+  homeTitle: "Making sense of data."
+  homeIntro: "I'm Ziyang Yang, also known as Zoey. I write about changepoints, time series, machine learning, and what I learn along the way."
+  aboutIntro: "I'm a data scientist with a PhD in Statistics from Lancaster University. My work focuses on time series forecasting and anomaly detection. This is my living notebook: explanations, research notes, and reflections on learning."
+  mainSection: posts
+  authorPage: /about-me/
+  showToc: true
+  showTopics: true
+  minTagPostsToIndex: 1
+  showAbout: true
+  showNewsletter: false
+  github: "https://github.com/zoeyyang404"
+  email: "zoey.ziyang.yang@outlook.com"
+  themeColor: "#fafaf7"
+  socialLinks:
     - name: github
       url: "https://github.com/zoeyyang404"
     - name: linkedin
       url: "https://www.linkedin.com/in/statistics-ziyang-yang"
     - name: email
-      url: "zoey.ziyang.yang@outlook.com"
-  footer:
-    text: "Ziyang Yang. Contact: zoey.ziyang.yang [at] outlook.com"
+      url: "mailto:zoey.ziyang.yang@outlook.com"
+    - name: rss
+      url: /index.xml
 
 markup:
   goldmark:
+    renderer:
+      unsafe: true # Existing articles contain HTML images and formatted text.
     extensions:
       passthrough:
         enable: true
@@ -48,9 +64,13 @@ markup:
           block:
             - - "$$"
               - "$$"
+            - - '\['
+              - '\]'
           inline:
             - - "$"
               - "$"
+            - - '\('
+              - '\)'
 menu:
   main:
     - name: Blog
@@ -60,6 +80,9 @@ menu:
       url: /about-me/
       weight: 20
     - name: Publications
-      url: /Publications/
+      url: /publications/
       weight: 30
+    - name: Search
+      url: /search/
+      weight: 40
 

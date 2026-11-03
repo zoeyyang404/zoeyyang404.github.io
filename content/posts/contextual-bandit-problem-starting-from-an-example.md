@@ -9,6 +9,7 @@ math: true
 summary: "A simple explanation of contextual bandit algorithms with an intuitive example."
 cover:
   image: "/old_posts_image/18/2021/02/contextualbanditdiag-1024x170.png"
+  alt: "Diagram illustrating the contextual bandit recommendation process."
 ---
 <span class="has-inline-color has-secondary-color">This blog will give you an idea of the rationale behind the recommendation system. How contextual bandit problem works in such a system? Hope this blog will give you an answer.</span>
 

@@ -21,7 +21,7 @@ Firstly, you have to write your own algorithm in C++ in a Linux system. And next
 ![](/old_posts_image/18/2021/03/image.png)
 
 
-- Add //\[\[Rcpp::export\]\] in your main function
+- Add `//[[Rcpp::export]]` in your main function
 ![](/old_posts_image/18/2021/03/image-1.png)
 
 - Add user interrupt through <span class="has-inline-color has-quaternary-color">Rcpp::checkUserInterrupt()</span>. It allows users to terminal algorithm when it runs too long.

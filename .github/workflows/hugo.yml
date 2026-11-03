@@ -21,18 +21,27 @@ jobs:
           fetch-depth: 0
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.160.0'
+          extended: true
         env:
           FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v6
       - name: Build
-        run: hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: hugo --minify --panicOnWarning --baseURL "${{ steps.pages.outputs.base_url }}/"
       - name: Verify build output
         run: |
           echo "Base URL used: ${{ steps.pages.outputs.base_url }}/"
           ls -la public | head -n 200
           test -f public/index.html
+          test -f public/posts/index.html
+          test -f public/about-me/index.html
+          test -f public/publications/index.html
+          test -f public/search/index.html
+          test -f public/index.json
+          test -f public/vendor/katex/katex.min.js
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
         with:

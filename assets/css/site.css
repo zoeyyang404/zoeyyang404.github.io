@@ -1,0 +1,41 @@
+/* Keep Stacknote's design; contain wide mathematics within the reading column. */
+.post,
+.post__body {
+  min-width: 0;
+}
+
+.post__body .katex-display {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: .5rem .125rem;
+}
+
+.post__body .katex-display > .katex {
+  display: block;
+  width: max-content;
+  min-width: 100%;
+  white-space: nowrap;
+}
+
+/* Keep equation numbers beside wide formulas inside the same scroll area. */
+.post__body .katex-display > .katex > .katex-html {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 1rem;
+  min-width: max-content;
+}
+
+.post__body .katex-display > .katex > .katex-html > .tag {
+  position: static;
+  flex: 0 0 auto;
+}
+
+.post__body .katex-display > .katex > .katex-html > .base {
+  flex: 0 0 auto;
+}
+
+.post__body iframe {
+  max-width: 100%;
+}
